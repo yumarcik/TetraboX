@@ -1,0 +1,92 @@
+# === ONLY EDIT THIS if your column names/units change ===
+
+product:
+  path: "data/raw/product_packages_10000_english_semicolon.csv"
+  sep: ";"            # <-- NEW: your file is semicolon-separated
+  decimal: ","        # <-- NEW: your file uses comma decimals
+
+  # IDs
+  id_col: null        # there's no explicit id column in your CSV
+  id_strategy: "auto_sku"   # auto-generate SKUs if id_col is null
+  id_prefix: "SKU"          # SKU-000001, SKU-000002...
+  id_start_index: 1
+
+  # Dimension columns (in cm → we convert to mm)
+  width_col: "width_cm"
+  length_col: "length_cm"
+  height_col: "height_cm"
+  width_unit: "cm"
+  length_unit: "cm"
+  height_unit: "cm"
+
+  # Weight column (in kg → we convert to g)
+  weight_col: "weight_kg"
+  weight_unit: "kg"
+
+  # Product attributes
+  fragile_col: "fragile"              # true/false
+  packaging_type_col: "package_type"  # english categories below will be mapped
+  hazmat_col: "hazard_class"
+
+  # Extra packaging
+  extra_pack_flag_col: "extra_package"
+  extra_pack_size_col_width: "extra_width_cm"   # width of extra pack (cm)
+  extra_pack_size_col_length: "extra_length_cm" # length of extra pack (cm)
+  extra_pack_price_col: "extra_price_usd"
+  extra_pack_price_currency: "USD"
+  fx_to_try: 1.0       # 1 USD → 1.0 TRY (adjust if you want a conversion)
+
+  # Normalize English package types to our canonical set
+  categorical_maps:
+    packaging_type:
+      poly_bag: "poşet"
+      pouch: "poşet"
+      rigid_box: "kutu"
+      corrugated_box: "kutu"
+      kraft_envelope: "zarf"
+      glass_jar: "kavanoz"
+      plastic_bottle: "şişe"
+      box: "kutu"
+      bag: "poşet"
+      envelope: "zarf"
+      jar: "kavanoz"
+      bottle: "şişe"
+
+container:
+  path: "data/raw/tum_kargo_kutu_bilgileri.csv"
+  encoding: "cp1254"   # NEW: file encoding
+  sep: "\t"            # NEW: tab-delimited
+  decimal: "."         # decimals use dot in your file
+
+  # No explicit id column → auto-generate
+  box_id_col: null     # NEW: let code auto-create BOX-000001, ...
+  id_prefix: "BOX"     # NEW
+  id_start_index: 1    # NEW
+
+  # Dimension columns (in cm → to mm)
+  inner_w_col: "en"
+  inner_l_col: "boy"
+  inner_h_col: "yükseklik"
+  width_unit: "cm"
+  length_unit: "cm"
+  height_unit: "cm"
+
+  # Weights
+  tare_weight_col: "boş_ağırlık"
+  tare_weight_unit: "kg"
+
+  # Max capacity (messy → auto + fallback)
+  max_weight_col: "maksimum_taşıma_kapasitesi"
+  max_weight_unit: "auto"             # NEW: treat ≤200 as kg → g, otherwise as g
+  max_weight_fallback_col: "maks_taşıma"  # NEW: map Mikro/XS/S/M/L/XL → kg
+
+  # Other
+  material_col: "malzeme_türü"
+  stock_col: "stok_adedi"
+  price_col: "fiyat"
+  usage_limit_col: "kullanım_kısıtı"
+
+output:
+  normalized_products: "data/normalized/products.csv"
+  normalized_containers: "data/normalized/containers.csv"
+  assignments: "data/normalized/assignments.csv"

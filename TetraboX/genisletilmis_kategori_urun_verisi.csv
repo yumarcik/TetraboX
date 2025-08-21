@@ -1,0 +1,641 @@
+﻿ürün_id,ürün_adı,kategori,en_cm,boy_cm,yükseklik_cm,ağırlık_kg,kırılgan,ambalaj_türü,paket_boyutları,tehlikeli_madde,ekstra_ambalaj,şekil,ısıya_duyarlılık
+AYA-001,Ayakkabı Ürün 1,Ayakkabı,33,12,33,3.11,True,Folyo Paket,33x12x33 cm,Yok,True,Küp,True
+AYA-002,Ayakkabı Ürün 2,Ayakkabı,34,13,13,1.2,True,Cam Şişe,34x13x13 cm,Yok,False,Yassı,False
+AYA-003,Ayakkabı Ürün 3,Ayakkabı,35,13,13,0.74,True,Ahşap,35x13x13 cm,Yok,False,Küp,False
+AYA-004,Ayakkabı Ürün 4,Ayakkabı,27,17,49,3.41,True,Karton,27x17x49 cm,Yok,True,Silindirik,False
+AYA-005,Ayakkabı Ürün 5,Ayakkabı,37,33,29,2.64,False,Plastik,37x33x29 cm,Yok,True,Yassı,False
+AYA-006,Ayakkabı Ürün 6,Ayakkabı,35,37,33,2.74,True,Ahşap,35x37x33 cm,Yok,False,Prizmatik,False
+AYA-007,Ayakkabı Ürün 7,Ayakkabı,17,31,31,1.45,False,Ahşap,17x31x31 cm,Yok,False,Yassı,False
+AYA-008,Ayakkabı Ürün 8,Ayakkabı,12,35,45,1.06,False,Kumaş,12x35x45 cm,Yok,True,Yassı,True
+AYA-009,Ayakkabı Ürün 9,Ayakkabı,16,39,29,4.45,False,Plastik,16x39x29 cm,Yok,False,Prizmatik,True
+AYA-010,Ayakkabı Ürün 10,Ayakkabı,24,6,12,4.43,True,Ahşap,24x6x12 cm,Yok,True,Prizmatik,True
+AYA-011,Ayakkabı Ürün 11,Ayakkabı,26,14,25,0.21,False,Karton,26x14x25 cm,Yok,True,Yassı,False
+AYA-012,Ayakkabı Ürün 12,Ayakkabı,5,26,6,4.38,True,Cam Şişe,5x26x6 cm,Yok,False,Silindirik,False
+AYA-013,Ayakkabı Ürün 13,Ayakkabı,10,27,19,0.94,True,Ahşap,10x27x19 cm,Yok,False,Küp,True
+AYA-014,Ayakkabı Ürün 14,Ayakkabı,16,32,45,1.5,False,Folyo Paket,16x32x45 cm,Yok,True,Yassı,False
+AYA-015,Ayakkabı Ürün 15,Ayakkabı,12,26,25,3.0,True,Karton,12x26x25 cm,Yok,True,Silindirik,True
+AYA-016,Ayakkabı Ürün 16,Ayakkabı,21,25,41,2.36,False,Kumaş,21x25x41 cm,Yok,False,Yassı,True
+AYA-017,Ayakkabı Ürün 17,Ayakkabı,9,37,39,0.6,False,Folyo Paket,9x37x39 cm,Yok,False,Yassı,False
+AYA-018,Ayakkabı Ürün 18,Ayakkabı,27,24,8,1.7,False,Folyo Paket,27x24x8 cm,Yok,False,Silindirik,False
+AYA-019,Ayakkabı Ürün 19,Ayakkabı,25,20,27,3.73,True,Ahşap,25x20x27 cm,Yok,False,Silindirik,True
+AYA-020,Ayakkabı Ürün 20,Ayakkabı,39,15,21,0.29,False,Ahşap,39x15x21 cm,Yok,False,Küp,False
+AYA-021,Ayakkabı Ürün 21,Ayakkabı,26,30,38,2.09,True,Ahşap,26x30x38 cm,Yok,True,Silindirik,True
+AYA-022,Ayakkabı Ürün 22,Ayakkabı,35,20,21,1.43,False,Ahşap,35x20x21 cm,Yok,False,Prizmatik,True
+AYA-023,Ayakkabı Ürün 23,Ayakkabı,18,16,41,4.93,False,Plastik,18x16x41 cm,Yok,False,Prizmatik,False
+AYA-024,Ayakkabı Ürün 24,Ayakkabı,37,29,41,2.79,False,Metal,37x29x41 cm,Yok,False,Yassı,False
+AYA-025,Ayakkabı Ürün 25,Ayakkabı,28,22,50,1.14,False,Karton,28x22x50 cm,Yok,False,Silindirik,True
+AYA-026,Ayakkabı Ürün 26,Ayakkabı,15,13,38,1.37,True,Kumaş,15x13x38 cm,Yok,False,Silindirik,True
+AYA-027,Ayakkabı Ürün 27,Ayakkabı,17,23,21,3.89,False,Ahşap,17x23x21 cm,Yok,True,Yassı,False
+AYA-028,Ayakkabı Ürün 28,Ayakkabı,14,8,3,3.13,True,Kumaş,14x8x3 cm,Yok,False,Küp,True
+AYA-029,Ayakkabı Ürün 29,Ayakkabı,33,8,41,1.59,False,Cam Şişe,33x8x41 cm,Yok,True,Küp,False
+AYA-030,Ayakkabı Ürün 30,Ayakkabı,22,29,32,1.54,True,Plastik,22x29x32 cm,Yok,False,Prizmatik,True
+AYA-031,Ayakkabı Ürün 31,Ayakkabı,8,31,31,1.41,False,Cam Şişe,8x31x31 cm,Yok,True,Küp,False
+AYA-032,Ayakkabı Ürün 32,Ayakkabı,7,23,45,3.28,True,Metal,7x23x45 cm,Yok,True,Silindirik,True
+AYA-033,Ayakkabı Ürün 33,Ayakkabı,38,7,22,2.85,False,Folyo Paket,38x7x22 cm,Yok,True,Silindirik,False
+AYA-034,Ayakkabı Ürün 34,Ayakkabı,18,21,12,1.63,False,Kumaş,18x21x12 cm,Yok,True,Yassı,False
+AYA-035,Ayakkabı Ürün 35,Ayakkabı,7,30,40,3.15,True,Karton,7x30x40 cm,Yok,False,Küp,False
+AYA-036,Ayakkabı Ürün 36,Ayakkabı,15,18,7,0.5,True,Ahşap,15x18x7 cm,Yok,False,Silindirik,False
+AYA-037,Ayakkabı Ürün 37,Ayakkabı,33,8,17,2.66,True,Ahşap,33x8x17 cm,Yok,False,Silindirik,False
+AYA-038,Ayakkabı Ürün 38,Ayakkabı,34,35,21,1.74,False,Karton,34x35x21 cm,Yok,False,Silindirik,True
+AYA-039,Ayakkabı Ürün 39,Ayakkabı,21,11,13,4.87,False,Metal,21x11x13 cm,Yok,False,Silindirik,False
+AYA-040,Ayakkabı Ürün 40,Ayakkabı,10,30,49,3.16,True,Metal,10x30x49 cm,Yok,True,Prizmatik,False
+BAH-001,Bahçe Ürün 1,Bahçe,18,16,9,1.46,True,Ahşap,18x16x9 cm,Sınıf 2,True,Prizmatik,False
+BAH-002,Bahçe Ürün 2,Bahçe,19,32,11,4.77,True,Plastik,19x32x11 cm,Sınıf 8,True,Prizmatik,False
+BAH-003,Bahçe Ürün 3,Bahçe,28,10,10,2.88,True,Karton,28x10x10 cm,Sınıf 2,True,Silindirik,False
+BAH-004,Bahçe Ürün 4,Bahçe,34,32,47,1.25,False,Metal,34x32x47 cm,Sınıf 3,True,Prizmatik,True
+BAH-005,Bahçe Ürün 5,Bahçe,9,5,4,2.11,True,Plastik,9x5x4 cm,Sınıf 2,False,Silindirik,False
+BAH-006,Bahçe Ürün 6,Bahçe,9,29,3,2.02,False,Ahşap,9x29x3 cm,Yok,False,Silindirik,False
+BAH-007,Bahçe Ürün 7,Bahçe,37,28,5,4.02,False,Karton,37x28x5 cm,Sınıf 2,False,Yassı,True
+BAH-008,Bahçe Ürün 8,Bahçe,23,30,14,4.23,False,Karton,23x30x14 cm,Sınıf 2,True,Silindirik,True
+BAH-009,Bahçe Ürün 9,Bahçe,27,38,4,3.42,False,Plastik,27x38x4 cm,Yok,False,Prizmatik,True
+BAH-010,Bahçe Ürün 10,Bahçe,10,14,2,0.46,False,Ahşap,10x14x2 cm,Yok,False,Silindirik,True
+BAH-011,Bahçe Ürün 11,Bahçe,32,9,28,2.59,False,Metal,32x9x28 cm,Yok,False,Silindirik,True
+BAH-012,Bahçe Ürün 12,Bahçe,35,6,37,3.96,True,Ahşap,35x6x37 cm,Yok,False,Silindirik,False
+BAH-013,Bahçe Ürün 13,Bahçe,12,7,32,3.9,True,Kumaş,12x7x32 cm,Yok,True,Prizmatik,False
+BAH-014,Bahçe Ürün 14,Bahçe,6,19,2,1.45,False,Kumaş,6x19x2 cm,Sınıf 8,True,Prizmatik,True
+BAH-015,Bahçe Ürün 15,Bahçe,14,15,50,3.31,True,Folyo Paket,14x15x50 cm,Sınıf 2,True,Küp,False
+BAH-016,Bahçe Ürün 16,Bahçe,17,16,11,2.64,False,Karton,17x16x11 cm,Sınıf 3,False,Küp,False
+BAH-017,Bahçe Ürün 17,Bahçe,31,36,27,3.69,True,Folyo Paket,31x36x27 cm,Sınıf 3,True,Küp,True
+BAH-018,Bahçe Ürün 18,Bahçe,15,7,41,0.54,True,Metal,15x7x41 cm,Sınıf 8,True,Silindirik,True
+BAH-019,Bahçe Ürün 19,Bahçe,24,22,23,2.0,False,Metal,24x22x23 cm,Sınıf 8,True,Silindirik,False
+BAH-020,Bahçe Ürün 20,Bahçe,39,16,29,4.19,True,Plastik,39x16x29 cm,Sınıf 3,True,Prizmatik,False
+BAH-021,Bahçe Ürün 21,Bahçe,5,13,34,3.77,False,Kumaş,5x13x34 cm,Sınıf 2,True,Küp,False
+BAH-022,Bahçe Ürün 22,Bahçe,24,28,42,1.52,False,Cam Şişe,24x28x42 cm,Yok,False,Yassı,True
+BAH-023,Bahçe Ürün 23,Bahçe,24,19,24,2.01,True,Metal,24x19x24 cm,Sınıf 8,False,Silindirik,False
+BAH-024,Bahçe Ürün 24,Bahçe,19,11,34,0.75,True,Folyo Paket,19x11x34 cm,Sınıf 8,False,Yassı,False
+BAH-025,Bahçe Ürün 25,Bahçe,38,32,3,0.23,True,Ahşap,38x32x3 cm,Sınıf 2,False,Yassı,False
+BAH-026,Bahçe Ürün 26,Bahçe,39,11,8,2.51,True,Karton,39x11x8 cm,Yok,True,Yassı,True
+BAH-027,Bahçe Ürün 27,Bahçe,40,9,9,3.97,True,Ahşap,40x9x9 cm,Sınıf 8,False,Yassı,False
+BAH-028,Bahçe Ürün 28,Bahçe,9,27,12,2.87,False,Cam Şişe,9x27x12 cm,Sınıf 8,False,Küp,True
+BAH-029,Bahçe Ürün 29,Bahçe,24,32,40,3.31,True,Folyo Paket,24x32x40 cm,Yok,False,Yassı,True
+BAH-030,Bahçe Ürün 30,Bahçe,29,9,15,2.65,False,Metal,29x9x15 cm,Sınıf 3,True,Yassı,True
+BAH-031,Bahçe Ürün 31,Bahçe,14,39,40,3.74,False,Metal,14x39x40 cm,Yok,False,Silindirik,False
+BAH-032,Bahçe Ürün 32,Bahçe,32,10,42,1.32,False,Kumaş,32x10x42 cm,Sınıf 8,True,Yassı,True
+BAH-033,Bahçe Ürün 33,Bahçe,17,17,47,2.26,True,Plastik,17x17x47 cm,Sınıf 2,False,Yassı,True
+BAH-034,Bahçe Ürün 34,Bahçe,32,35,18,1.97,True,Metal,32x35x18 cm,Sınıf 2,False,Silindirik,False
+BAH-035,Bahçe Ürün 35,Bahçe,34,12,37,0.44,True,Folyo Paket,34x12x37 cm,Yok,False,Küp,False
+BAH-036,Bahçe Ürün 36,Bahçe,34,21,46,0.36,False,Folyo Paket,34x21x46 cm,Sınıf 8,False,Yassı,False
+BAH-037,Bahçe Ürün 37,Bahçe,32,8,42,1.05,False,Cam Şişe,32x8x42 cm,Yok,True,Küp,True
+BAH-038,Bahçe Ürün 38,Bahçe,40,25,41,2.88,True,Karton,40x25x41 cm,Sınıf 8,False,Silindirik,False
+BAH-039,Bahçe Ürün 39,Bahçe,26,20,12,4.16,False,Cam Şişe,26x20x12 cm,Sınıf 3,False,Silindirik,False
+BAH-040,Bahçe Ürün 40,Bahçe,26,15,40,4.75,False,Kumaş,26x15x40 cm,Sınıf 2,False,Küp,False
+BEB-001,Bebek Ürün 1,Bebek,28,19,33,4.92,True,Plastik,28x19x33 cm,Sınıf 2,True,Yassı,True
+BEB-002,Bebek Ürün 2,Bebek,34,17,20,0.18,True,Ahşap,34x17x20 cm,Yok,False,Silindirik,True
+BEB-003,Bebek Ürün 3,Bebek,10,40,12,3.76,False,Ahşap,10x40x12 cm,Sınıf 2,True,Küp,False
+BEB-004,Bebek Ürün 4,Bebek,25,17,48,3.81,False,Ahşap,25x17x48 cm,Sınıf 3,True,Küp,True
+BEB-005,Bebek Ürün 5,Bebek,7,26,8,1.36,False,Plastik,7x26x8 cm,Sınıf 2,True,Prizmatik,False
+BEB-006,Bebek Ürün 6,Bebek,28,14,20,4.87,False,Plastik,28x14x20 cm,Sınıf 3,False,Yassı,True
+BEB-007,Bebek Ürün 7,Bebek,17,18,3,1.4,True,Metal,17x18x3 cm,Sınıf 8,False,Yassı,True
+BEB-008,Bebek Ürün 8,Bebek,17,24,41,3.7,False,Cam Şişe,17x24x41 cm,Sınıf 2,False,Yassı,False
+BEB-009,Bebek Ürün 9,Bebek,19,7,8,4.86,False,Karton,19x7x8 cm,Yok,False,Silindirik,True
+BEB-010,Bebek Ürün 10,Bebek,17,23,14,0.49,True,Kumaş,17x23x14 cm,Sınıf 8,False,Küp,True
+BEB-011,Bebek Ürün 11,Bebek,29,39,18,2.58,True,Karton,29x39x18 cm,Sınıf 3,True,Küp,True
+BEB-012,Bebek Ürün 12,Bebek,32,17,20,2.56,False,Kumaş,32x17x20 cm,Yok,False,Prizmatik,True
+BEB-013,Bebek Ürün 13,Bebek,27,21,8,4.61,False,Cam Şişe,27x21x8 cm,Sınıf 3,False,Yassı,False
+BEB-014,Bebek Ürün 14,Bebek,6,37,38,1.89,False,Karton,6x37x38 cm,Sınıf 2,False,Yassı,False
+BEB-015,Bebek Ürün 15,Bebek,38,27,28,1.17,True,Plastik,38x27x28 cm,Sınıf 3,True,Prizmatik,True
+BEB-016,Bebek Ürün 16,Bebek,34,39,16,3.53,False,Plastik,34x39x16 cm,Sınıf 2,True,Küp,False
+BEB-017,Bebek Ürün 17,Bebek,10,35,40,2.62,False,Cam Şişe,10x35x40 cm,Sınıf 3,False,Silindirik,True
+BEB-018,Bebek Ürün 18,Bebek,32,39,45,4.06,True,Plastik,32x39x45 cm,Sınıf 3,True,Prizmatik,True
+BEB-019,Bebek Ürün 19,Bebek,12,6,44,2.65,False,Metal,12x6x44 cm,Sınıf 3,True,Küp,True
+BEB-020,Bebek Ürün 20,Bebek,7,33,23,4.43,True,Karton,7x33x23 cm,Yok,True,Küp,False
+BEB-021,Bebek Ürün 21,Bebek,29,34,10,2.63,True,Ahşap,29x34x10 cm,Sınıf 8,False,Prizmatik,True
+BEB-022,Bebek Ürün 22,Bebek,36,18,12,2.86,True,Plastik,36x18x12 cm,Sınıf 2,True,Prizmatik,False
+BEB-023,Bebek Ürün 23,Bebek,17,15,38,4.63,False,Metal,17x15x38 cm,Yok,False,Küp,True
+BEB-024,Bebek Ürün 24,Bebek,34,23,22,3.33,True,Cam Şişe,34x23x22 cm,Sınıf 3,False,Yassı,True
+BEB-025,Bebek Ürün 25,Bebek,5,40,2,1.26,True,Folyo Paket,5x40x2 cm,Sınıf 2,True,Silindirik,True
+BEB-026,Bebek Ürün 26,Bebek,11,39,25,4.26,False,Ahşap,11x39x25 cm,Sınıf 8,False,Prizmatik,True
+BEB-027,Bebek Ürün 27,Bebek,27,32,50,0.59,True,Metal,27x32x50 cm,Sınıf 2,True,Küp,False
+BEB-028,Bebek Ürün 28,Bebek,9,14,26,3.54,False,Metal,9x14x26 cm,Sınıf 3,True,Yassı,False
+BEB-029,Bebek Ürün 29,Bebek,35,25,27,1.22,False,Metal,35x25x27 cm,Yok,True,Prizmatik,True
+BEB-030,Bebek Ürün 30,Bebek,22,25,10,4.61,False,Cam Şişe,22x25x10 cm,Yok,True,Prizmatik,True
+BEB-031,Bebek Ürün 31,Bebek,9,37,49,2.08,True,Kumaş,9x37x49 cm,Yok,False,Prizmatik,False
+BEB-032,Bebek Ürün 32,Bebek,5,39,50,2.05,False,Cam Şişe,5x39x50 cm,Yok,True,Silindirik,True
+BEB-033,Bebek Ürün 33,Bebek,23,38,48,0.55,True,Karton,23x38x48 cm,Sınıf 2,False,Prizmatik,True
+BEB-034,Bebek Ürün 34,Bebek,40,8,19,4.15,True,Folyo Paket,40x8x19 cm,Sınıf 8,False,Yassı,False
+BEB-035,Bebek Ürün 35,Bebek,12,37,36,4.51,True,Plastik,12x37x36 cm,Sınıf 2,False,Silindirik,True
+BEB-036,Bebek Ürün 36,Bebek,35,29,5,3.36,False,Cam Şişe,35x29x5 cm,Sınıf 2,False,Yassı,False
+BEB-037,Bebek Ürün 37,Bebek,25,28,19,1.04,True,Folyo Paket,25x28x19 cm,Sınıf 8,True,Silindirik,False
+BEB-038,Bebek Ürün 38,Bebek,12,37,22,0.96,False,Metal,12x37x22 cm,Sınıf 3,False,Yassı,False
+BEB-039,Bebek Ürün 39,Bebek,18,40,3,0.98,False,Ahşap,18x40x3 cm,Sınıf 8,True,Küp,False
+BEB-040,Bebek Ürün 40,Bebek,31,17,37,3.25,False,Metal,31x17x37 cm,Sınıf 2,True,Silindirik,True
+BIL-001,Bilgisayar Ürün 1,Bilgisayar,26,40,4,4.19,False,Kumaş,26x40x4 cm,Sınıf 8,True,Silindirik,False
+BIL-002,Bilgisayar Ürün 2,Bilgisayar,36,22,37,4.5,True,Folyo Paket,36x22x37 cm,Sınıf 3,True,Yassı,False
+BIL-003,Bilgisayar Ürün 3,Bilgisayar,7,5,38,0.6,True,Ahşap,7x5x38 cm,Sınıf 8,False,Küp,True
+BIL-004,Bilgisayar Ürün 4,Bilgisayar,25,21,10,3.56,True,Ahşap,25x21x10 cm,Sınıf 2,False,Yassı,False
+BIL-005,Bilgisayar Ürün 5,Bilgisayar,9,36,2,0.49,True,Karton,9x36x2 cm,Yok,False,Prizmatik,True
+BIL-006,Bilgisayar Ürün 6,Bilgisayar,36,27,16,1.23,True,Metal,36x27x16 cm,Sınıf 8,False,Prizmatik,False
+BIL-007,Bilgisayar Ürün 7,Bilgisayar,7,16,25,1.47,True,Folyo Paket,7x16x25 cm,Sınıf 3,True,Küp,False
+BIL-008,Bilgisayar Ürün 8,Bilgisayar,15,5,36,4.15,False,Kumaş,15x5x36 cm,Sınıf 2,False,Küp,False
+BIL-009,Bilgisayar Ürün 9,Bilgisayar,21,12,50,0.16,True,Kumaş,21x12x50 cm,Sınıf 3,True,Küp,False
+BIL-010,Bilgisayar Ürün 10,Bilgisayar,30,32,37,1.07,False,Ahşap,30x32x37 cm,Sınıf 3,True,Prizmatik,False
+BIL-011,Bilgisayar Ürün 11,Bilgisayar,22,31,23,2.04,False,Plastik,22x31x23 cm,Sınıf 3,False,Silindirik,False
+BIL-012,Bilgisayar Ürün 12,Bilgisayar,39,40,2,4.57,False,Metal,39x40x2 cm,Sınıf 8,False,Prizmatik,False
+BIL-013,Bilgisayar Ürün 13,Bilgisayar,27,11,47,1.38,False,Karton,27x11x47 cm,Sınıf 2,False,Yassı,False
+BIL-014,Bilgisayar Ürün 14,Bilgisayar,28,38,26,3.12,False,Kumaş,28x38x26 cm,Sınıf 8,False,Yassı,False
+BIL-015,Bilgisayar Ürün 15,Bilgisayar,38,20,6,2.02,False,Kumaş,38x20x6 cm,Sınıf 2,False,Silindirik,True
+BIL-016,Bilgisayar Ürün 16,Bilgisayar,21,31,38,3.39,False,Cam Şişe,21x31x38 cm,Sınıf 8,False,Yassı,False
+BIL-017,Bilgisayar Ürün 17,Bilgisayar,13,34,31,1.22,False,Kumaş,13x34x31 cm,Sınıf 3,False,Prizmatik,True
+BIL-018,Bilgisayar Ürün 18,Bilgisayar,39,5,2,4.77,True,Metal,39x5x2 cm,Sınıf 3,False,Yassı,False
+BIL-019,Bilgisayar Ürün 19,Bilgisayar,6,38,11,0.22,False,Ahşap,6x38x11 cm,Sınıf 2,True,Yassı,True
+BIL-020,Bilgisayar Ürün 20,Bilgisayar,34,7,23,1.29,True,Kumaş,34x7x23 cm,Sınıf 3,True,Küp,False
+BIL-021,Bilgisayar Ürün 21,Bilgisayar,37,9,27,0.44,False,Metal,37x9x27 cm,Sınıf 2,True,Yassı,True
+BIL-022,Bilgisayar Ürün 22,Bilgisayar,36,26,24,2.56,True,Metal,36x26x24 cm,Sınıf 3,True,Silindirik,True
+BIL-023,Bilgisayar Ürün 23,Bilgisayar,23,19,6,3.9,True,Folyo Paket,23x19x6 cm,Sınıf 3,True,Prizmatik,False
+BIL-024,Bilgisayar Ürün 24,Bilgisayar,6,30,28,0.56,True,Cam Şişe,6x30x28 cm,Sınıf 8,True,Silindirik,True
+BIL-025,Bilgisayar Ürün 25,Bilgisayar,39,21,8,0.58,True,Metal,39x21x8 cm,Sınıf 2,True,Küp,False
+BIL-026,Bilgisayar Ürün 26,Bilgisayar,5,38,40,4.12,False,Cam Şişe,5x38x40 cm,Sınıf 2,True,Prizmatik,False
+BIL-027,Bilgisayar Ürün 27,Bilgisayar,40,28,7,0.58,True,Ahşap,40x28x7 cm,Yok,False,Prizmatik,False
+BIL-028,Bilgisayar Ürün 28,Bilgisayar,25,22,29,0.53,False,Karton,25x22x29 cm,Sınıf 3,False,Silindirik,True
+BIL-029,Bilgisayar Ürün 29,Bilgisayar,35,9,34,3.23,True,Kumaş,35x9x34 cm,Yok,True,Küp,False
+BIL-030,Bilgisayar Ürün 30,Bilgisayar,12,6,10,4.33,True,Plastik,12x6x10 cm,Sınıf 3,False,Yassı,True
+BIL-031,Bilgisayar Ürün 31,Bilgisayar,5,19,32,1.95,False,Folyo Paket,5x19x32 cm,Sınıf 2,True,Prizmatik,True
+BIL-032,Bilgisayar Ürün 32,Bilgisayar,12,24,13,3.61,False,Plastik,12x24x13 cm,Sınıf 3,False,Küp,True
+BIL-033,Bilgisayar Ürün 33,Bilgisayar,6,31,15,0.45,False,Kumaş,6x31x15 cm,Sınıf 3,False,Prizmatik,False
+BIL-034,Bilgisayar Ürün 34,Bilgisayar,36,39,25,0.88,True,Folyo Paket,36x39x25 cm,Yok,True,Prizmatik,False
+BIL-035,Bilgisayar Ürün 35,Bilgisayar,40,38,46,4.08,False,Karton,40x38x46 cm,Sınıf 3,True,Küp,True
+BIL-036,Bilgisayar Ürün 36,Bilgisayar,14,34,14,4.13,True,Kumaş,14x34x14 cm,Sınıf 2,True,Yassı,True
+BIL-037,Bilgisayar Ürün 37,Bilgisayar,34,9,11,4.9,False,Ahşap,34x9x11 cm,Sınıf 3,False,Prizmatik,False
+BIL-038,Bilgisayar Ürün 38,Bilgisayar,27,11,38,2.13,True,Cam Şişe,27x11x38 cm,Sınıf 8,False,Silindirik,True
+BIL-039,Bilgisayar Ürün 39,Bilgisayar,34,13,12,1.4,True,Plastik,34x13x12 cm,Sınıf 2,True,Küp,False
+BIL-040,Bilgisayar Ürün 40,Bilgisayar,18,23,30,1.62,False,Folyo Paket,18x23x30 cm,Sınıf 8,False,Prizmatik,False
+ELE-001,Elektronik Ürün 1,Elektronik,7,26,21,3.48,True,Kumaş,7x26x21 cm,Yok,True,Yassı,True
+ELE-002,Elektronik Ürün 2,Elektronik,8,8,22,4.08,True,Kumaş,8x8x22 cm,Sınıf 8,True,Yassı,False
+ELE-003,Elektronik Ürün 3,Elektronik,5,40,8,4.1,False,Ahşap,5x40x8 cm,Sınıf 2,True,Yassı,True
+ELE-004,Elektronik Ürün 4,Elektronik,15,16,28,2.21,True,Cam Şişe,15x16x28 cm,Sınıf 2,True,Yassı,True
+ELE-005,Elektronik Ürün 5,Elektronik,29,32,37,4.56,True,Cam Şişe,29x32x37 cm,Sınıf 3,False,Prizmatik,True
+ELE-006,Elektronik Ürün 6,Elektronik,24,29,2,2.87,False,Plastik,24x29x2 cm,Sınıf 8,True,Yassı,False
+ELE-007,Elektronik Ürün 7,Elektronik,15,20,46,4.12,False,Karton,15x20x46 cm,Sınıf 3,True,Yassı,False
+ELE-008,Elektronik Ürün 8,Elektronik,7,35,35,0.49,False,Ahşap,7x35x35 cm,Sınıf 2,True,Silindirik,False
+ELE-009,Elektronik Ürün 9,Elektronik,13,40,27,4.34,False,Metal,13x40x27 cm,Sınıf 2,False,Prizmatik,False
+ELE-010,Elektronik Ürün 10,Elektronik,39,30,24,3.04,True,Cam Şişe,39x30x24 cm,Sınıf 2,True,Silindirik,True
+ELE-011,Elektronik Ürün 11,Elektronik,21,17,6,2.81,True,Ahşap,21x17x6 cm,Yok,True,Prizmatik,False
+ELE-012,Elektronik Ürün 12,Elektronik,25,20,32,1.57,False,Plastik,25x20x32 cm,Sınıf 2,True,Prizmatik,True
+ELE-013,Elektronik Ürün 13,Elektronik,16,28,20,3.06,True,Metal,16x28x20 cm,Sınıf 8,False,Prizmatik,True
+ELE-014,Elektronik Ürün 14,Elektronik,19,23,13,2.57,False,Cam Şişe,19x23x13 cm,Sınıf 3,False,Prizmatik,False
+ELE-015,Elektronik Ürün 15,Elektronik,38,14,36,3.09,False,Kumaş,38x14x36 cm,Sınıf 8,False,Yassı,True
+ELE-016,Elektronik Ürün 16,Elektronik,25,24,36,4.66,False,Kumaş,25x24x36 cm,Sınıf 3,False,Silindirik,False
+ELE-017,Elektronik Ürün 17,Elektronik,34,11,18,3.41,True,Karton,34x11x18 cm,Yok,False,Küp,False
+ELE-018,Elektronik Ürün 18,Elektronik,28,20,2,4.96,True,Cam Şişe,28x20x2 cm,Yok,True,Prizmatik,False
+ELE-019,Elektronik Ürün 19,Elektronik,19,27,2,4.09,False,Metal,19x27x2 cm,Yok,True,Yassı,False
+ELE-020,Elektronik Ürün 20,Elektronik,29,17,50,2.28,True,Kumaş,29x17x50 cm,Sınıf 8,True,Küp,True
+ELE-021,Elektronik Ürün 21,Elektronik,19,21,46,4.75,False,Cam Şişe,19x21x46 cm,Sınıf 2,True,Silindirik,False
+ELE-022,Elektronik Ürün 22,Elektronik,15,33,3,1.96,True,Kumaş,15x33x3 cm,Sınıf 3,True,Prizmatik,True
+ELE-023,Elektronik Ürün 23,Elektronik,29,38,44,2.64,True,Ahşap,29x38x44 cm,Sınıf 8,False,Silindirik,True
+ELE-024,Elektronik Ürün 24,Elektronik,38,38,29,4.76,True,Kumaş,38x38x29 cm,Sınıf 3,True,Prizmatik,True
+ELE-025,Elektronik Ürün 25,Elektronik,27,14,11,1.68,True,Folyo Paket,27x14x11 cm,Sınıf 2,True,Küp,True
+ELE-026,Elektronik Ürün 26,Elektronik,35,23,17,4.28,True,Cam Şişe,35x23x17 cm,Yok,False,Silindirik,True
+ELE-027,Elektronik Ürün 27,Elektronik,27,16,35,2.29,False,Cam Şişe,27x16x35 cm,Yok,False,Yassı,False
+ELE-028,Elektronik Ürün 28,Elektronik,26,28,27,3.38,True,Folyo Paket,26x28x27 cm,Yok,False,Silindirik,True
+ELE-029,Elektronik Ürün 29,Elektronik,12,14,31,2.63,False,Folyo Paket,12x14x31 cm,Yok,True,Küp,True
+ELE-030,Elektronik Ürün 30,Elektronik,28,30,10,1.66,False,Cam Şişe,28x30x10 cm,Sınıf 2,False,Küp,False
+ELE-031,Elektronik Ürün 31,Elektronik,36,27,26,1.78,True,Folyo Paket,36x27x26 cm,Sınıf 3,False,Prizmatik,True
+ELE-032,Elektronik Ürün 32,Elektronik,30,31,15,1.58,False,Cam Şişe,30x31x15 cm,Sınıf 2,True,Küp,False
+ELE-033,Elektronik Ürün 33,Elektronik,35,23,33,3.24,False,Ahşap,35x23x33 cm,Sınıf 8,True,Yassı,False
+ELE-034,Elektronik Ürün 34,Elektronik,9,17,22,1.24,True,Cam Şişe,9x17x22 cm,Sınıf 3,False,Küp,True
+ELE-035,Elektronik Ürün 35,Elektronik,30,35,44,4.14,True,Ahşap,30x35x44 cm,Sınıf 3,False,Prizmatik,True
+ELE-036,Elektronik Ürün 36,Elektronik,17,8,30,2.1,False,Ahşap,17x8x30 cm,Yok,False,Küp,False
+ELE-037,Elektronik Ürün 37,Elektronik,36,29,25,1.57,False,Ahşap,36x29x25 cm,Yok,True,Silindirik,True
+ELE-038,Elektronik Ürün 38,Elektronik,29,37,5,3.27,True,Karton,29x37x5 cm,Sınıf 8,True,Prizmatik,True
+ELE-039,Elektronik Ürün 39,Elektronik,26,22,31,1.8,True,Plastik,26x22x31 cm,Sınıf 8,False,Yassı,True
+ELE-040,Elektronik Ürün 40,Elektronik,37,10,47,3.73,True,Kumaş,37x10x47 cm,Yok,True,Küp,False
+EV -001,Ev ve Yaşam Ürün 1,Ev ve Yaşam,36,23,45,0.96,True,Karton,36x23x45 cm,Sınıf 8,False,Küp,True
+EV -002,Ev ve Yaşam Ürün 2,Ev ve Yaşam,26,22,15,3.47,True,Ahşap,26x22x15 cm,Sınıf 2,False,Küp,False
+EV -003,Ev ve Yaşam Ürün 3,Ev ve Yaşam,14,18,14,2.68,False,Karton,14x18x14 cm,Sınıf 8,True,Küp,False
+EV -004,Ev ve Yaşam Ürün 4,Ev ve Yaşam,24,16,28,3.47,False,Folyo Paket,24x16x28 cm,Sınıf 2,True,Silindirik,False
+EV -005,Ev ve Yaşam Ürün 5,Ev ve Yaşam,5,34,11,0.1,True,Kumaş,5x34x11 cm,Sınıf 8,True,Küp,True
+EV -006,Ev ve Yaşam Ürün 6,Ev ve Yaşam,20,21,26,0.56,True,Folyo Paket,20x21x26 cm,Sınıf 2,False,Silindirik,False
+EV -007,Ev ve Yaşam Ürün 7,Ev ve Yaşam,14,9,38,4.36,False,Cam Şişe,14x9x38 cm,Sınıf 3,False,Küp,True
+EV -008,Ev ve Yaşam Ürün 8,Ev ve Yaşam,17,22,39,4.6,True,Folyo Paket,17x22x39 cm,Sınıf 3,False,Yassı,False
+EV -009,Ev ve Yaşam Ürün 9,Ev ve Yaşam,20,13,17,4.4,False,Plastik,20x13x17 cm,Sınıf 3,False,Prizmatik,False
+EV -010,Ev ve Yaşam Ürün 10,Ev ve Yaşam,31,16,7,3.43,False,Plastik,31x16x7 cm,Sınıf 8,False,Küp,False
+EV -011,Ev ve Yaşam Ürün 11,Ev ve Yaşam,11,10,13,0.72,True,Kumaş,11x10x13 cm,Yok,True,Küp,False
+EV -012,Ev ve Yaşam Ürün 12,Ev ve Yaşam,36,33,44,4.7,False,Metal,36x33x44 cm,Sınıf 2,True,Yassı,True
+EV -013,Ev ve Yaşam Ürün 13,Ev ve Yaşam,26,33,33,0.27,False,Kumaş,26x33x33 cm,Sınıf 3,True,Küp,True
+EV -014,Ev ve Yaşam Ürün 14,Ev ve Yaşam,25,17,29,2.51,False,Folyo Paket,25x17x29 cm,Sınıf 2,True,Yassı,False
+EV -015,Ev ve Yaşam Ürün 15,Ev ve Yaşam,24,29,22,0.6,True,Kumaş,24x29x22 cm,Sınıf 8,True,Küp,True
+EV -016,Ev ve Yaşam Ürün 16,Ev ve Yaşam,29,21,10,1.3,True,Kumaş,29x21x10 cm,Yok,True,Prizmatik,True
+EV -017,Ev ve Yaşam Ürün 17,Ev ve Yaşam,31,18,19,1.71,False,Ahşap,31x18x19 cm,Sınıf 3,False,Yassı,True
+EV -018,Ev ve Yaşam Ürün 18,Ev ve Yaşam,11,13,37,0.48,True,Folyo Paket,11x13x37 cm,Sınıf 8,True,Prizmatik,True
+EV -019,Ev ve Yaşam Ürün 19,Ev ve Yaşam,5,18,25,1.31,False,Karton,5x18x25 cm,Sınıf 8,True,Küp,False
+EV -020,Ev ve Yaşam Ürün 20,Ev ve Yaşam,32,8,21,2.46,False,Kumaş,32x8x21 cm,Sınıf 3,False,Küp,True
+EV -021,Ev ve Yaşam Ürün 21,Ev ve Yaşam,23,38,43,4.73,False,Ahşap,23x38x43 cm,Sınıf 2,False,Yassı,True
+EV -022,Ev ve Yaşam Ürün 22,Ev ve Yaşam,37,7,47,1.24,False,Folyo Paket,37x7x47 cm,Yok,True,Küp,True
+EV -023,Ev ve Yaşam Ürün 23,Ev ve Yaşam,12,39,46,0.15,True,Kumaş,12x39x46 cm,Yok,False,Silindirik,False
+EV -024,Ev ve Yaşam Ürün 24,Ev ve Yaşam,24,16,42,1.69,False,Ahşap,24x16x42 cm,Yok,True,Yassı,True
+EV -025,Ev ve Yaşam Ürün 25,Ev ve Yaşam,18,34,34,3.31,True,Kumaş,18x34x34 cm,Sınıf 8,True,Prizmatik,True
+EV -026,Ev ve Yaşam Ürün 26,Ev ve Yaşam,23,25,2,4.75,True,Folyo Paket,23x25x2 cm,Sınıf 2,False,Silindirik,True
+EV -027,Ev ve Yaşam Ürün 27,Ev ve Yaşam,8,17,39,4.3,True,Folyo Paket,8x17x39 cm,Yok,True,Yassı,True
+EV -028,Ev ve Yaşam Ürün 28,Ev ve Yaşam,12,21,50,4.61,False,Karton,12x21x50 cm,Sınıf 3,True,Küp,False
+EV -029,Ev ve Yaşam Ürün 29,Ev ve Yaşam,15,16,4,0.72,True,Metal,15x16x4 cm,Sınıf 8,False,Yassı,True
+EV -030,Ev ve Yaşam Ürün 30,Ev ve Yaşam,35,29,34,3.39,True,Karton,35x29x34 cm,Yok,True,Prizmatik,False
+EV -031,Ev ve Yaşam Ürün 31,Ev ve Yaşam,27,38,20,0.22,False,Metal,27x38x20 cm,Sınıf 2,False,Küp,True
+EV -032,Ev ve Yaşam Ürün 32,Ev ve Yaşam,20,38,49,1.57,False,Plastik,20x38x49 cm,Yok,True,Küp,False
+EV -033,Ev ve Yaşam Ürün 33,Ev ve Yaşam,25,14,7,4.26,True,Ahşap,25x14x7 cm,Sınıf 8,True,Prizmatik,False
+EV -034,Ev ve Yaşam Ürün 34,Ev ve Yaşam,15,29,6,1.0,True,Plastik,15x29x6 cm,Yok,False,Prizmatik,True
+EV -035,Ev ve Yaşam Ürün 35,Ev ve Yaşam,10,7,43,0.32,False,Kumaş,10x7x43 cm,Yok,True,Yassı,True
+EV -036,Ev ve Yaşam Ürün 36,Ev ve Yaşam,36,6,32,2.74,True,Karton,36x6x32 cm,Sınıf 2,True,Silindirik,False
+EV -037,Ev ve Yaşam Ürün 37,Ev ve Yaşam,8,25,17,1.04,True,Metal,8x25x17 cm,Sınıf 2,True,Yassı,False
+EV -038,Ev ve Yaşam Ürün 38,Ev ve Yaşam,26,17,20,0.92,True,Plastik,26x17x20 cm,Sınıf 2,True,Silindirik,True
+EV -039,Ev ve Yaşam Ürün 39,Ev ve Yaşam,12,11,38,4.92,False,Kumaş,12x11x38 cm,Sınıf 3,True,Prizmatik,False
+EV -040,Ev ve Yaşam Ürün 40,Ev ve Yaşam,36,13,8,4.15,False,Karton,36x13x8 cm,Yok,True,Silindirik,True
+EVC-001,Evcil Hayvan Ürün 1,Evcil Hayvan,37,12,5,4.03,False,Karton,37x12x5 cm,Sınıf 2,True,Prizmatik,True
+EVC-002,Evcil Hayvan Ürün 2,Evcil Hayvan,20,28,40,1.04,False,Cam Şişe,20x28x40 cm,Sınıf 2,True,Küp,False
+EVC-003,Evcil Hayvan Ürün 3,Evcil Hayvan,34,28,9,2.31,False,Plastik,34x28x9 cm,Sınıf 3,False,Küp,False
+EVC-004,Evcil Hayvan Ürün 4,Evcil Hayvan,17,30,46,3.13,True,Karton,17x30x46 cm,Yok,False,Küp,True
+EVC-005,Evcil Hayvan Ürün 5,Evcil Hayvan,6,34,20,0.36,True,Cam Şişe,6x34x20 cm,Sınıf 8,True,Prizmatik,False
+EVC-006,Evcil Hayvan Ürün 6,Evcil Hayvan,30,31,19,4.13,False,Ahşap,30x31x19 cm,Sınıf 2,False,Prizmatik,False
+EVC-007,Evcil Hayvan Ürün 7,Evcil Hayvan,23,17,26,1.9,True,Folyo Paket,23x17x26 cm,Sınıf 8,True,Silindirik,False
+EVC-008,Evcil Hayvan Ürün 8,Evcil Hayvan,10,31,35,4.27,False,Metal,10x31x35 cm,Sınıf 3,True,Prizmatik,True
+EVC-009,Evcil Hayvan Ürün 9,Evcil Hayvan,19,16,48,4.63,False,Metal,19x16x48 cm,Sınıf 8,True,Prizmatik,True
+EVC-010,Evcil Hayvan Ürün 10,Evcil Hayvan,22,23,45,0.88,False,Kumaş,22x23x45 cm,Sınıf 2,False,Silindirik,False
+EVC-011,Evcil Hayvan Ürün 11,Evcil Hayvan,20,10,29,4.72,False,Metal,20x10x29 cm,Sınıf 8,True,Silindirik,True
+EVC-012,Evcil Hayvan Ürün 12,Evcil Hayvan,34,28,16,2.25,False,Karton,34x28x16 cm,Yok,False,Küp,True
+EVC-013,Evcil Hayvan Ürün 13,Evcil Hayvan,23,26,7,0.25,False,Ahşap,23x26x7 cm,Sınıf 8,False,Yassı,False
+EVC-014,Evcil Hayvan Ürün 14,Evcil Hayvan,35,23,8,3.81,True,Cam Şişe,35x23x8 cm,Sınıf 2,False,Prizmatik,False
+EVC-015,Evcil Hayvan Ürün 15,Evcil Hayvan,12,29,33,0.98,True,Kumaş,12x29x33 cm,Sınıf 3,True,Silindirik,True
+EVC-016,Evcil Hayvan Ürün 16,Evcil Hayvan,32,32,32,2.97,True,Kumaş,32x32x32 cm,Sınıf 8,True,Küp,True
+EVC-017,Evcil Hayvan Ürün 17,Evcil Hayvan,31,6,50,2.39,True,Metal,31x6x50 cm,Yok,True,Küp,False
+EVC-018,Evcil Hayvan Ürün 18,Evcil Hayvan,10,7,20,3.14,True,Kumaş,10x7x20 cm,Sınıf 3,False,Silindirik,False
+EVC-019,Evcil Hayvan Ürün 19,Evcil Hayvan,40,33,6,1.0,True,Karton,40x33x6 cm,Sınıf 3,True,Prizmatik,True
+EVC-020,Evcil Hayvan Ürün 20,Evcil Hayvan,10,13,49,1.08,False,Folyo Paket,10x13x49 cm,Yok,True,Prizmatik,False
+EVC-021,Evcil Hayvan Ürün 21,Evcil Hayvan,20,9,42,2.65,False,Ahşap,20x9x42 cm,Sınıf 8,False,Yassı,False
+EVC-022,Evcil Hayvan Ürün 22,Evcil Hayvan,9,5,36,1.33,True,Cam Şişe,9x5x36 cm,Sınıf 8,False,Prizmatik,False
+EVC-023,Evcil Hayvan Ürün 23,Evcil Hayvan,32,24,25,0.56,False,Cam Şişe,32x24x25 cm,Sınıf 3,False,Silindirik,True
+EVC-024,Evcil Hayvan Ürün 24,Evcil Hayvan,36,28,19,2.36,False,Metal,36x28x19 cm,Yok,True,Silindirik,False
+EVC-025,Evcil Hayvan Ürün 25,Evcil Hayvan,37,15,36,2.26,True,Cam Şişe,37x15x36 cm,Sınıf 2,False,Silindirik,False
+EVC-026,Evcil Hayvan Ürün 26,Evcil Hayvan,5,33,30,3.77,True,Folyo Paket,5x33x30 cm,Yok,True,Prizmatik,True
+EVC-027,Evcil Hayvan Ürün 27,Evcil Hayvan,27,26,25,1.84,False,Plastik,27x26x25 cm,Sınıf 8,True,Yassı,False
+EVC-028,Evcil Hayvan Ürün 28,Evcil Hayvan,39,8,50,3.73,False,Plastik,39x8x50 cm,Yok,False,Prizmatik,True
+EVC-029,Evcil Hayvan Ürün 29,Evcil Hayvan,21,28,12,4.62,True,Kumaş,21x28x12 cm,Sınıf 8,True,Yassı,True
+EVC-030,Evcil Hayvan Ürün 30,Evcil Hayvan,5,11,48,1.82,False,Cam Şişe,5x11x48 cm,Sınıf 3,True,Küp,True
+EVC-031,Evcil Hayvan Ürün 31,Evcil Hayvan,9,29,44,3.61,True,Cam Şişe,9x29x44 cm,Sınıf 3,True,Silindirik,True
+EVC-032,Evcil Hayvan Ürün 32,Evcil Hayvan,19,5,49,4.98,True,Karton,19x5x49 cm,Sınıf 3,True,Prizmatik,False
+EVC-033,Evcil Hayvan Ürün 33,Evcil Hayvan,21,15,38,3.28,False,Kumaş,21x15x38 cm,Sınıf 8,False,Küp,False
+EVC-034,Evcil Hayvan Ürün 34,Evcil Hayvan,24,31,30,3.46,False,Folyo Paket,24x31x30 cm,Sınıf 2,False,Silindirik,True
+EVC-035,Evcil Hayvan Ürün 35,Evcil Hayvan,21,21,17,0.42,False,Metal,21x21x17 cm,Sınıf 8,True,Küp,True
+EVC-036,Evcil Hayvan Ürün 36,Evcil Hayvan,23,5,40,2.74,True,Kumaş,23x5x40 cm,Sınıf 8,True,Küp,False
+EVC-037,Evcil Hayvan Ürün 37,Evcil Hayvan,6,40,43,0.9,True,Kumaş,6x40x43 cm,Sınıf 2,False,Prizmatik,True
+EVC-038,Evcil Hayvan Ürün 38,Evcil Hayvan,39,28,27,3.44,True,Cam Şişe,39x28x27 cm,Sınıf 3,False,Prizmatik,True
+EVC-039,Evcil Hayvan Ürün 39,Evcil Hayvan,8,29,13,2.38,True,Cam Şişe,8x29x13 cm,Yok,True,Küp,False
+EVC-040,Evcil Hayvan Ürün 40,Evcil Hayvan,26,32,7,1.74,True,Ahşap,26x32x7 cm,Sınıf 2,True,Prizmatik,True
+GID-001,Gıda Ürünleri Ürün 1,Gıda Ürünleri,10,35,35,1.9,False,Plastik,10x35x35 cm,Sınıf 2,True,Küp,True
+GID-002,Gıda Ürünleri Ürün 2,Gıda Ürünleri,24,10,22,1.71,True,Folyo Paket,24x10x22 cm,Sınıf 2,False,Küp,False
+GID-003,Gıda Ürünleri Ürün 3,Gıda Ürünleri,6,20,38,4.71,True,Ahşap,6x20x38 cm,Sınıf 2,False,Yassı,False
+GID-004,Gıda Ürünleri Ürün 4,Gıda Ürünleri,20,11,32,1.25,False,Plastik,20x11x32 cm,Sınıf 8,True,Prizmatik,True
+GID-005,Gıda Ürünleri Ürün 5,Gıda Ürünleri,10,35,32,3.8,False,Ahşap,10x35x32 cm,Sınıf 3,False,Yassı,True
+GID-006,Gıda Ürünleri Ürün 6,Gıda Ürünleri,12,7,44,0.24,False,Metal,12x7x44 cm,Sınıf 3,False,Küp,False
+GID-007,Gıda Ürünleri Ürün 7,Gıda Ürünleri,22,19,24,3.21,False,Karton,22x19x24 cm,Yok,False,Küp,False
+GID-008,Gıda Ürünleri Ürün 8,Gıda Ürünleri,10,25,43,1.33,True,Plastik,10x25x43 cm,Yok,True,Yassı,False
+GID-009,Gıda Ürünleri Ürün 9,Gıda Ürünleri,9,34,43,3.79,True,Ahşap,9x34x43 cm,Sınıf 3,False,Yassı,False
+GID-010,Gıda Ürünleri Ürün 10,Gıda Ürünleri,12,7,29,3.72,False,Kumaş,12x7x29 cm,Sınıf 2,False,Silindirik,True
+GID-011,Gıda Ürünleri Ürün 11,Gıda Ürünleri,37,33,12,2.7,False,Cam Şişe,37x33x12 cm,Sınıf 3,False,Küp,True
+GID-012,Gıda Ürünleri Ürün 12,Gıda Ürünleri,23,27,36,1.42,False,Cam Şişe,23x27x36 cm,Yok,False,Yassı,False
+GID-013,Gıda Ürünleri Ürün 13,Gıda Ürünleri,33,35,20,0.23,False,Karton,33x35x20 cm,Sınıf 2,False,Silindirik,False
+GID-014,Gıda Ürünleri Ürün 14,Gıda Ürünleri,11,9,39,4.69,True,Ahşap,11x9x39 cm,Sınıf 2,True,Küp,True
+GID-015,Gıda Ürünleri Ürün 15,Gıda Ürünleri,39,26,23,2.67,True,Karton,39x26x23 cm,Yok,True,Küp,True
+GID-016,Gıda Ürünleri Ürün 16,Gıda Ürünleri,34,35,22,1.59,True,Folyo Paket,34x35x22 cm,Sınıf 8,True,Silindirik,True
+GID-017,Gıda Ürünleri Ürün 17,Gıda Ürünleri,6,6,48,1.63,False,Ahşap,6x6x48 cm,Sınıf 3,False,Küp,True
+GID-018,Gıda Ürünleri Ürün 18,Gıda Ürünleri,15,25,21,3.81,True,Folyo Paket,15x25x21 cm,Yok,False,Yassı,False
+GID-019,Gıda Ürünleri Ürün 19,Gıda Ürünleri,20,28,42,3.51,True,Karton,20x28x42 cm,Sınıf 3,False,Küp,True
+GID-020,Gıda Ürünleri Ürün 20,Gıda Ürünleri,12,5,9,4.7,True,Cam Şişe,12x5x9 cm,Sınıf 3,True,Silindirik,False
+GID-021,Gıda Ürünleri Ürün 21,Gıda Ürünleri,11,24,44,3.34,True,Cam Şişe,11x24x44 cm,Sınıf 2,True,Yassı,True
+GID-022,Gıda Ürünleri Ürün 22,Gıda Ürünleri,6,40,28,4.64,False,Metal,6x40x28 cm,Sınıf 3,False,Prizmatik,True
+GID-023,Gıda Ürünleri Ürün 23,Gıda Ürünleri,30,19,34,1.92,True,Kumaş,30x19x34 cm,Sınıf 8,True,Küp,True
+GID-024,Gıda Ürünleri Ürün 24,Gıda Ürünleri,20,34,45,2.97,True,Metal,20x34x45 cm,Yok,False,Silindirik,False
+GID-025,Gıda Ürünleri Ürün 25,Gıda Ürünleri,21,8,5,1.96,True,Karton,21x8x5 cm,Sınıf 3,True,Küp,True
+GID-026,Gıda Ürünleri Ürün 26,Gıda Ürünleri,37,40,23,2.61,True,Kumaş,37x40x23 cm,Sınıf 2,True,Yassı,True
+GID-027,Gıda Ürünleri Ürün 27,Gıda Ürünleri,8,32,11,3.71,False,Karton,8x32x11 cm,Sınıf 2,True,Prizmatik,False
+GID-028,Gıda Ürünleri Ürün 28,Gıda Ürünleri,33,15,3,3.65,True,Folyo Paket,33x15x3 cm,Sınıf 2,False,Prizmatik,False
+GID-029,Gıda Ürünleri Ürün 29,Gıda Ürünleri,22,8,46,1.99,False,Ahşap,22x8x46 cm,Yok,True,Küp,True
+GID-030,Gıda Ürünleri Ürün 30,Gıda Ürünleri,17,15,19,2.54,True,Folyo Paket,17x15x19 cm,Sınıf 3,True,Yassı,True
+GID-031,Gıda Ürünleri Ürün 31,Gıda Ürünleri,15,15,30,4.63,False,Folyo Paket,15x15x30 cm,Sınıf 3,True,Yassı,False
+GID-032,Gıda Ürünleri Ürün 32,Gıda Ürünleri,11,27,3,3.13,False,Kumaş,11x27x3 cm,Sınıf 3,False,Yassı,False
+GID-033,Gıda Ürünleri Ürün 33,Gıda Ürünleri,10,7,5,3.06,True,Ahşap,10x7x5 cm,Yok,False,Küp,True
+GID-034,Gıda Ürünleri Ürün 34,Gıda Ürünleri,36,20,12,4.13,False,Plastik,36x20x12 cm,Sınıf 2,False,Prizmatik,True
+GID-035,Gıda Ürünleri Ürün 35,Gıda Ürünleri,16,31,6,1.78,False,Cam Şişe,16x31x6 cm,Sınıf 3,False,Küp,False
+GID-036,Gıda Ürünleri Ürün 36,Gıda Ürünleri,22,13,23,2.62,True,Karton,22x13x23 cm,Sınıf 2,False,Yassı,False
+GID-037,Gıda Ürünleri Ürün 37,Gıda Ürünleri,28,24,20,4.09,True,Metal,28x24x20 cm,Sınıf 2,True,Prizmatik,False
+GID-038,Gıda Ürünleri Ürün 38,Gıda Ürünleri,21,14,9,3.65,False,Kumaş,21x14x9 cm,Yok,True,Yassı,False
+GID-039,Gıda Ürünleri Ürün 39,Gıda Ürünleri,29,26,2,0.27,True,Folyo Paket,29x26x2 cm,Sınıf 2,True,Küp,True
+GID-040,Gıda Ürünleri Ürün 40,Gıda Ürünleri,33,34,16,3.84,True,Ahşap,33x34x16 cm,Yok,True,Prizmatik,False
+KIŞ-001,Kişisel Bakım ve Kozmetik Ürün 1,Kişisel Bakım ve Kozmetik,15,15,25,1.77,False,Plastik,15x15x25 cm,Sınıf 2,False,Yassı,True
+KIŞ-002,Kişisel Bakım ve Kozmetik Ürün 2,Kişisel Bakım ve Kozmetik,30,9,11,3.86,True,Kumaş,30x9x11 cm,Sınıf 8,True,Küp,False
+KIŞ-003,Kişisel Bakım ve Kozmetik Ürün 3,Kişisel Bakım ve Kozmetik,15,23,34,1.59,True,Cam Şişe,15x23x34 cm,Sınıf 3,True,Yassı,False
+KIŞ-004,Kişisel Bakım ve Kozmetik Ürün 4,Kişisel Bakım ve Kozmetik,8,27,30,0.2,True,Plastik,8x27x30 cm,Yok,True,Prizmatik,False
+KIŞ-005,Kişisel Bakım ve Kozmetik Ürün 5,Kişisel Bakım ve Kozmetik,28,29,44,4.47,True,Folyo Paket,28x29x44 cm,Sınıf 2,False,Yassı,False
+KIŞ-006,Kişisel Bakım ve Kozmetik Ürün 6,Kişisel Bakım ve Kozmetik,15,7,35,2.61,False,Kumaş,15x7x35 cm,Sınıf 8,False,Prizmatik,False
+KIŞ-007,Kişisel Bakım ve Kozmetik Ürün 7,Kişisel Bakım ve Kozmetik,31,10,41,2.53,True,Cam Şişe,31x10x41 cm,Sınıf 2,True,Yassı,True
+KIŞ-008,Kişisel Bakım ve Kozmetik Ürün 8,Kişisel Bakım ve Kozmetik,20,10,7,1.18,False,Folyo Paket,20x10x7 cm,Sınıf 3,False,Silindirik,False
+KIŞ-009,Kişisel Bakım ve Kozmetik Ürün 9,Kişisel Bakım ve Kozmetik,39,16,50,1.97,False,Plastik,39x16x50 cm,Sınıf 3,True,Silindirik,True
+KIŞ-010,Kişisel Bakım ve Kozmetik Ürün 10,Kişisel Bakım ve Kozmetik,25,39,4,0.53,True,Karton,25x39x4 cm,Sınıf 8,False,Prizmatik,False
+KIŞ-011,Kişisel Bakım ve Kozmetik Ürün 11,Kişisel Bakım ve Kozmetik,13,22,5,3.05,False,Plastik,13x22x5 cm,Sınıf 2,True,Prizmatik,True
+KIŞ-012,Kişisel Bakım ve Kozmetik Ürün 12,Kişisel Bakım ve Kozmetik,9,26,24,3.46,True,Plastik,9x26x24 cm,Sınıf 8,True,Silindirik,False
+KIŞ-013,Kişisel Bakım ve Kozmetik Ürün 13,Kişisel Bakım ve Kozmetik,39,39,15,2.13,False,Folyo Paket,39x39x15 cm,Sınıf 3,False,Silindirik,False
+KIŞ-014,Kişisel Bakım ve Kozmetik Ürün 14,Kişisel Bakım ve Kozmetik,23,21,49,1.09,True,Metal,23x21x49 cm,Sınıf 8,True,Silindirik,False
+KIŞ-015,Kişisel Bakım ve Kozmetik Ürün 15,Kişisel Bakım ve Kozmetik,27,35,23,1.4,True,Ahşap,27x35x23 cm,Yok,False,Silindirik,False
+KIŞ-016,Kişisel Bakım ve Kozmetik Ürün 16,Kişisel Bakım ve Kozmetik,15,26,33,1.58,False,Metal,15x26x33 cm,Sınıf 2,True,Yassı,False
+KIŞ-017,Kişisel Bakım ve Kozmetik Ürün 17,Kişisel Bakım ve Kozmetik,20,18,2,1.85,False,Kumaş,20x18x2 cm,Sınıf 2,False,Prizmatik,True
+KIŞ-018,Kişisel Bakım ve Kozmetik Ürün 18,Kişisel Bakım ve Kozmetik,35,9,3,2.19,True,Karton,35x9x3 cm,Sınıf 8,True,Küp,True
+KIŞ-019,Kişisel Bakım ve Kozmetik Ürün 19,Kişisel Bakım ve Kozmetik,9,38,24,1.8,True,Metal,9x38x24 cm,Sınıf 2,True,Silindirik,True
+KIŞ-020,Kişisel Bakım ve Kozmetik Ürün 20,Kişisel Bakım ve Kozmetik,9,16,35,3.92,False,Folyo Paket,9x16x35 cm,Sınıf 3,False,Küp,False
+KIŞ-021,Kişisel Bakım ve Kozmetik Ürün 21,Kişisel Bakım ve Kozmetik,39,8,47,2.15,True,Kumaş,39x8x47 cm,Sınıf 8,False,Prizmatik,True
+KIŞ-022,Kişisel Bakım ve Kozmetik Ürün 22,Kişisel Bakım ve Kozmetik,40,35,31,0.16,True,Karton,40x35x31 cm,Sınıf 8,True,Küp,True
+KIŞ-023,Kişisel Bakım ve Kozmetik Ürün 23,Kişisel Bakım ve Kozmetik,33,35,19,2.79,True,Plastik,33x35x19 cm,Sınıf 3,False,Küp,True
+KIŞ-024,Kişisel Bakım ve Kozmetik Ürün 24,Kişisel Bakım ve Kozmetik,27,26,10,3.45,True,Metal,27x26x10 cm,Sınıf 3,False,Prizmatik,False
+KIŞ-025,Kişisel Bakım ve Kozmetik Ürün 25,Kişisel Bakım ve Kozmetik,14,11,35,3.91,False,Kumaş,14x11x35 cm,Yok,False,Küp,True
+KIŞ-026,Kişisel Bakım ve Kozmetik Ürün 26,Kişisel Bakım ve Kozmetik,7,34,8,2.24,True,Ahşap,7x34x8 cm,Yok,False,Prizmatik,False
+KIŞ-027,Kişisel Bakım ve Kozmetik Ürün 27,Kişisel Bakım ve Kozmetik,32,14,15,2.08,True,Plastik,32x14x15 cm,Sınıf 3,True,Küp,True
+KIŞ-028,Kişisel Bakım ve Kozmetik Ürün 28,Kişisel Bakım ve Kozmetik,30,9,29,0.72,False,Plastik,30x9x29 cm,Sınıf 8,True,Silindirik,True
+KIŞ-029,Kişisel Bakım ve Kozmetik Ürün 29,Kişisel Bakım ve Kozmetik,8,28,30,1.22,False,Ahşap,8x28x30 cm,Sınıf 8,False,Yassı,False
+KIŞ-030,Kişisel Bakım ve Kozmetik Ürün 30,Kişisel Bakım ve Kozmetik,9,32,36,4.13,False,Metal,9x32x36 cm,Yok,True,Yassı,True
+KIŞ-031,Kişisel Bakım ve Kozmetik Ürün 31,Kişisel Bakım ve Kozmetik,33,15,6,3.48,False,Cam Şişe,33x15x6 cm,Sınıf 8,False,Küp,False
+KIŞ-032,Kişisel Bakım ve Kozmetik Ürün 32,Kişisel Bakım ve Kozmetik,17,40,41,1.75,True,Karton,17x40x41 cm,Yok,False,Küp,False
+KIŞ-033,Kişisel Bakım ve Kozmetik Ürün 33,Kişisel Bakım ve Kozmetik,9,38,39,0.87,False,Karton,9x38x39 cm,Yok,False,Yassı,False
+KIŞ-034,Kişisel Bakım ve Kozmetik Ürün 34,Kişisel Bakım ve Kozmetik,17,36,23,1.83,True,Kumaş,17x36x23 cm,Sınıf 2,False,Prizmatik,False
+KIŞ-035,Kişisel Bakım ve Kozmetik Ürün 35,Kişisel Bakım ve Kozmetik,24,26,31,4.79,True,Ahşap,24x26x31 cm,Sınıf 3,False,Yassı,True
+KIŞ-036,Kişisel Bakım ve Kozmetik Ürün 36,Kişisel Bakım ve Kozmetik,31,11,42,4.45,False,Cam Şişe,31x11x42 cm,Sınıf 2,True,Küp,True
+KIŞ-037,Kişisel Bakım ve Kozmetik Ürün 37,Kişisel Bakım ve Kozmetik,6,10,16,2.74,False,Cam Şişe,6x10x16 cm,Sınıf 8,True,Silindirik,True
+KIŞ-038,Kişisel Bakım ve Kozmetik Ürün 38,Kişisel Bakım ve Kozmetik,19,5,9,1.03,False,Karton,19x5x9 cm,Yok,True,Silindirik,True
+KIŞ-039,Kişisel Bakım ve Kozmetik Ürün 39,Kişisel Bakım ve Kozmetik,18,16,20,3.71,False,Cam Şişe,18x16x20 cm,Sınıf 3,False,Küp,False
+KIŞ-040,Kişisel Bakım ve Kozmetik Ürün 40,Kişisel Bakım ve Kozmetik,37,20,30,3.27,False,Folyo Paket,37x20x30 cm,Sınıf 8,True,Prizmatik,True
+KIT-001,Kitap Ürün 1,Kitap,7,38,15,1.6,True,Ahşap,7x38x15 cm,Yok,True,Silindirik,True
+KIT-002,Kitap Ürün 2,Kitap,23,17,24,0.71,False,Ahşap,23x17x24 cm,Yok,False,Küp,False
+KIT-003,Kitap Ürün 3,Kitap,30,9,19,1.67,False,Karton,30x9x19 cm,Yok,False,Küp,True
+KIT-004,Kitap Ürün 4,Kitap,10,5,28,1.25,True,Kumaş,10x5x28 cm,Yok,True,Prizmatik,False
+KIT-005,Kitap Ürün 5,Kitap,17,9,41,1.38,False,Ahşap,17x9x41 cm,Yok,True,Silindirik,False
+KIT-006,Kitap Ürün 6,Kitap,31,27,32,2.71,False,Folyo Paket,31x27x32 cm,Yok,False,Prizmatik,False
+KIT-007,Kitap Ürün 7,Kitap,9,31,8,1.94,True,Kumaş,9x31x8 cm,Yok,True,Yassı,False
+KIT-008,Kitap Ürün 8,Kitap,10,12,38,3.63,True,Kumaş,10x12x38 cm,Yok,False,Küp,False
+KIT-009,Kitap Ürün 9,Kitap,9,11,39,0.32,False,Karton,9x11x39 cm,Yok,False,Prizmatik,True
+KIT-010,Kitap Ürün 10,Kitap,13,34,18,0.13,True,Kumaş,13x34x18 cm,Yok,True,Küp,True
+KIT-011,Kitap Ürün 11,Kitap,28,26,43,4.82,False,Cam Şişe,28x26x43 cm,Yok,True,Küp,False
+KIT-012,Kitap Ürün 12,Kitap,25,10,2,4.96,True,Folyo Paket,25x10x2 cm,Yok,False,Silindirik,True
+KIT-013,Kitap Ürün 13,Kitap,21,27,12,4.03,True,Ahşap,21x27x12 cm,Yok,True,Prizmatik,True
+KIT-014,Kitap Ürün 14,Kitap,19,23,43,1.72,True,Folyo Paket,19x23x43 cm,Yok,False,Silindirik,True
+KIT-015,Kitap Ürün 15,Kitap,21,9,49,2.81,False,Kumaş,21x9x49 cm,Yok,True,Yassı,True
+KIT-016,Kitap Ürün 16,Kitap,40,5,6,1.2,True,Plastik,40x5x6 cm,Yok,True,Silindirik,False
+KIT-017,Kitap Ürün 17,Kitap,18,18,49,0.72,True,Karton,18x18x49 cm,Yok,False,Küp,False
+KIT-018,Kitap Ürün 18,Kitap,32,22,4,1.15,False,Kumaş,32x22x4 cm,Yok,False,Silindirik,False
+KIT-019,Kitap Ürün 19,Kitap,33,36,15,1.75,False,Karton,33x36x15 cm,Yok,True,Yassı,True
+KIT-020,Kitap Ürün 20,Kitap,19,34,42,2.47,False,Metal,19x34x42 cm,Yok,False,Yassı,False
+KIT-021,Kitap Ürün 21,Kitap,39,22,42,1.88,True,Karton,39x22x42 cm,Yok,False,Yassı,True
+KIT-022,Kitap Ürün 22,Kitap,36,24,19,4.64,False,Metal,36x24x19 cm,Yok,True,Silindirik,True
+KIT-023,Kitap Ürün 23,Kitap,31,20,10,0.99,True,Folyo Paket,31x20x10 cm,Yok,True,Prizmatik,True
+KIT-024,Kitap Ürün 24,Kitap,13,28,21,3.63,True,Ahşap,13x28x21 cm,Yok,True,Yassı,True
+KIT-025,Kitap Ürün 25,Kitap,39,18,24,0.39,True,Folyo Paket,39x18x24 cm,Yok,False,Küp,False
+KIT-026,Kitap Ürün 26,Kitap,34,8,2,4.76,False,Karton,34x8x2 cm,Yok,False,Yassı,True
+KIT-027,Kitap Ürün 27,Kitap,32,9,35,3.56,False,Cam Şişe,32x9x35 cm,Yok,True,Prizmatik,False
+KIT-028,Kitap Ürün 28,Kitap,11,20,8,0.14,False,Ahşap,11x20x8 cm,Yok,False,Prizmatik,True
+KIT-029,Kitap Ürün 29,Kitap,11,20,47,1.03,False,Cam Şişe,11x20x47 cm,Yok,False,Küp,False
+KIT-030,Kitap Ürün 30,Kitap,21,28,31,0.21,False,Ahşap,21x28x31 cm,Yok,False,Prizmatik,False
+KIT-031,Kitap Ürün 31,Kitap,15,33,24,2.31,True,Ahşap,15x33x24 cm,Yok,False,Silindirik,True
+KIT-032,Kitap Ürün 32,Kitap,22,14,15,1.92,False,Ahşap,22x14x15 cm,Yok,True,Yassı,False
+KIT-033,Kitap Ürün 33,Kitap,31,6,31,2.61,True,Plastik,31x6x31 cm,Yok,True,Prizmatik,False
+KIT-034,Kitap Ürün 34,Kitap,26,11,12,1.85,False,Folyo Paket,26x11x12 cm,Yok,True,Küp,False
+KIT-035,Kitap Ürün 35,Kitap,11,35,25,0.53,True,Ahşap,11x35x25 cm,Yok,False,Küp,True
+KIT-036,Kitap Ürün 36,Kitap,20,36,38,3.86,True,Karton,20x36x38 cm,Yok,False,Prizmatik,True
+KIT-037,Kitap Ürün 37,Kitap,12,11,18,0.65,True,Karton,12x11x18 cm,Yok,True,Küp,True
+KIT-038,Kitap Ürün 38,Kitap,9,12,31,4.54,False,Kumaş,9x12x31 cm,Yok,True,Küp,False
+KIT-039,Kitap Ürün 39,Kitap,12,20,49,2.67,False,Cam Şişe,12x20x49 cm,Yok,False,Yassı,True
+KIT-040,Kitap Ürün 40,Kitap,19,21,44,1.7,True,Folyo Paket,19x21x44 cm,Yok,True,Prizmatik,False
+KAD-001,Kadın Moda Ürün 1,Kadın Moda,37,36,22,1.26,False,Metal,37x36x22 cm,Yok,True,Silindirik,True
+KAD-002,Kadın Moda Ürün 2,Kadın Moda,8,27,22,2.2,False,Karton,8x27x22 cm,Yok,False,Silindirik,False
+KAD-003,Kadın Moda Ürün 3,Kadın Moda,36,15,17,0.9,True,Karton,36x15x17 cm,Yok,False,Prizmatik,False
+KAD-004,Kadın Moda Ürün 4,Kadın Moda,15,12,48,4.59,True,Cam Şişe,15x12x48 cm,Yok,False,Küp,False
+KAD-005,Kadın Moda Ürün 5,Kadın Moda,5,40,4,2.84,False,Kumaş,5x40x4 cm,Yok,False,Küp,False
+KAD-006,Kadın Moda Ürün 6,Kadın Moda,35,22,40,2.17,False,Cam Şişe,35x22x40 cm,Yok,True,Yassı,True
+KAD-007,Kadın Moda Ürün 7,Kadın Moda,32,17,18,3.81,True,Folyo Paket,32x17x18 cm,Yok,False,Yassı,False
+KAD-008,Kadın Moda Ürün 8,Kadın Moda,8,12,39,1.2,True,Folyo Paket,8x12x39 cm,Yok,True,Silindirik,True
+KAD-009,Kadın Moda Ürün 9,Kadın Moda,34,40,49,2.91,True,Kumaş,34x40x49 cm,Yok,True,Küp,True
+KAD-010,Kadın Moda Ürün 10,Kadın Moda,18,12,10,0.99,False,Metal,18x12x10 cm,Yok,True,Küp,False
+KAD-011,Kadın Moda Ürün 11,Kadın Moda,23,7,15,2.85,True,Plastik,23x7x15 cm,Yok,True,Prizmatik,True
+KAD-012,Kadın Moda Ürün 12,Kadın Moda,17,25,24,4.9,True,Folyo Paket,17x25x24 cm,Yok,True,Prizmatik,False
+KAD-013,Kadın Moda Ürün 13,Kadın Moda,8,28,8,4.42,True,Metal,8x28x8 cm,Yok,True,Silindirik,True
+KAD-014,Kadın Moda Ürün 14,Kadın Moda,23,24,22,0.74,False,Karton,23x24x22 cm,Yok,False,Küp,True
+KAD-015,Kadın Moda Ürün 15,Kadın Moda,34,11,50,0.88,True,Folyo Paket,34x11x50 cm,Yok,False,Küp,True
+KAD-016,Kadın Moda Ürün 16,Kadın Moda,38,20,38,2.27,False,Folyo Paket,38x20x38 cm,Yok,True,Yassı,False
+KAD-017,Kadın Moda Ürün 17,Kadın Moda,33,30,37,0.45,False,Karton,33x30x37 cm,Yok,False,Yassı,False
+KAD-018,Kadın Moda Ürün 18,Kadın Moda,40,34,3,2.88,False,Plastik,40x34x3 cm,Yok,True,Küp,False
+KAD-019,Kadın Moda Ürün 19,Kadın Moda,37,12,44,0.56,False,Ahşap,37x12x44 cm,Yok,False,Silindirik,True
+KAD-020,Kadın Moda Ürün 20,Kadın Moda,17,10,7,3.46,False,Cam Şişe,17x10x7 cm,Yok,True,Küp,False
+KAD-021,Kadın Moda Ürün 21,Kadın Moda,27,20,34,1.61,True,Kumaş,27x20x34 cm,Yok,True,Silindirik,False
+KAD-022,Kadın Moda Ürün 22,Kadın Moda,29,14,45,3.57,False,Karton,29x14x45 cm,Yok,True,Prizmatik,True
+KAD-023,Kadın Moda Ürün 23,Kadın Moda,33,25,23,2.42,False,Karton,33x25x23 cm,Yok,True,Yassı,False
+KAD-024,Kadın Moda Ürün 24,Kadın Moda,24,15,3,4.69,False,Karton,24x15x3 cm,Yok,True,Silindirik,False
+KAD-025,Kadın Moda Ürün 25,Kadın Moda,36,34,43,1.68,True,Karton,36x34x43 cm,Yok,False,Prizmatik,False
+KAD-026,Kadın Moda Ürün 26,Kadın Moda,20,16,26,3.62,False,Folyo Paket,20x16x26 cm,Yok,True,Prizmatik,False
+KAD-027,Kadın Moda Ürün 27,Kadın Moda,25,17,42,4.64,True,Karton,25x17x42 cm,Yok,False,Küp,False
+KAD-028,Kadın Moda Ürün 28,Kadın Moda,10,15,45,1.32,False,Plastik,10x15x45 cm,Yok,True,Silindirik,False
+KAD-029,Kadın Moda Ürün 29,Kadın Moda,32,25,46,1.64,False,Kumaş,32x25x46 cm,Yok,False,Küp,False
+KAD-030,Kadın Moda Ürün 30,Kadın Moda,19,39,28,3.61,False,Kumaş,19x39x28 cm,Yok,True,Prizmatik,True
+KAD-031,Kadın Moda Ürün 31,Kadın Moda,22,22,46,1.25,True,Plastik,22x22x46 cm,Yok,True,Prizmatik,True
+KAD-032,Kadın Moda Ürün 32,Kadın Moda,39,25,5,4.91,True,Karton,39x25x5 cm,Yok,True,Prizmatik,True
+KAD-033,Kadın Moda Ürün 33,Kadın Moda,20,23,2,1.11,False,Cam Şişe,20x23x2 cm,Yok,False,Silindirik,False
+KAD-034,Kadın Moda Ürün 34,Kadın Moda,36,20,6,3.86,False,Plastik,36x20x6 cm,Yok,False,Silindirik,True
+KAD-035,Kadın Moda Ürün 35,Kadın Moda,7,35,29,3.63,False,Cam Şişe,7x35x29 cm,Yok,False,Prizmatik,False
+KAD-036,Kadın Moda Ürün 36,Kadın Moda,33,37,50,3.07,False,Kumaş,33x37x50 cm,Yok,False,Küp,False
+KAD-037,Kadın Moda Ürün 37,Kadın Moda,11,12,20,4.98,False,Cam Şişe,11x12x20 cm,Yok,True,Yassı,True
+KAD-038,Kadın Moda Ürün 38,Kadın Moda,30,9,38,3.28,True,Metal,30x9x38 cm,Yok,False,Prizmatik,True
+KAD-039,Kadın Moda Ürün 39,Kadın Moda,32,13,2,1.13,False,Metal,32x13x2 cm,Yok,False,Silindirik,False
+KAD-040,Kadın Moda Ürün 40,Kadın Moda,36,32,14,0.79,True,Plastik,36x32x14 cm,Yok,True,Küp,False
+ERK-001,Erkek Moda Ürün 1,Erkek Moda,36,26,6,1.96,False,Folyo Paket,36x26x6 cm,Yok,False,Prizmatik,True
+ERK-002,Erkek Moda Ürün 2,Erkek Moda,7,10,10,4.69,True,Cam Şişe,7x10x10 cm,Yok,False,Silindirik,True
+ERK-003,Erkek Moda Ürün 3,Erkek Moda,8,15,10,0.55,False,Plastik,8x15x10 cm,Yok,False,Silindirik,True
+ERK-004,Erkek Moda Ürün 4,Erkek Moda,20,27,17,1.92,False,Metal,20x27x17 cm,Yok,False,Küp,False
+ERK-005,Erkek Moda Ürün 5,Erkek Moda,33,11,18,2.18,False,Cam Şişe,33x11x18 cm,Yok,True,Küp,True
+ERK-006,Erkek Moda Ürün 6,Erkek Moda,15,26,46,4.87,False,Kumaş,15x26x46 cm,Yok,False,Yassı,True
+ERK-007,Erkek Moda Ürün 7,Erkek Moda,11,15,33,0.91,False,Kumaş,11x15x33 cm,Yok,True,Küp,True
+ERK-008,Erkek Moda Ürün 8,Erkek Moda,15,14,9,3.81,False,Karton,15x14x9 cm,Yok,False,Yassı,True
+ERK-009,Erkek Moda Ürün 9,Erkek Moda,37,8,32,4.79,True,Plastik,37x8x32 cm,Yok,False,Küp,True
+ERK-010,Erkek Moda Ürün 10,Erkek Moda,10,6,43,2.05,True,Folyo Paket,10x6x43 cm,Yok,True,Prizmatik,True
+ERK-011,Erkek Moda Ürün 11,Erkek Moda,13,40,9,2.97,True,Plastik,13x40x9 cm,Yok,False,Küp,True
+ERK-012,Erkek Moda Ürün 12,Erkek Moda,26,36,6,2.76,False,Karton,26x36x6 cm,Yok,True,Küp,False
+ERK-013,Erkek Moda Ürün 13,Erkek Moda,16,35,31,1.22,True,Kumaş,16x35x31 cm,Yok,False,Küp,True
+ERK-014,Erkek Moda Ürün 14,Erkek Moda,28,24,28,3.46,False,Karton,28x24x28 cm,Yok,True,Silindirik,True
+ERK-015,Erkek Moda Ürün 15,Erkek Moda,6,5,48,0.65,True,Cam Şişe,6x5x48 cm,Yok,True,Silindirik,False
+ERK-016,Erkek Moda Ürün 16,Erkek Moda,16,19,24,3.17,True,Folyo Paket,16x19x24 cm,Yok,False,Silindirik,True
+ERK-017,Erkek Moda Ürün 17,Erkek Moda,25,27,20,0.88,False,Ahşap,25x27x20 cm,Yok,True,Yassı,True
+ERK-018,Erkek Moda Ürün 18,Erkek Moda,29,17,36,4.58,False,Cam Şişe,29x17x36 cm,Yok,False,Yassı,True
+ERK-019,Erkek Moda Ürün 19,Erkek Moda,35,26,32,3.92,False,Plastik,35x26x32 cm,Yok,True,Prizmatik,True
+ERK-020,Erkek Moda Ürün 20,Erkek Moda,16,24,23,3.28,True,Karton,16x24x23 cm,Yok,False,Prizmatik,False
+ERK-021,Erkek Moda Ürün 21,Erkek Moda,26,21,39,3.56,True,Kumaş,26x21x39 cm,Yok,False,Küp,False
+ERK-022,Erkek Moda Ürün 22,Erkek Moda,8,14,2,2.89,False,Cam Şişe,8x14x2 cm,Yok,True,Küp,False
+ERK-023,Erkek Moda Ürün 23,Erkek Moda,20,16,29,1.76,True,Folyo Paket,20x16x29 cm,Yok,True,Silindirik,False
+ERK-024,Erkek Moda Ürün 24,Erkek Moda,15,14,48,2.51,True,Plastik,15x14x48 cm,Yok,False,Yassı,True
+ERK-025,Erkek Moda Ürün 25,Erkek Moda,10,30,16,4.98,False,Kumaş,10x30x16 cm,Yok,True,Prizmatik,True
+ERK-026,Erkek Moda Ürün 26,Erkek Moda,9,38,42,4.07,False,Metal,9x38x42 cm,Yok,True,Silindirik,True
+ERK-027,Erkek Moda Ürün 27,Erkek Moda,12,5,22,2.69,True,Karton,12x5x22 cm,Yok,False,Küp,True
+ERK-028,Erkek Moda Ürün 28,Erkek Moda,9,22,9,0.88,False,Cam Şişe,9x22x9 cm,Yok,False,Silindirik,False
+ERK-029,Erkek Moda Ürün 29,Erkek Moda,7,25,3,1.97,True,Kumaş,7x25x3 cm,Yok,True,Silindirik,True
+ERK-030,Erkek Moda Ürün 30,Erkek Moda,35,25,5,2.38,False,Metal,35x25x5 cm,Yok,True,Prizmatik,False
+ERK-031,Erkek Moda Ürün 31,Erkek Moda,36,22,20,0.78,True,Plastik,36x22x20 cm,Yok,True,Prizmatik,True
+ERK-032,Erkek Moda Ürün 32,Erkek Moda,33,7,23,3.21,False,Ahşap,33x7x23 cm,Yok,True,Prizmatik,True
+ERK-033,Erkek Moda Ürün 33,Erkek Moda,34,36,37,0.84,False,Folyo Paket,34x36x37 cm,Yok,False,Yassı,False
+ERK-034,Erkek Moda Ürün 34,Erkek Moda,11,24,18,0.4,True,Karton,11x24x18 cm,Yok,False,Yassı,True
+ERK-035,Erkek Moda Ürün 35,Erkek Moda,24,6,20,2.55,True,Ahşap,24x6x20 cm,Yok,False,Yassı,True
+ERK-036,Erkek Moda Ürün 36,Erkek Moda,13,36,28,4.51,True,Cam Şişe,13x36x28 cm,Yok,True,Silindirik,True
+ERK-037,Erkek Moda Ürün 37,Erkek Moda,14,33,13,4.8,False,Metal,14x33x13 cm,Yok,True,Küp,True
+ERK-038,Erkek Moda Ürün 38,Erkek Moda,18,9,8,2.26,False,Metal,18x9x8 cm,Yok,False,Yassı,False
+ERK-039,Erkek Moda Ürün 39,Erkek Moda,23,20,18,0.82,True,Metal,23x20x18 cm,Yok,False,Yassı,True
+ERK-040,Erkek Moda Ürün 40,Erkek Moda,15,9,32,4.55,True,Folyo Paket,15x9x32 cm,Yok,False,Yassı,True
+ÇOC-001,Çocuk ve Bebek Moda Ürün 1,Çocuk ve Bebek Moda,29,26,46,0.48,True,Cam Şişe,29x26x46 cm,Yok,True,Küp,False
+ÇOC-002,Çocuk ve Bebek Moda Ürün 2,Çocuk ve Bebek Moda,11,17,39,1.22,True,Plastik,11x17x39 cm,Yok,True,Yassı,True
+ÇOC-003,Çocuk ve Bebek Moda Ürün 3,Çocuk ve Bebek Moda,31,32,26,0.45,False,Ahşap,31x32x26 cm,Yok,False,Prizmatik,True
+ÇOC-004,Çocuk ve Bebek Moda Ürün 4,Çocuk ve Bebek Moda,31,32,21,4.38,True,Metal,31x32x21 cm,Yok,True,Prizmatik,True
+ÇOC-005,Çocuk ve Bebek Moda Ürün 5,Çocuk ve Bebek Moda,15,39,8,1.93,False,Karton,15x39x8 cm,Yok,True,Yassı,False
+ÇOC-006,Çocuk ve Bebek Moda Ürün 6,Çocuk ve Bebek Moda,13,27,3,1.35,False,Kumaş,13x27x3 cm,Yok,False,Prizmatik,False
+ÇOC-007,Çocuk ve Bebek Moda Ürün 7,Çocuk ve Bebek Moda,38,19,20,3.17,True,Folyo Paket,38x19x20 cm,Yok,True,Yassı,True
+ÇOC-008,Çocuk ve Bebek Moda Ürün 8,Çocuk ve Bebek Moda,38,9,3,1.14,False,Metal,38x9x3 cm,Yok,False,Silindirik,False
+ÇOC-009,Çocuk ve Bebek Moda Ürün 9,Çocuk ve Bebek Moda,30,18,42,4.44,True,Karton,30x18x42 cm,Yok,True,Prizmatik,False
+ÇOC-010,Çocuk ve Bebek Moda Ürün 10,Çocuk ve Bebek Moda,19,34,37,0.57,False,Karton,19x34x37 cm,Yok,True,Yassı,False
+ÇOC-011,Çocuk ve Bebek Moda Ürün 11,Çocuk ve Bebek Moda,22,20,41,2.12,True,Karton,22x20x41 cm,Yok,True,Prizmatik,True
+ÇOC-012,Çocuk ve Bebek Moda Ürün 12,Çocuk ve Bebek Moda,38,6,49,4.14,False,Ahşap,38x6x49 cm,Yok,False,Prizmatik,False
+ÇOC-013,Çocuk ve Bebek Moda Ürün 13,Çocuk ve Bebek Moda,16,24,41,3.25,False,Karton,16x24x41 cm,Yok,True,Silindirik,False
+ÇOC-014,Çocuk ve Bebek Moda Ürün 14,Çocuk ve Bebek Moda,33,23,48,0.22,True,Ahşap,33x23x48 cm,Yok,False,Küp,False
+ÇOC-015,Çocuk ve Bebek Moda Ürün 15,Çocuk ve Bebek Moda,24,19,22,0.76,False,Karton,24x19x22 cm,Yok,True,Prizmatik,True
+ÇOC-016,Çocuk ve Bebek Moda Ürün 16,Çocuk ve Bebek Moda,31,27,37,4.55,True,Metal,31x27x37 cm,Yok,False,Silindirik,False
+ÇOC-017,Çocuk ve Bebek Moda Ürün 17,Çocuk ve Bebek Moda,24,36,28,1.61,True,Plastik,24x36x28 cm,Yok,False,Yassı,True
+ÇOC-018,Çocuk ve Bebek Moda Ürün 18,Çocuk ve Bebek Moda,39,38,29,0.61,False,Metal,39x38x29 cm,Yok,True,Yassı,True
+ÇOC-019,Çocuk ve Bebek Moda Ürün 19,Çocuk ve Bebek Moda,23,25,27,2.01,False,Karton,23x25x27 cm,Yok,True,Yassı,False
+ÇOC-020,Çocuk ve Bebek Moda Ürün 20,Çocuk ve Bebek Moda,14,6,15,1.39,True,Karton,14x6x15 cm,Yok,False,Küp,True
+ÇOC-021,Çocuk ve Bebek Moda Ürün 21,Çocuk ve Bebek Moda,10,12,24,4.22,True,Kumaş,10x12x24 cm,Yok,True,Küp,False
+ÇOC-022,Çocuk ve Bebek Moda Ürün 22,Çocuk ve Bebek Moda,19,40,21,4.46,True,Metal,19x40x21 cm,Yok,True,Küp,True
+ÇOC-023,Çocuk ve Bebek Moda Ürün 23,Çocuk ve Bebek Moda,6,31,41,2.21,True,Plastik,6x31x41 cm,Yok,False,Küp,True
+ÇOC-024,Çocuk ve Bebek Moda Ürün 24,Çocuk ve Bebek Moda,23,20,2,3.12,False,Ahşap,23x20x2 cm,Yok,True,Yassı,False
+ÇOC-025,Çocuk ve Bebek Moda Ürün 25,Çocuk ve Bebek Moda,8,36,21,2.8,True,Karton,8x36x21 cm,Yok,False,Küp,True
+ÇOC-026,Çocuk ve Bebek Moda Ürün 26,Çocuk ve Bebek Moda,36,38,8,4.49,True,Plastik,36x38x8 cm,Yok,True,Prizmatik,True
+ÇOC-027,Çocuk ve Bebek Moda Ürün 27,Çocuk ve Bebek Moda,26,13,25,4.75,True,Plastik,26x13x25 cm,Yok,True,Silindirik,False
+ÇOC-028,Çocuk ve Bebek Moda Ürün 28,Çocuk ve Bebek Moda,36,21,40,2.71,True,Ahşap,36x21x40 cm,Yok,False,Yassı,False
+ÇOC-029,Çocuk ve Bebek Moda Ürün 29,Çocuk ve Bebek Moda,33,36,28,0.15,True,Ahşap,33x36x28 cm,Yok,True,Küp,True
+ÇOC-030,Çocuk ve Bebek Moda Ürün 30,Çocuk ve Bebek Moda,39,27,44,1.12,False,Karton,39x27x44 cm,Yok,False,Yassı,True
+ÇOC-031,Çocuk ve Bebek Moda Ürün 31,Çocuk ve Bebek Moda,8,16,16,4.55,False,Folyo Paket,8x16x16 cm,Yok,True,Prizmatik,True
+ÇOC-032,Çocuk ve Bebek Moda Ürün 32,Çocuk ve Bebek Moda,7,34,41,1.04,False,Ahşap,7x34x41 cm,Yok,False,Prizmatik,True
+ÇOC-033,Çocuk ve Bebek Moda Ürün 33,Çocuk ve Bebek Moda,15,17,40,4.03,True,Metal,15x17x40 cm,Yok,False,Yassı,True
+ÇOC-034,Çocuk ve Bebek Moda Ürün 34,Çocuk ve Bebek Moda,28,23,9,3.39,True,Ahşap,28x23x9 cm,Yok,False,Küp,False
+ÇOC-035,Çocuk ve Bebek Moda Ürün 35,Çocuk ve Bebek Moda,16,24,2,1.84,True,Cam Şişe,16x24x2 cm,Yok,True,Silindirik,False
+ÇOC-036,Çocuk ve Bebek Moda Ürün 36,Çocuk ve Bebek Moda,40,16,38,3.84,True,Folyo Paket,40x16x38 cm,Yok,True,Küp,False
+ÇOC-037,Çocuk ve Bebek Moda Ürün 37,Çocuk ve Bebek Moda,5,17,44,0.35,False,Ahşap,5x17x44 cm,Yok,True,Yassı,False
+ÇOC-038,Çocuk ve Bebek Moda Ürün 38,Çocuk ve Bebek Moda,30,25,38,3.02,False,Metal,30x25x38 cm,Yok,False,Küp,False
+ÇOC-039,Çocuk ve Bebek Moda Ürün 39,Çocuk ve Bebek Moda,13,23,24,4.2,False,Metal,13x23x24 cm,Yok,False,Yassı,True
+ÇOC-040,Çocuk ve Bebek Moda Ürün 40,Çocuk ve Bebek Moda,14,21,41,0.92,True,Ahşap,14x21x41 cm,Yok,True,Küp,False
+MUT-001,Mutfak Ürün 1,Mutfak,7,18,12,4.08,True,Plastik,7x18x12 cm,Sınıf 8,True,Küp,False
+MUT-002,Mutfak Ürün 2,Mutfak,16,29,9,1.6,False,Cam Şişe,16x29x9 cm,Yok,False,Prizmatik,True
+MUT-003,Mutfak Ürün 3,Mutfak,34,11,20,4.72,True,Metal,34x11x20 cm,Sınıf 8,False,Yassı,False
+MUT-004,Mutfak Ürün 4,Mutfak,28,14,41,1.67,True,Cam Şişe,28x14x41 cm,Sınıf 8,True,Silindirik,True
+MUT-005,Mutfak Ürün 5,Mutfak,13,38,33,2.52,True,Folyo Paket,13x38x33 cm,Yok,True,Silindirik,False
+MUT-006,Mutfak Ürün 6,Mutfak,14,24,45,3.54,False,Ahşap,14x24x45 cm,Yok,False,Yassı,True
+MUT-007,Mutfak Ürün 7,Mutfak,12,33,3,4.07,True,Metal,12x33x3 cm,Sınıf 8,False,Küp,True
+MUT-008,Mutfak Ürün 8,Mutfak,5,13,19,4.75,False,Ahşap,5x13x19 cm,Sınıf 2,True,Prizmatik,True
+MUT-009,Mutfak Ürün 9,Mutfak,21,22,24,3.19,True,Karton,21x22x24 cm,Sınıf 2,False,Yassı,True
+MUT-010,Mutfak Ürün 10,Mutfak,22,40,50,4.94,False,Plastik,22x40x50 cm,Yok,True,Yassı,True
+MUT-011,Mutfak Ürün 11,Mutfak,37,5,48,4.33,False,Ahşap,37x5x48 cm,Sınıf 2,False,Prizmatik,False
+MUT-012,Mutfak Ürün 12,Mutfak,16,20,32,2.75,False,Karton,16x20x32 cm,Sınıf 8,False,Prizmatik,False
+MUT-013,Mutfak Ürün 13,Mutfak,17,35,40,2.54,True,Plastik,17x35x40 cm,Sınıf 3,True,Silindirik,False
+MUT-014,Mutfak Ürün 14,Mutfak,32,11,12,1.18,True,Plastik,32x11x12 cm,Yok,True,Prizmatik,True
+MUT-015,Mutfak Ürün 15,Mutfak,12,32,48,2.64,True,Metal,12x32x48 cm,Yok,False,Prizmatik,False
+MUT-016,Mutfak Ürün 16,Mutfak,6,12,9,2.49,False,Ahşap,6x12x9 cm,Sınıf 8,False,Yassı,True
+MUT-017,Mutfak Ürün 17,Mutfak,16,31,24,2.83,True,Metal,16x31x24 cm,Sınıf 3,True,Küp,True
+MUT-018,Mutfak Ürün 18,Mutfak,11,35,34,2.11,True,Karton,11x35x34 cm,Sınıf 8,True,Prizmatik,True
+MUT-019,Mutfak Ürün 19,Mutfak,10,24,49,1.93,False,Plastik,10x24x49 cm,Sınıf 3,True,Silindirik,False
+MUT-020,Mutfak Ürün 20,Mutfak,26,27,25,3.23,False,Folyo Paket,26x27x25 cm,Sınıf 8,True,Yassı,False
+MUT-021,Mutfak Ürün 21,Mutfak,25,29,30,2.35,True,Folyo Paket,25x29x30 cm,Sınıf 3,False,Küp,False
+MUT-022,Mutfak Ürün 22,Mutfak,21,25,39,4.91,True,Plastik,21x25x39 cm,Sınıf 8,False,Prizmatik,True
+MUT-023,Mutfak Ürün 23,Mutfak,30,9,25,0.28,True,Ahşap,30x9x25 cm,Yok,True,Küp,True
+MUT-024,Mutfak Ürün 24,Mutfak,11,35,5,0.48,True,Cam Şişe,11x35x5 cm,Yok,False,Küp,True
+MUT-025,Mutfak Ürün 25,Mutfak,35,32,24,1.79,False,Metal,35x32x24 cm,Sınıf 8,False,Silindirik,False
+MUT-026,Mutfak Ürün 26,Mutfak,11,19,49,3.78,True,Metal,11x19x49 cm,Yok,False,Prizmatik,False
+MUT-027,Mutfak Ürün 27,Mutfak,32,38,25,0.66,True,Plastik,32x38x25 cm,Sınıf 2,True,Silindirik,True
+MUT-028,Mutfak Ürün 28,Mutfak,12,25,46,3.79,True,Kumaş,12x25x46 cm,Sınıf 2,True,Yassı,False
+MUT-029,Mutfak Ürün 29,Mutfak,17,18,24,2.95,False,Cam Şişe,17x18x24 cm,Sınıf 2,False,Küp,False
+MUT-030,Mutfak Ürün 30,Mutfak,24,16,8,2.79,False,Folyo Paket,24x16x8 cm,Sınıf 2,False,Küp,False
+MUT-031,Mutfak Ürün 31,Mutfak,9,36,4,0.95,False,Kumaş,9x36x4 cm,Sınıf 3,True,Yassı,False
+MUT-032,Mutfak Ürün 32,Mutfak,15,26,12,0.33,False,Folyo Paket,15x26x12 cm,Yok,False,Yassı,False
+MUT-033,Mutfak Ürün 33,Mutfak,6,12,48,0.73,False,Ahşap,6x12x48 cm,Sınıf 8,True,Küp,True
+MUT-034,Mutfak Ürün 34,Mutfak,18,27,40,0.83,False,Metal,18x27x40 cm,Yok,True,Prizmatik,True
+MUT-035,Mutfak Ürün 35,Mutfak,30,38,28,2.18,False,Karton,30x38x28 cm,Sınıf 3,False,Yassı,True
+MUT-036,Mutfak Ürün 36,Mutfak,8,33,37,3.38,True,Metal,8x33x37 cm,Yok,True,Yassı,False
+MUT-037,Mutfak Ürün 37,Mutfak,14,31,41,3.52,True,Kumaş,14x31x41 cm,Sınıf 2,True,Prizmatik,True
+MUT-038,Mutfak Ürün 38,Mutfak,20,12,25,4.51,False,Ahşap,20x12x25 cm,Sınıf 2,True,Yassı,True
+MUT-039,Mutfak Ürün 39,Mutfak,19,23,29,4.26,False,Ahşap,19x23x29 cm,Sınıf 2,True,Prizmatik,False
+MUT-040,Mutfak Ürün 40,Mutfak,31,35,11,1.63,True,Metal,31x35x11 cm,Sınıf 2,True,Silindirik,False
+MÜZ-001,Müzik Ekipmanları ve Enstrümanları Ürün 1,Müzik Ekipmanları ve Enstrümanları,13,9,9,4.12,False,Kumaş,13x9x9 cm,Sınıf 3,False,Silindirik,True
+MÜZ-002,Müzik Ekipmanları ve Enstrümanları Ürün 2,Müzik Ekipmanları ve Enstrümanları,22,31,44,0.29,False,Kumaş,22x31x44 cm,Sınıf 3,False,Küp,False
+MÜZ-003,Müzik Ekipmanları ve Enstrümanları Ürün 3,Müzik Ekipmanları ve Enstrümanları,6,29,45,2.53,False,Metal,6x29x45 cm,Sınıf 3,True,Küp,True
+MÜZ-004,Müzik Ekipmanları ve Enstrümanları Ürün 4,Müzik Ekipmanları ve Enstrümanları,33,24,41,1.21,False,Cam Şişe,33x24x41 cm,Sınıf 8,False,Küp,True
+MÜZ-005,Müzik Ekipmanları ve Enstrümanları Ürün 5,Müzik Ekipmanları ve Enstrümanları,28,23,12,4.33,True,Folyo Paket,28x23x12 cm,Sınıf 3,True,Prizmatik,True
+MÜZ-006,Müzik Ekipmanları ve Enstrümanları Ürün 6,Müzik Ekipmanları ve Enstrümanları,24,40,11,3.91,False,Kumaş,24x40x11 cm,Sınıf 3,True,Küp,True
+MÜZ-007,Müzik Ekipmanları ve Enstrümanları Ürün 7,Müzik Ekipmanları ve Enstrümanları,14,8,29,0.97,False,Karton,14x8x29 cm,Sınıf 8,True,Yassı,True
+MÜZ-008,Müzik Ekipmanları ve Enstrümanları Ürün 8,Müzik Ekipmanları ve Enstrümanları,26,37,21,3.24,False,Ahşap,26x37x21 cm,Sınıf 8,False,Silindirik,True
+MÜZ-009,Müzik Ekipmanları ve Enstrümanları Ürün 9,Müzik Ekipmanları ve Enstrümanları,24,10,27,4.64,True,Plastik,24x10x27 cm,Sınıf 3,True,Prizmatik,False
+MÜZ-010,Müzik Ekipmanları ve Enstrümanları Ürün 10,Müzik Ekipmanları ve Enstrümanları,31,29,33,4.85,False,Kumaş,31x29x33 cm,Sınıf 8,False,Yassı,True
+MÜZ-011,Müzik Ekipmanları ve Enstrümanları Ürün 11,Müzik Ekipmanları ve Enstrümanları,23,25,4,3.52,True,Folyo Paket,23x25x4 cm,Sınıf 8,True,Yassı,True
+MÜZ-012,Müzik Ekipmanları ve Enstrümanları Ürün 12,Müzik Ekipmanları ve Enstrümanları,38,19,10,4.28,False,Cam Şişe,38x19x10 cm,Yok,False,Yassı,False
+MÜZ-013,Müzik Ekipmanları ve Enstrümanları Ürün 13,Müzik Ekipmanları ve Enstrümanları,9,34,43,4.02,False,Kumaş,9x34x43 cm,Sınıf 2,True,Küp,False
+MÜZ-014,Müzik Ekipmanları ve Enstrümanları Ürün 14,Müzik Ekipmanları ve Enstrümanları,13,31,25,2.69,False,Cam Şişe,13x31x25 cm,Sınıf 3,True,Prizmatik,True
+MÜZ-015,Müzik Ekipmanları ve Enstrümanları Ürün 15,Müzik Ekipmanları ve Enstrümanları,29,32,8,0.32,True,Folyo Paket,29x32x8 cm,Sınıf 2,False,Yassı,False
+MÜZ-016,Müzik Ekipmanları ve Enstrümanları Ürün 16,Müzik Ekipmanları ve Enstrümanları,29,38,12,2.13,True,Kumaş,29x38x12 cm,Sınıf 8,True,Silindirik,False
+MÜZ-017,Müzik Ekipmanları ve Enstrümanları Ürün 17,Müzik Ekipmanları ve Enstrümanları,27,11,50,1.16,False,Karton,27x11x50 cm,Sınıf 3,True,Yassı,True
+MÜZ-018,Müzik Ekipmanları ve Enstrümanları Ürün 18,Müzik Ekipmanları ve Enstrümanları,7,25,28,3.79,False,Ahşap,7x25x28 cm,Sınıf 3,False,Küp,False
+MÜZ-019,Müzik Ekipmanları ve Enstrümanları Ürün 19,Müzik Ekipmanları ve Enstrümanları,26,15,49,1.06,True,Kumaş,26x15x49 cm,Sınıf 2,True,Silindirik,False
+MÜZ-020,Müzik Ekipmanları ve Enstrümanları Ürün 20,Müzik Ekipmanları ve Enstrümanları,32,29,10,4.72,False,Metal,32x29x10 cm,Yok,False,Prizmatik,False
+MÜZ-021,Müzik Ekipmanları ve Enstrümanları Ürün 21,Müzik Ekipmanları ve Enstrümanları,36,38,6,3.03,True,Metal,36x38x6 cm,Yok,True,Silindirik,True
+MÜZ-022,Müzik Ekipmanları ve Enstrümanları Ürün 22,Müzik Ekipmanları ve Enstrümanları,14,19,19,0.65,False,Folyo Paket,14x19x19 cm,Sınıf 8,True,Yassı,False
+MÜZ-023,Müzik Ekipmanları ve Enstrümanları Ürün 23,Müzik Ekipmanları ve Enstrümanları,28,10,8,3.87,True,Plastik,28x10x8 cm,Sınıf 2,False,Silindirik,True
+MÜZ-024,Müzik Ekipmanları ve Enstrümanları Ürün 24,Müzik Ekipmanları ve Enstrümanları,16,5,36,0.64,False,Karton,16x5x36 cm,Sınıf 2,True,Yassı,False
+MÜZ-025,Müzik Ekipmanları ve Enstrümanları Ürün 25,Müzik Ekipmanları ve Enstrümanları,31,20,26,2.51,False,Karton,31x20x26 cm,Sınıf 8,True,Prizmatik,False
+MÜZ-026,Müzik Ekipmanları ve Enstrümanları Ürün 26,Müzik Ekipmanları ve Enstrümanları,18,6,19,1.99,False,Folyo Paket,18x6x19 cm,Yok,True,Yassı,False
+MÜZ-027,Müzik Ekipmanları ve Enstrümanları Ürün 27,Müzik Ekipmanları ve Enstrümanları,28,35,32,1.66,True,Ahşap,28x35x32 cm,Sınıf 3,True,Silindirik,False
+MÜZ-028,Müzik Ekipmanları ve Enstrümanları Ürün 28,Müzik Ekipmanları ve Enstrümanları,5,23,50,4.84,False,Karton,5x23x50 cm,Sınıf 2,False,Küp,True
+MÜZ-029,Müzik Ekipmanları ve Enstrümanları Ürün 29,Müzik Ekipmanları ve Enstrümanları,7,8,34,3.06,True,Metal,7x8x34 cm,Sınıf 8,False,Prizmatik,True
+MÜZ-030,Müzik Ekipmanları ve Enstrümanları Ürün 30,Müzik Ekipmanları ve Enstrümanları,24,34,50,1.36,True,Cam Şişe,24x34x50 cm,Yok,False,Silindirik,True
+MÜZ-031,Müzik Ekipmanları ve Enstrümanları Ürün 31,Müzik Ekipmanları ve Enstrümanları,36,23,6,4.92,False,Metal,36x23x6 cm,Sınıf 8,True,Yassı,True
+MÜZ-032,Müzik Ekipmanları ve Enstrümanları Ürün 32,Müzik Ekipmanları ve Enstrümanları,38,30,2,2.0,True,Cam Şişe,38x30x2 cm,Sınıf 3,True,Yassı,False
+MÜZ-033,Müzik Ekipmanları ve Enstrümanları Ürün 33,Müzik Ekipmanları ve Enstrümanları,8,22,46,4.53,True,Metal,8x22x46 cm,Sınıf 8,False,Küp,False
+MÜZ-034,Müzik Ekipmanları ve Enstrümanları Ürün 34,Müzik Ekipmanları ve Enstrümanları,5,16,13,0.56,True,Karton,5x16x13 cm,Yok,True,Silindirik,True
+MÜZ-035,Müzik Ekipmanları ve Enstrümanları Ürün 35,Müzik Ekipmanları ve Enstrümanları,20,19,38,2.92,False,Plastik,20x19x38 cm,Sınıf 3,False,Küp,True
+MÜZ-036,Müzik Ekipmanları ve Enstrümanları Ürün 36,Müzik Ekipmanları ve Enstrümanları,27,34,20,0.61,True,Ahşap,27x34x20 cm,Sınıf 3,True,Yassı,True
+MÜZ-037,Müzik Ekipmanları ve Enstrümanları Ürün 37,Müzik Ekipmanları ve Enstrümanları,34,17,16,2.49,False,Kumaş,34x17x16 cm,Sınıf 8,True,Yassı,True
+MÜZ-038,Müzik Ekipmanları ve Enstrümanları Ürün 38,Müzik Ekipmanları ve Enstrümanları,27,26,8,4.11,False,Karton,27x26x8 cm,Yok,False,Küp,True
+MÜZ-039,Müzik Ekipmanları ve Enstrümanları Ürün 39,Müzik Ekipmanları ve Enstrümanları,9,27,6,3.27,False,Karton,9x27x6 cm,Yok,True,Küp,True
+MÜZ-040,Müzik Ekipmanları ve Enstrümanları Ürün 40,Müzik Ekipmanları ve Enstrümanları,33,30,17,0.49,False,Folyo Paket,33x30x17 cm,Yok,True,Küp,False
+OFI-001,Ofis ve Kırtasiye Ürün 1,Ofis ve Kırtasiye,31,34,15,4.36,False,Ahşap,31x34x15 cm,Sınıf 2,True,Prizmatik,False
+OFI-002,Ofis ve Kırtasiye Ürün 2,Ofis ve Kırtasiye,28,6,16,1.46,False,Cam Şişe,28x6x16 cm,Sınıf 8,False,Prizmatik,False
+OFI-003,Ofis ve Kırtasiye Ürün 3,Ofis ve Kırtasiye,32,6,34,4.07,True,Ahşap,32x6x34 cm,Sınıf 2,True,Silindirik,False
+OFI-004,Ofis ve Kırtasiye Ürün 4,Ofis ve Kırtasiye,17,37,39,2.22,False,Kumaş,17x37x39 cm,Sınıf 2,False,Silindirik,True
+OFI-005,Ofis ve Kırtasiye Ürün 5,Ofis ve Kırtasiye,15,28,40,4.1,True,Plastik,15x28x40 cm,Sınıf 3,True,Yassı,True
+OFI-006,Ofis ve Kırtasiye Ürün 6,Ofis ve Kırtasiye,23,11,16,3.58,False,Plastik,23x11x16 cm,Sınıf 8,False,Küp,True
+OFI-007,Ofis ve Kırtasiye Ürün 7,Ofis ve Kırtasiye,15,34,34,1.09,False,Folyo Paket,15x34x34 cm,Sınıf 2,True,Yassı,False
+OFI-008,Ofis ve Kırtasiye Ürün 8,Ofis ve Kırtasiye,12,36,20,1.21,False,Metal,12x36x20 cm,Yok,False,Silindirik,True
+OFI-009,Ofis ve Kırtasiye Ürün 9,Ofis ve Kırtasiye,29,17,16,3.44,True,Cam Şişe,29x17x16 cm,Sınıf 2,True,Küp,True
+OFI-010,Ofis ve Kırtasiye Ürün 10,Ofis ve Kırtasiye,29,34,42,4.72,False,Folyo Paket,29x34x42 cm,Yok,False,Prizmatik,False
+OFI-011,Ofis ve Kırtasiye Ürün 11,Ofis ve Kırtasiye,22,40,35,2.53,True,Folyo Paket,22x40x35 cm,Yok,True,Prizmatik,True
+OFI-012,Ofis ve Kırtasiye Ürün 12,Ofis ve Kırtasiye,21,24,6,2.42,False,Ahşap,21x24x6 cm,Yok,False,Yassı,True
+OFI-013,Ofis ve Kırtasiye Ürün 13,Ofis ve Kırtasiye,10,9,23,0.48,True,Metal,10x9x23 cm,Sınıf 8,False,Prizmatik,False
+OFI-014,Ofis ve Kırtasiye Ürün 14,Ofis ve Kırtasiye,12,32,5,0.52,True,Kumaş,12x32x5 cm,Sınıf 2,False,Küp,True
+OFI-015,Ofis ve Kırtasiye Ürün 15,Ofis ve Kırtasiye,32,16,27,3.48,False,Karton,32x16x27 cm,Sınıf 3,False,Yassı,True
+OFI-016,Ofis ve Kırtasiye Ürün 16,Ofis ve Kırtasiye,24,16,47,4.46,False,Cam Şişe,24x16x47 cm,Yok,False,Prizmatik,False
+OFI-017,Ofis ve Kırtasiye Ürün 17,Ofis ve Kırtasiye,24,18,16,3.06,True,Kumaş,24x18x16 cm,Sınıf 2,True,Silindirik,True
+OFI-018,Ofis ve Kırtasiye Ürün 18,Ofis ve Kırtasiye,36,28,10,4.09,False,Kumaş,36x28x10 cm,Yok,True,Küp,True
+OFI-019,Ofis ve Kırtasiye Ürün 19,Ofis ve Kırtasiye,18,30,30,0.85,True,Karton,18x30x30 cm,Sınıf 3,True,Silindirik,True
+OFI-020,Ofis ve Kırtasiye Ürün 20,Ofis ve Kırtasiye,26,30,13,2.04,False,Karton,26x30x13 cm,Sınıf 2,True,Küp,False
+OFI-021,Ofis ve Kırtasiye Ürün 21,Ofis ve Kırtasiye,14,20,33,0.73,True,Karton,14x20x33 cm,Sınıf 2,True,Prizmatik,False
+OFI-022,Ofis ve Kırtasiye Ürün 22,Ofis ve Kırtasiye,27,12,32,2.25,True,Ahşap,27x12x32 cm,Sınıf 8,True,Prizmatik,False
+OFI-023,Ofis ve Kırtasiye Ürün 23,Ofis ve Kırtasiye,20,35,16,0.96,True,Metal,20x35x16 cm,Yok,False,Prizmatik,True
+OFI-024,Ofis ve Kırtasiye Ürün 24,Ofis ve Kırtasiye,5,31,14,0.46,True,Karton,5x31x14 cm,Sınıf 3,True,Silindirik,True
+OFI-025,Ofis ve Kırtasiye Ürün 25,Ofis ve Kırtasiye,34,10,47,2.93,True,Karton,34x10x47 cm,Sınıf 2,True,Yassı,False
+OFI-026,Ofis ve Kırtasiye Ürün 26,Ofis ve Kırtasiye,31,17,49,2.85,True,Karton,31x17x49 cm,Sınıf 8,True,Yassı,True
+OFI-027,Ofis ve Kırtasiye Ürün 27,Ofis ve Kırtasiye,17,37,5,4.71,True,Cam Şişe,17x37x5 cm,Sınıf 3,True,Prizmatik,False
+OFI-028,Ofis ve Kırtasiye Ürün 28,Ofis ve Kırtasiye,11,22,47,0.19,False,Plastik,11x22x47 cm,Sınıf 3,False,Yassı,False
+OFI-029,Ofis ve Kırtasiye Ürün 29,Ofis ve Kırtasiye,11,36,41,3.11,True,Metal,11x36x41 cm,Yok,True,Silindirik,True
+OFI-030,Ofis ve Kırtasiye Ürün 30,Ofis ve Kırtasiye,33,10,42,4.17,True,Folyo Paket,33x10x42 cm,Sınıf 3,False,Küp,False
+OFI-031,Ofis ve Kırtasiye Ürün 31,Ofis ve Kırtasiye,17,14,41,2.74,False,Metal,17x14x41 cm,Sınıf 3,False,Silindirik,True
+OFI-032,Ofis ve Kırtasiye Ürün 32,Ofis ve Kırtasiye,27,39,10,4.59,False,Cam Şişe,27x39x10 cm,Sınıf 3,False,Yassı,False
+OFI-033,Ofis ve Kırtasiye Ürün 33,Ofis ve Kırtasiye,30,21,23,4.95,True,Folyo Paket,30x21x23 cm,Sınıf 2,True,Yassı,False
+OFI-034,Ofis ve Kırtasiye Ürün 34,Ofis ve Kırtasiye,39,15,20,3.9,False,Metal,39x15x20 cm,Yok,False,Silindirik,True
+OFI-035,Ofis ve Kırtasiye Ürün 35,Ofis ve Kırtasiye,31,15,40,2.92,True,Karton,31x15x40 cm,Sınıf 2,True,Prizmatik,False
+OFI-036,Ofis ve Kırtasiye Ürün 36,Ofis ve Kırtasiye,8,30,14,0.76,False,Karton,8x30x14 cm,Sınıf 2,False,Yassı,True
+OFI-037,Ofis ve Kırtasiye Ürün 37,Ofis ve Kırtasiye,33,25,5,0.15,False,Cam Şişe,33x25x5 cm,Sınıf 2,True,Silindirik,False
+OFI-038,Ofis ve Kırtasiye Ürün 38,Ofis ve Kırtasiye,39,19,5,1.34,True,Cam Şişe,39x19x5 cm,Sınıf 3,False,Silindirik,False
+OFI-039,Ofis ve Kırtasiye Ürün 39,Ofis ve Kırtasiye,5,37,12,2.7,True,Folyo Paket,5x37x12 cm,Sınıf 3,True,Yassı,False
+OFI-040,Ofis ve Kırtasiye Ürün 40,Ofis ve Kırtasiye,13,31,15,2.23,False,Folyo Paket,13x31x15 cm,Yok,True,Küp,False
