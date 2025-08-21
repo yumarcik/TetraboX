@@ -1,7 +1,7 @@
 # === ONLY EDIT THIS if your column names/units change ===
 
 product:
-  path: "data/raw/product_packages_10000_english_semicolon.csv"
+  path: "data/products.csv"
   sep: ";"            # <-- NEW: your file is semicolon-separated
   decimal: ","        # <-- NEW: your file uses comma decimals
 
@@ -53,13 +53,13 @@ product:
       bottle: "şişe"
 
 container:
-  path: "data/raw/tum_kargo_kutu_bilgileri.csv"
-  encoding: "cp1254"   # NEW: file encoding
+  path: "data/containers.csv"
+  encoding: "utf-8-sig"   # NEW: file encoding
   sep: "\t"            # NEW: tab-delimited
   decimal: "."         # decimals use dot in your file
 
   # No explicit id column → auto-generate
-  box_id_col: null     # NEW: let code auto-create BOX-000001, ...
+  box_id_col: null     # NEW: let code auto-create BOX-000001, ...w
   id_prefix: "BOX"     # NEW
   id_start_index: 1    # NEW
 

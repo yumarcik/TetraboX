@@ -10,19 +10,15 @@ def load_config(path="config.yaml"):
         return yaml.safe_load(f)
 
 def read_csv_cfg(section: dict) -> pd.DataFrame:
-    """
-    Read CSV using delimiter/decimal/encoding from config.
-    """
     from pathlib import Path
     path = section["path"]
     sep = section.get("sep", ",")
     decimal = section.get("decimal", ".")
-    encoding = section.get("encoding", "utf-8")  # NEW
+    encoding = section.get("encoding", "utf-8")  # <- keep this
     p = Path(path)
     if not p.exists():
         raise FileNotFoundError(f"CSV not found: {path}")
-    return pd.read_csv(p, sep=sep, decimal=decimal, encoding=encoding)  # CHANGED
-
+    return pd.read_csv(p, sep=sep, decimal=decimal, encoding=encoding)
 
 def to_bool(v):
     if pd.isna(v): return False

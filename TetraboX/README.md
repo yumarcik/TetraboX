@@ -5,9 +5,9 @@
 mkdir -p data/raw data/normalized
 
 2. Place your products CSV at:
-`data/raw/products.csv`
+`data/products.csv`
 
-3. Provide a containers CSV at `data/raw/containers.csv`
+3. Provide a containers CSV at `data/containers.csv`
 - Or generate a sample set:
   ```
   python scripts/make_containers.py

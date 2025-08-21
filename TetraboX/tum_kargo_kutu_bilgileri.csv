@@ -1,59 +1,59 @@
-en	boy	yükseklik	iç_hacim	boþ_aðýrlýk	maksimum_taþýma_kapasitesi	malzeme_türü	stok_adedi	fiyat	kullaným_kýsýtý	kargo_firmasý	maks_taþýma	malzeme	
-15.0	15	15	3375	0.13	45717	Karton	100.0	45820	Sývý hariç	Yurtiçi	Mikro	15x15x15	
-20.0	24	16	7680	0.18	1,8E+16	Karton	100.0	15.49	Sývý hariç	Yurtiçi	XS	20x24x15	
-21.0	35	25	18375	0.28	2,8E+16	Karton	100.0	26.52	Sývý hariç	Yurtiçi	S	21.0x35x25	
-20.0	30	30	18000	0.28	2,8E+16	Karton	100.0	45983	Sývý hariç	Yurtiçi	Taze	20.0x30x30	
-20.0	30	35	21000	0.31	45660	Karton	100.0	29.45	Sývý hariç	Yurtiçi	M	20.0x30x35	
-28.0	37	25	25900	0.36	45811	Karton	100.0	32.14	Sývý hariç	Yurtiçi	Yatay M	28.0x37x25	
-27.0	37	30	29970	0.4	4.0	Karton	100.0	36.45	Sývý hariç	Yurtiçi	Makro	27.0x37x30	
-32.0	40	30	38400	0.48	45873	Karton	100.0	41.95	Sývý hariç	Yurtiçi	L	32.0x40x30	
-36.0	45	35	56700	0.67	45844	Karton	100.0	56.21	Sývý hariç	Yurtiçi	Yatay L	36.0x45x35	
-42.0	48	38	76608	0.87	45846	Karton	100.0	79.05	Sývý hariç	Yurtiçi	XL	42.0x48x38	
-43.0	49	47	99029	45901	45910	Karton	100.0	99.59	Sývý hariç	Yurtiçi	XXL	43x49x47	
-24.0	22	5	2640	0.13	45717	Hava Kanallý	100.0	26.72	Kýrýlgan ürünler için	Yurtiçi	Standart	24.0x22x5	
-30.0	21	6	3780	0.14	45748	Hava Kanallý	100.0	31.79	Kýrýlgan ürünler için	Yurtiçi	Standart	30.0x21x6	
-33.0	35	7	8085	0.18	1,8E+16	Hava Kanallý	100.0	35.52	Kýrýlgan ürünler için	Yurtiçi	Standart	33.0x35x7	
-37.0	33	8	9768	0.2	2.0	Hava Kanallý	100.0	42.25	Kýrýlgan ürünler için	Yurtiçi	Standart	37.0x33x8	
-24.0	29	6	4176	0.14	45748	Hava Kanallý	100.0	28.46	Kýrýlgan ürünler için	Yurtiçi	Hava Kanallý Þiþe	24x29	
-16.0	16	16	4096	0.14	45748	Karton	100.0	45911	Sývý hariç	Aras	NanoBox	26 x 20 x 10	
-22.0	30	20	13200	0.23	2,3E+16	Karton	100.0	45793	Sývý hariç	Aras	MiniBox	30 x 28 x 18	
-30.0	40	25	30000	0.4	4.0	Karton	100.0	45893	Sývý hariç	Aras	MidiBox	40 x 30 x 15	
-40.0	50	30	60000	0.7	7.0	Karton	100.0	36.7	Sývý hariç	Aras	MaxiBox	45 x 32 x 25	
-48.0	60	40	115200	45658	45789	Karton	100.0	58.9	Sývý hariç	Aras	MegaBox	40 x 40 x 38	
+en	boy	yÃ¼kseklik	iÃ§_hacim	boy_aÄŸÄ±rlÄ±k	maksimum_taÅŸÄ±ma_kapasitesi	malzeme_tÃ¼rÃ¼	stok_adedi	fiyat	kullanÄ±m_kÄ±sÄ±tÄ±	kargo_firmasÄ±	maks_taÅŸÄ±ma	malzeme	
+15.0	15	15	3375	0.13	45717	Karton	100.0	45820	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	Mikro	15x15x15	
+20.0	24	16	7680	0.18	1,8E+16	Karton	100.0	15.49	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	XS	20x24x15	
+21.0	35	25	18375	0.28	2,8E+16	Karton	100.0	26.52	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	S	21.0x35x25	
+20.0	30	30	18000	0.28	2,8E+16	Karton	100.0	45983	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	Taze	20.0x30x30	
+20.0	30	35	21000	0.31	45660	Karton	100.0	29.45	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	M	20.0x30x35	
+28.0	37	25	25900	0.36	45811	Karton	100.0	32.14	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	Yatay M	28.0x37x25	
+27.0	37	30	29970	0.4	4.0	Karton	100.0	36.45	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	Makro	27.0x37x30	
+32.0	40	30	38400	0.48	45873	Karton	100.0	41.95	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	L	32.0x40x30	
+36.0	45	35	56700	0.67	45844	Karton	100.0	56.21	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	Yatay L	36.0x45x35	
+42.0	48	38	76608	0.87	45846	Karton	100.0	79.05	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	XL	42.0x48x38	
+43.0	49	47	99029	45901	45910	Karton	100.0	99.59	Sï¿½vï¿½ hariï¿½	Yurtiï¿½i	XXL	43x49x47	
+24.0	22	5	2640	0.13	45717	Hava Kanallï¿½	100.0	26.72	Kï¿½rï¿½lgan ï¿½rï¿½nler iï¿½in	Yurtiï¿½i	Standart	24.0x22x5	
+30.0	21	6	3780	0.14	45748	Hava Kanallï¿½	100.0	31.79	Kï¿½rï¿½lgan ï¿½rï¿½nler iï¿½in	Yurtiï¿½i	Standart	30.0x21x6	
+33.0	35	7	8085	0.18	1,8E+16	Hava Kanallï¿½	100.0	35.52	Kï¿½rï¿½lgan ï¿½rï¿½nler iï¿½in	Yurtiï¿½i	Standart	33.0x35x7	
+37.0	33	8	9768	0.2	2.0	Hava Kanallï¿½	100.0	42.25	Kï¿½rï¿½lgan ï¿½rï¿½nler iï¿½in	Yurtiï¿½i	Standart	37.0x33x8	
+24.0	29	6	4176	0.14	45748	Hava Kanallï¿½	100.0	28.46	Kï¿½rï¿½lgan ï¿½rï¿½nler iï¿½in	Yurtiï¿½i	Hava Kanallï¿½ ï¿½iï¿½e	24x29	
+16.0	16	16	4096	0.14	45748	Karton	100.0	45911	Sï¿½vï¿½ hariï¿½	Aras	NanoBox	26 x 20 x 10	
+22.0	30	20	13200	0.23	2,3E+16	Karton	100.0	45793	Sï¿½vï¿½ hariï¿½	Aras	MiniBox	30 x 28 x 18	
+30.0	40	25	30000	0.4	4.0	Karton	100.0	45893	Sï¿½vï¿½ hariï¿½	Aras	MidiBox	40 x 30 x 15	
+40.0	50	30	60000	0.7	7.0	Karton	100.0	36.7	Sï¿½vï¿½ hariï¿½	Aras	MaxiBox	45 x 32 x 25	
+48.0	60	40	115200	45658	45789	Karton	100.0	58.9	Sï¿½vï¿½ hariï¿½	Aras	MegaBox	40 x 40 x 38	
 6.5	39	3	760	0.11	45658	Rulo	100.0	14.79		DHL	AIRBOX	XS	
 8.5	57	4	1938	0.12	45689	Rulo	100.0	45983		DHL	AIRBOX	S	
 22.0	12	6	1584	0.08				19.99		DHL	AIRBOX	M	
 26.0	16	8	3328	0.12				32.99		DHL	AIRBOX	L	
 32.0	20	10	6400	0.15				39.99		DHL	AIRBOX	XL	
-35.0	24	12	10080	0.2				40.99		DHL	HAVA YASTIKÇIKLI POÞET	Küçük	
-38.0	27	14	14364	0.25				71.99		DHL	HAVA YASTIKÇIKLI POÞET	Orta	
-20.0	25	2	1000	0.03				36495		DHL	HAVA YASTIKÇIKLI POÞET	Büyük	
-25.0	30	2	1500	0.04				15.49		DHL	DOÐA DOSTU KUTU	3 DS	
-30.0	35	2	2100	0.05				20.49		DHL	DOÐA DOSTU KUTU	5 DS	
-25.0	20	15	7500	0.2				18172		DHL	DOÐA DOSTU KUTU	15 DS	
-30.0	25	20	15000	0.3				14.99		DHL	DOÐA DOSTU KUTU	32 DS	
-15.0	15	14	3150	0.3	2.0	Mukavva	50.0	20.66	Yok	Sürat Kargo	Mikro Kutu	Mikro	
-20.0	24	13	6240	0.4	3.0	Mukavva	50.0	33.29	Yok	Sürat Kargo	XS Kutu	XS	
-31.0	25	21	16275	0.6	5.0	Mukavva	50.0	54.82	Yok	Sürat Kargo	S Kutu	S	
-30.0	32	18	17280	0.7	6.0	Mukavva	50.0	60.41	Yok	Sürat Kargo	M Kutu	M	
-24.0	24	36	20736	0.7	6.0	Mukavva	40.0	50.12	Yok	Sürat Kargo	Makro Kutu	Makro	
-30.0	40	30	36000	1.0	8.0	Mukavva	30.0	68.98	Yok	Sürat Kargo	L Kutu	L	
-36.0	45	30	48600	45658	10.0	Mukavva	30.0	65.58	Yok	Sürat Kargo	Yatay L Kutu	Yatay L	
-42.0	42	39	68832	45689	12.0	Mukavva	20.0	79.34	Yok	Sürat Kargo	XL Kutu	XL	
-35.0	46	15	24150	0.9	5.0	Mukavva	30.0	40.82	Yok	Sürat Kargo	Meyve Kutusu	Özel	
-43.0	48	47	96912	45778	15.0	Mukavva	20.0	96.48	Yok	Sürat Kargo	XXL Kutu	XXL	
-45.0	41	10	18450	0.3	2.0	Polietilen	100.0	17.58	Hassas Ürünler	Sürat Kargo	Koruma Köpüðü S	Koruma Köpüðü	
-45.0	61	10	27450	0.4	3.0	Polietilen	80.0	24.78	Hassas Ürünler	Sürat Kargo	Koruma Köpüðü M	Koruma Köpüðü	
-21.0	29	2	1218	0.05	0.3	Kraft + Baloncuk	200.0	45878	Belge	Sürat Kargo	Havalý Zarf S	Zarf	
-29.0	37	2	2146	0.07	0.5	Kraft + Baloncuk	200.0	45820	Belge	Sürat Kargo	Havalý Zarf M	Zarf	
-32.0	44	2	2816	0.09	0.7	Kraft + Baloncuk	150.0	32478	Belge	Sürat Kargo	Havalý Zarf L	Zarf	
-18.0	23	5	2070	0.1	1.0	Plastik	100.0	20.25	Hassas Ürünler	Sürat Kargo	AirPack XS	AirPack	
-28.0	30	5	4200	0.2	2.0	Plastik	80.0	38.88	Hassas Ürünler	Sürat Kargo	AirPack S	AirPack	
-31.0	33	5	5115	0.25	45779	Plastik	70.0	41.31	Hassas Ürünler	Sürat Kargo	AirPack M	AirPack	
-31.0	40	5	6200	0.3	3.0	Plastik	60.0	42.31	Hassas Ürünler	Sürat Kargo	AirPack L	AirPack	
-36.0	48	5	8640	0.35	45780	Plastik	50.0	68.04	Hassas Ürünler	Sürat Kargo	AirPack XL	AirPack	
-10.0	15	20	3000	0.5	10.0	Mukavva	100.0	14.0	Sözleþmeli Müþteri	PTT	Mukavva Kargo Yollama Kutusu No:1	10x15x20	
-12.0	21	26	6552	0.5	10.0	Mukavva	100.0	20.0	Sözleþmeli Müþteri	PTT	Mukavva Kargo Yollama Kutusu No:2	12x21x26	
-13.0	23	34	10166	0.5	10.0	Mukavva	100.0	26.0	Sözleþmeli Müþteri	PTT	Mukavva Kargo Yollama Kutusu No:3	13x23x34	
-17.0	25	40	17000	0.5	10.0	Mukavva	100.0	51.0	Sözleþmeli Müþteri	PTT	Mukavva Kargo Yollama Kutusu No:4	17x25x40	
-20.0	30	50	30000	0.5	10.0	Mukavva	100.0	72.0	Sözleþmeli Müþteri	PTT	Mukavva Kargo Yollama Kutusu No:5	20x30x50	
+35.0	24	12	10080	0.2				40.99		DHL	HAVA YASTIKï¿½IKLI POï¿½ET	Kï¿½ï¿½ï¿½k	
+38.0	27	14	14364	0.25				71.99		DHL	HAVA YASTIKï¿½IKLI POï¿½ET	Orta	
+20.0	25	2	1000	0.03				36495		DHL	HAVA YASTIKï¿½IKLI POï¿½ET	Bï¿½yï¿½k	
+25.0	30	2	1500	0.04				15.49		DHL	DOï¿½A DOSTU KUTU	3 DS	
+30.0	35	2	2100	0.05				20.49		DHL	DOï¿½A DOSTU KUTU	5 DS	
+25.0	20	15	7500	0.2				18172		DHL	DOï¿½A DOSTU KUTU	15 DS	
+30.0	25	20	15000	0.3				14.99		DHL	DOï¿½A DOSTU KUTU	32 DS	
+15.0	15	14	3150	0.3	2.0	Mukavva	50.0	20.66	Yok	Sï¿½rat Kargo	Mikro Kutu	Mikro	
+20.0	24	13	6240	0.4	3.0	Mukavva	50.0	33.29	Yok	Sï¿½rat Kargo	XS Kutu	XS	
+31.0	25	21	16275	0.6	5.0	Mukavva	50.0	54.82	Yok	Sï¿½rat Kargo	S Kutu	S	
+30.0	32	18	17280	0.7	6.0	Mukavva	50.0	60.41	Yok	Sï¿½rat Kargo	M Kutu	M	
+24.0	24	36	20736	0.7	6.0	Mukavva	40.0	50.12	Yok	Sï¿½rat Kargo	Makro Kutu	Makro	
+30.0	40	30	36000	1.0	8.0	Mukavva	30.0	68.98	Yok	Sï¿½rat Kargo	L Kutu	L	
+36.0	45	30	48600	45658	10.0	Mukavva	30.0	65.58	Yok	Sï¿½rat Kargo	Yatay L Kutu	Yatay L	
+42.0	42	39	68832	45689	12.0	Mukavva	20.0	79.34	Yok	Sï¿½rat Kargo	XL Kutu	XL	
+35.0	46	15	24150	0.9	5.0	Mukavva	30.0	40.82	Yok	Sï¿½rat Kargo	Meyve Kutusu	ï¿½zel	
+43.0	48	47	96912	45778	15.0	Mukavva	20.0	96.48	Yok	Sï¿½rat Kargo	XXL Kutu	XXL	
+45.0	41	10	18450	0.3	2.0	Polietilen	100.0	17.58	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	Koruma Kï¿½pï¿½ï¿½ï¿½ S	Koruma Kï¿½pï¿½ï¿½ï¿½	
+45.0	61	10	27450	0.4	3.0	Polietilen	80.0	24.78	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	Koruma Kï¿½pï¿½ï¿½ï¿½ M	Koruma Kï¿½pï¿½ï¿½ï¿½	
+21.0	29	2	1218	0.05	0.3	Kraft + Baloncuk	200.0	45878	Belge	Sï¿½rat Kargo	Havalï¿½ Zarf S	Zarf	
+29.0	37	2	2146	0.07	0.5	Kraft + Baloncuk	200.0	45820	Belge	Sï¿½rat Kargo	Havalï¿½ Zarf M	Zarf	
+32.0	44	2	2816	0.09	0.7	Kraft + Baloncuk	150.0	32478	Belge	Sï¿½rat Kargo	Havalï¿½ Zarf L	Zarf	
+18.0	23	5	2070	0.1	1.0	Plastik	100.0	20.25	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	AirPack XS	AirPack	
+28.0	30	5	4200	0.2	2.0	Plastik	80.0	38.88	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	AirPack S	AirPack	
+31.0	33	5	5115	0.25	45779	Plastik	70.0	41.31	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	AirPack M	AirPack	
+31.0	40	5	6200	0.3	3.0	Plastik	60.0	42.31	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	AirPack L	AirPack	
+36.0	48	5	8640	0.35	45780	Plastik	50.0	68.04	Hassas ï¿½rï¿½nler	Sï¿½rat Kargo	AirPack XL	AirPack	
+10.0	15	20	3000	0.5	10.0	Mukavva	100.0	14.0	Sï¿½zleï¿½meli Mï¿½ï¿½teri	PTT	Mukavva Kargo Yollama Kutusu No:1	10x15x20	
+12.0	21	26	6552	0.5	10.0	Mukavva	100.0	20.0	Sï¿½zleï¿½meli Mï¿½ï¿½teri	PTT	Mukavva Kargo Yollama Kutusu No:2	12x21x26	
+13.0	23	34	10166	0.5	10.0	Mukavva	100.0	26.0	Sï¿½zleï¿½meli Mï¿½ï¿½teri	PTT	Mukavva Kargo Yollama Kutusu No:3	13x23x34	
+17.0	25	40	17000	0.5	10.0	Mukavva	100.0	51.0	Sï¿½zleï¿½meli Mï¿½ï¿½teri	PTT	Mukavva Kargo Yollama Kutusu No:4	17x25x40	
+20.0	30	50	30000	0.5	10.0	Mukavva	100.0	72.0	Sï¿½zleï¿½meli Mï¿½ï¿½teri	PTT	Mukavva Kargo Yollama Kutusu No:5	20x30x50	

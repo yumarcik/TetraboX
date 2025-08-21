@@ -74,16 +74,13 @@ def normalize_containers(cfg) -> pd.DataFrame:
     c = cfg["container"]
     df = read_csv_cfg(c).copy()
 
-    # --- helpers ---
     def parse_num(v):
         if pd.isna(v): return np.nan
-        s = str(v).strip().replace(",", ".")  # handle stray commas if any
-        try:
-            return float(s)
-        except:
-            return np.nan
+        s = str(v).strip().replace(",", ".")
+        try: return float(s)
+        except: return np.nan
 
-    # --- box_id (auto if missing) ---
+    # box_id
     if c.get("box_id_col") and c["box_id_col"] in df.columns:
         box_id = df[c["box_id_col"]].astype(str)
     else:
@@ -91,40 +88,31 @@ def normalize_containers(cfg) -> pd.DataFrame:
                                         prefix=c.get("id_prefix","BOX"),
                                         start_index=int(c.get("id_start_index",1))))
 
-    # --- dimensions (cm → mm) ---
+    # dims
     w_mm = df[c["inner_w_col"]].map(parse_num).apply(lambda v: unit_to_mm(v, c["width_unit"]))
     l_mm = df[c["inner_l_col"]].map(parse_num).apply(lambda v: unit_to_mm(v, c["length_unit"]))
     h_mm = df[c["inner_h_col"]].map(parse_num).apply(lambda v: unit_to_mm(v, c["height_unit"]))
 
-    # --- weights ---
-    tare = df[c["tare_weight_col"]].map(parse_num)
-    tare_g = tare.apply(lambda v: unit_to_g(v, c["tare_weight_unit"]))
+    # weights
+    tare_g = df[c["tare_weight_col"]].map(parse_num).apply(lambda v: unit_to_g(v, c["tare_weight_unit"]))
 
-    # max weight: mixed data → auto + fallback from class
     raw_max = df[c["max_weight_col"]].map(parse_num)
-
     def auto_to_grams(x):
         if pd.isna(x): return np.nan
-        # Heuristic: <=200 means kg (e.g., 4.0), else already grams
         return x*1000 if str(c.get("max_weight_unit","auto")).lower()=="auto" and x <= 200 else x
-
     max_g = raw_max.map(auto_to_grams)
 
-    # fallback from 'maks_taşıma' category if missing or nonsense
     fb_col = c.get("max_weight_fallback_col")
     if fb_col and fb_col in df.columns:
         fb = df[fb_col].astype(str).str.strip().str.lower()
         fb_map = {"mikro": 2, "xs": 4, "s": 7, "m": 10, "l": 15, "xl": 20}
         fb_g = fb.map(fb_map).astype(float) * 1000
-        # fill NA or clearly broken numbers (e.g., > 100000 g)
         max_g = max_g.where(~(max_g.isna() | (max_g > 100000)), fb_g)
 
-    # --- material, stock, price ---
     material = df[c["material_col"]].astype(str).str.lower()
     stock = df[c["stock_col"]].map(parse_num).fillna(0).astype(int)
     price_try = df[c["price_col"]].map(parse_num)
 
-    # --- usage_limit normalize ('Sıvı hariç' → 'sıvı-yasak') ---
     ucol = c.get("usage_limit_col")
     usage_limit = None
     if ucol and ucol in df.columns:
@@ -132,6 +120,7 @@ def normalize_containers(cfg) -> pd.DataFrame:
                             .str.strip()
                             .replace({"Sıvı hariç": "sıvı-yasak",
                                       "sıvı hariç": "sıvı-yasak",
+                                      "S�v� hari�": "sıvı-yasak",
                                       "liquid excluded": "sıvı-yasak"}))
 
     out = pd.DataFrame({

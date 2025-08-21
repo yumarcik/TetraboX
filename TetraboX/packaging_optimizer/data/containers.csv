@@ -1,4 +1,4 @@
-en	boy	y�kseklik	i�_hacim	bo�_a��rl�k	maksimum_ta��ma_kapasitesi	malzeme_t�r�	stok_adedi	fiyat	kullan�m_k�s�t�	kargo_firmas�	maks_ta��ma	malzeme	
+en	boy	yükseklik	iç_hacim	boş_ağırlık	maksimum_taşıma_kapasitesi	malzeme_türü	stok_adedi	fiyat	kullanım_kısıtı	kargo_firması	maks_taşıma	malzeme	
 15.0	15	15	3375	0.13	45717	Karton	100.0	45820	S�v� hari�	Yurti�i	Mikro	15x15x15	
 20.0	24	16	7680	0.18	1,8E+16	Karton	100.0	15.49	S�v� hari�	Yurti�i	XS	20x24x15	
 21.0	35	25	18375	0.28	2,8E+16	Karton	100.0	26.52	S�v� hari�	Yurti�i	S	21.0x35x25	
@@ -32,12 +32,12 @@ en	boy	y�kseklik	i�_hacim	bo�_a��rl�k	maksimum_ta��ma_kapasitesi
 30.0	35	2	2100	0.05				20.49		DHL	DO�A DOSTU KUTU	5 DS	
 25.0	20	15	7500	0.2				18172		DHL	DO�A DOSTU KUTU	15 DS	
 30.0	25	20	15000	0.3				14.99		DHL	DO�A DOSTU KUTU	32 DS	
-15.0	15	14	3150	0.3	2.0	Mukavva	50.0	20.66	Yok	S�rat Kargo	Mikro Kutu	Mikro	
-20.0	24	13	6240	0.4	3.0	Mukavva	50.0	33.29	Yok	S�rat Kargo	XS Kutu	XS	
-31.0	25	21	16275	0.6	5.0	Mukavva	50.0	54.82	Yok	S�rat Kargo	S Kutu	S	
-30.0	32	18	17280	0.7	6.0	Mukavva	50.0	60.41	Yok	S�rat Kargo	M Kutu	M	
-24.0	24	36	20736	0.7	6.0	Mukavva	40.0	50.12	Yok	S�rat Kargo	Makro Kutu	Makro	
-30.0	40	30	36000	1.0	8.0	Mukavva	30.0	68.98	Yok	S�rat Kargo	L Kutu	L	
+15.0	15	14	3150	0.3	2.0	Mukavva	50.0	20.66	Yok	Sürat Kargo	Mikro Kutu	Mikro	
+20.0	24	13	6240	0.4	3.0	Mukavva	50.0	33.29	Yok	Sürat Kargo	XS Kutu	XS	
+31.0	25	21	16275	0.6	5.0	Mukavva	50.0	54.82	Yok	Sürat Kargo	S Kutu	S	
+30.0	32	18	17280	0.7	6.0	Mukavva	50.0	60.41	Yok	Sürat Kargo	M Kutu	M	
+24.0	24	36	20736	0.7	6.0	Mukavva	40.0	50.12	Yok	Sürat Kargo	Makro Kutu	Makro	
+30.0	40	30	36000	1.0	8.0	Mukavva	30.0	68.98	Yok	Sürat Kargo	L Kutu	L	
 36.0	45	30	48600	45658	10.0	Mukavva	30.0	65.58	Yok	S�rat Kargo	Yatay L Kutu	Yatay L	
 42.0	42	39	68832	45689	12.0	Mukavva	20.0	79.34	Yok	S�rat Kargo	XL Kutu	XL	
 35.0	46	15	24150	0.9	5.0	Mukavva	30.0	40.82	Yok	S�rat Kargo	Meyve Kutusu	�zel	
