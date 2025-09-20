@@ -1,1 +1,16 @@
 tetrabox/
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+.vscode/
+.idea/
+
+# data
+data/*.csv
+data/*.xlsx
+!data/products_sample.csv
+!data/boxes_sample.xlsx
+
+outputs/

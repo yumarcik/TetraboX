@@ -6,7 +6,7 @@ pd.set_option("display.width", 300)
 pd.set_option("display.max_colwidth", None)
 
 
-df = pd.read_excel("../data/boxes.xlsx")
+df = pd.read_excel(r"C:\Users\ipeki\OneDrive\Masaüstü\Tetrabox_studies\boxes.xlsx")
 
 df['boxes_id'] = range(1, len(df) + 1)
 
@@ -62,5 +62,5 @@ def estimate_max_weight(row):
 
 df['max_weight_kg'] = df.apply(estimate_max_weight, axis=1)
 
-df.to_excel("../data/boxes_final.xlsx", index=False)
+df.to_excel("C:/Users/ipeki/OneDrive/Masaüstü/Tetrabox_studies/boxes_final.xlsx", index=False)
 print("İşlenmiş veri seti oluşturuldu: boxes_final.xlsx")

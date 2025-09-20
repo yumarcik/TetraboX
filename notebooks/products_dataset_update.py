@@ -6,7 +6,7 @@ pd.set_option("display.width", 300)
 pd.set_option("display.max_colwidth", None)
 
 
-products = pd.read_csv("../data/products.csv", sep=";")
+products = pd.read_csv(r"C:\Users\ipeki\OneDrive\Masaüstü\Tetrabox_studies\products.csv", sep=";")
 
 #product_id ekleyelim
 products['product_id'] = range(1, len(products) + 1)
@@ -83,5 +83,5 @@ products['extra_volume_cm3'] = np.where(
 products['shape_flag'] = products['package_type']
 
 
-products.to_csv("../data/products_final.csv", index=False)
+products.to_csv("C:/Users/ipeki/OneDrive/Masaüstü/Tetrabox_studies/products_final.csv", index=False)
 print("İşlenmiş veri seti oluşturuldu: product_final.csv")
