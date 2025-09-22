@@ -4,7 +4,8 @@ from typing import List, Dict, Optional, Tuple, Set
 from dataclasses import dataclass
 from enum import Enum
 from collections import defaultdict
-from packing_optimizer import get_logger  
+from . import get_logger
+
 
 class HazardClass(Enum):
     CORROSIVE_8 = "Corrosive-8"
@@ -494,75 +495,6 @@ def load_boxes_data(file_path: str) -> List[Box]:
         boxes_list.append(box)
     
     return boxes_list
-
-def main():
-    print("📦 OPTIMAL SHIPPING COMPANY SELECTION SYSTEM")
-    print("=" * 60)
-    print("🎯 PRIMARY RULE: ALL PACKAGES SAME SHIPPING COMPANY")
-    print("📱 Electronics grouped together (may split if too big/heavy)")
-    print("🚚 Selects cheapest company that can handle entire order")
-    print("=" * 60)
-    
-    try:
-        # Load data
-        print("Loading data...")
-        products = load_products_data(r"C:\Users\ipeki\OneDrive\Masaüstü\Tetrabox_studies\products_final.csv")
-        boxes = load_boxes_data(r"C:\Users\ipeki\OneDrive\Masaüstü\Tetrabox_studies\boxes.xlsx")
-        
-        print(f"✅ {len(products)} products loaded")
-        print(f"✅ {len(boxes)} boxes loaded")
-        
-        # Initialize packer with size/weight limits for electronics
-        packer = ElectronicsTogetherPacker(max_electronics_volume=50000, max_electronics_weight=20)
-        
-        # Process by baskets
-        basket_ids = sorted(set(p.basket_id for p in products))
-        print(f"\n🔍 Found {len(basket_ids)} baskets")
-        
-        for i, basket_id in enumerate(basket_ids[:5]):  # Process first 5 baskets
-            basket_products = [p for p in products if p.basket_id == basket_id]
-            electronics_count = sum(1 for p in basket_products if packer.is_electronics_product(p))
-            
-            print(f"\n🛒 Basket {i+1} (ID: {basket_id}): {len(basket_products)} products")
-            print(f"   📱 Electronics detected: {electronics_count}")
-            
-            # Find best shipping company for entire order
-            result = packer.find_best_shipping_company(basket_products, boxes)
-            
-            print(f"   📦 Total boxes required: {result['total_boxes']}")
-            print(f"   🔌 Electronics boxes: {result['electronics_boxes']}")
-            print(f"   📦 Non-electronics boxes: {result['non_electronics_boxes']}")
-            print(f"   💰 Total cost: {result['total_cost']:.2f} TL")
-            print(f"   🚚 Shipping company: {result['shipping_company']}")
-            print(f"   📦 Multiple shipments: {'Yes' if result['requires_multiple_shipments'] else 'No'}")
-            
-            # Show box details
-            for j, box_info in enumerate(result['boxes']):
-                box = box_info['box']
-                utilization = box_info['utilization']
-                product_ids = [p.product_id for p in box_info['products']]
-                product_names = [f"{p.brand} {p.model}" for p in box_info['products']]
-                
-                if box_info['is_electronics']:
-                    box_type = "📱 ELECTRONICS BOX"
-                    print(f"\n     {box_type} {j+1}: {box.box_name}")
-                else:
-                    box_type = "📦 REGULAR BOX"
-                    print(f"\n     {box_type} {j+1}: {box.box_name}")
-                
-                print(f"        🏢 Company: {box.shipping_company}")
-                print(f"        💰 Price: {box.price} TL")
-                print(f"        🎯 Utilization: {utilization:.1%}")
-                print(f"        📋 Product IDs: {product_ids}")
-                
-                # Show categories
-                categories = list(set(p.category for p in box_info['products']))
-                print(f"        📊 Categories: {categories}")
-    
-    except Exception as e:
-        print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
 
 def main(products_path: str,
          boxes_path: str,
