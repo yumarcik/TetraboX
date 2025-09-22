@@ -36,6 +36,7 @@ pip install -r requirements.txt
 
 4. Uygulamayı çalıştırın:
 ```bash
+python -m packing_optimizer --products data/products_final.csv --boxes data/boxes.xlsx
 uvicorn api.main:app --reload
 ```
 
