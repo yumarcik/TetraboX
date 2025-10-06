@@ -1,0 +1,16 @@
+order_id,customer_name,customer_email,order_date,status,total_items,total_price_try,shipping_company,container_count,utilization_avg,notes
+ORD-001,John Doe,john.doe@email.com,2024-01-15 10:30:00,completed,5,125.50,Yurtici,2,0.82,Standard delivery
+ORD-002,Jane Smith,jane.smith@email.com,2024-01-15 14:20:00,packed,3,89.75,Aras,1,0.75,Express delivery requested
+ORD-003,Ali Veli,ali.veli@email.com,2024-01-16 09:15:00,pending,8,245.30,PTT,3,0.78,Fragile items included
+ORD-004,Sarah Johnson,sarah.j@email.com,2024-01-16 16:45:00,completed,2,67.25,Yurtici,1,0.65,Gift wrapping requested
+ORD-005,Mehmet Özkan,mehmet.ozkan@email.com,2024-01-17 11:30:00,processing,12,456.80,Aras,4,0.85,Bulk order - priority shipping
+ORD-006,Emma Wilson,emma.wilson@email.com,2024-01-17 14:20:00,pending,25,1250.75,Yurtici,6,0.88,Large bulk order - electronics
+ORD-007,Carlos Rodriguez,carlos.r@email.com,2024-01-18 09:45:00,processing,18,890.40,PTT,4,0.79,Mixed product categories
+ORD-008,Lisa Chen,lisa.chen@email.com,2024-01-18 11:15:00,packed,35,1875.90,Aras,8,0.91,Mega order - office supplies
+ORD-009,Ahmed Hassan,ahmed.hassan@email.com,2024-01-18 15:30:00,pending,42,2340.60,Yurtici,10,0.87,Warehouse restocking order
+ORD-010,Maria Garcia,maria.garcia@email.com,2024-01-19 08:20:00,processing,15,678.25,PTT,3,0.73,Home office setup
+ORD-011,David Kim,david.kim@email.com,2024-01-19 10:45:00,pending,28,1456.80,Aras,6,0.84,Electronics bundle
+ORD-012,Sophie Martin,sophie.martin@email.com,2024-01-19 13:10:00,completed,8,345.50,Yurtici,2,0.76,Gift package
+ORD-013,Raj Patel,raj.patel@email.com,2024-01-20 09:30:00,processing,55,3125.40,PTT,12,0.89,Corporate bulk purchase
+ORD-014,Anna Kowalski,anna.kowalski@email.com,2024-01-20 11:55:00,pending,22,1123.75,Aras,5,0.81,Seasonal items
+ORD-015,Tom Anderson,tom.anderson@email.com,2024-01-20 14:40:00,packed,67,4567.90,Yurtici,15,0.93,Massive retail order

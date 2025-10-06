@@ -1,0 +1,107 @@
+box_name,width_cm,length_cm,height_cm,price,shipping_company,Available Products,Stok,boxes_id,is_2d_only,volume_cm3,box_type,max_weight_kg
+Micro,15.0,15.0,15.0,12.06,Yurtici,,50,1,False,3375.0,Box,5.0
+XS,20.0,24.0,24.0,15.49,Yurtici,,50,2,False,11520.0,Box,10.0
+S,20.0,26.0,25.0,16.52,Yurtici,,50,3,False,13000.0,Box,10.0
+Fresh,20.0,30.0,26.0,22.11,Yurtici,,50,4,False,15600.0,Box,10.0
+M,25.0,27.0,31.0,29.45,Yurtici,,50,5,False,20925.0,Box,10.0
+Horizantol M,30.0,27.0,42.0,53.56,Yurtici,,50,6,False,34020.0,Box,20.0
+Makro,26.0,32.0,41.0,66.93,Yurtici,,50,7,False,34112.0,Other,20.0
+L,32.0,35.0,45.0,73.91,Yurtici,,50,8,False,50400.0,Box,20.0
+Horizantol L,36.0,50.0,40.0,81.06,Yurtici,,50,9,False,72000.0,Box,20.0
+XL,40.0,42.0,45.0,91.65,Yurtici,,50,10,False,75600.0,Box,20.0
+XLM,42.0,48.0,40.0,97.2,Yurtici,,50,11,False,80640.0,Other,20.0
+XXL,43.0,49.0,47.0,99.51,Yurtici,,50,12,False,99029.0,Box,20.0
+Protective Shipping Bag Mini,,,,11.83,Yurtici,,50,13,True,,Bag,
+Protective Shipping Bag Small,,,,18.92,Yurtici,,50,14,True,,Bag,
+Protective Shipping Bag Large,,,,23.64,Yurtici,,50,15,True,,Bag,
+Air Channel 1,24.0,22.0,,26.72,Yurtici,Akıllı Telefon,50,16,True,,AirPack/Protective,
+Air Channel 2,30.0,28.0,,31.79,Yurtici,Mini Tablet,50,17,True,,AirPack/Protective,
+Air Channel 3,33.0,33.0,,35.87,Yurtici,Tablet ve Netbook,50,18,True,,AirPack/Protective,
+Air Channel 4,47.0,38.0,,86.81,Yurtici,14-15 inç Laptop,50,19,True,,AirPack/Protective,
+Air Channel Bottle,24.0,29.0,,33.4,Yurtici,1 Litreye Kadar Şişe,50,20,True,,AirPack/Protective,
+Security Tape Bag,40.0,55.0,,320.69,Yurtici,,25,21,True,,Bag,
+Small Roll Package,6.5,39.0,,14.79,Yurtici,,50,22,True,,Roll,
+Large Roll Package,8.5,77.0,,22.11,Yurtici,,50,23,True,,Roll,
+Micro,15.0,15.0,14.0,20.66,Surat,,50,24,False,3150.0,Box,5.0
+XS,20.0,24.0,13.0,33.29,Surat,,50,25,False,6240.0,Box,5.0
+S,31.0,45.0,6.5,54.82,Surat,,50,26,False,9067.5,Box,5.0
+M,27.0,30.0,18.0,33.41,Surat,,50,27,False,14580.0,Box,10.0
+Macro,24.0,24.0,36.0,50.12,Surat,,50,28,False,20736.0,Other,10.0
+L,31.0,45.0,24.0,68.98,Surat,,50,29,False,33480.0,Box,20.0
+Horizontal L,35.0,50.0,30.0,85.68,Surat,,50,30,False,52500.0,Box,20.0
+XL,42.0,42.0,38.0,79.34,Surat,,50,31,False,67032.0,Box,20.0
+Fruit,35.0,46.0,15.0,40.82,Surat,,50,32,False,24150.0,Box,10.0
+XXL,48.0,43.0,55.0,96.48,Surat,,50,33,False,113520.0,Box,20.0
+Protective Foam S,45.0,41.0,,17.58,Surat,,50,34,True,,Box,
+Protective Foam M,45.0,61.0,,24.78,Surat,,50,35,True,,Box,
+Air Bubble Envelope S,,,,9.8,Surat,,50,36,True,,Box,
+Air Bubble Envelope M,,,,12.6,Surat,,50,37,True,,Box,
+Air Bubble Envelope L,,,,12.88,Surat,,50,38,True,,Box,
+AirPack XS,18.0,23.0,,20.25,Surat,,50,39,True,,Box,
+AirPack S,30.0,30.0,,38.88,Surat,,50,40,True,,Box,
+AirPack M,35.0,33.0,,41.31,Surat,,50,41,True,,Box,
+AirPack L,27.0,40.0,,41.31,Surat,,50,42,True,,Box,
+AirPack XL,46.0,48.0,,68.04,Surat,,50,43,True,,Box,
+Cardboard Shipping Box No.1,10.0,15.0,20.0,14.0,PTT,,50,44,False,3000.0,Box,5.0
+Cardboard Shipping Box No.2,12.0,21.0,26.0,20.0,PTT,,50,45,False,6552.0,Box,5.0
+Cardboard Shipping Box No.3,13.0,23.0,34.0,26.0,PTT,,50,46,False,10166.0,Box,10.0
+Cardboard Shipping Box No.4,17.0,25.0,40.0,51.0,PTT,,50,47,False,17000.0,Box,10.0
+Cardboard Shipping Box No.5,20.0,30.0,50.0,72.0,PTT,,50,48,False,30000.0,Box,20.0
+Gift Cardboard Box S,4.0,27.0,32.0,11.5,PTT,,50,49,False,3456.0,Box,5.0
+Gift Cardboard Box M,6.0,29.0,35.0,14.0,PTT,,50,50,False,6090.0,Box,5.0
+Gift Cardboard Box L,8.0,31.0,46.0,20.0,PTT,,50,51,False,11408.0,Box,10.0
+Roll Package Small,6.0,38.0,,27.5,PTT,,50,52,True,,Roll,
+Roll Package Large,8.0,76.0,,45.0,PTT,,50,53,True,,Roll,
+Cloth Bag No.1 (Small),25.0,40.0,,30.0,PTT,,50,54,True,,Bag,
+Cloth Bag No.2 (Medium),40.0,60.0,,72.5,PTT,,50,55,True,,Bag,
+Cloth Bag No.3 (Large),50.0,75.0,,88.5,PTT,,50,56,True,,Bag,
+Cloth Bag No.4 (Extra Large),60.0,90.0,,150.0,PTT,,50,57,True,,Bag,
+Air Cushion Film Roll Tip-1 (Small Cells),19.0,40.0,,8.0,PTT,,50,58,True,,Roll,
+Air Cushion Film Roll Tip-2 (Medium Cells),15.0,40.0,,16.0,PTT,,50,59,True,,Roll,
+Air Cushion Film Roll Tip-3 (Large Single Cell),13.0,20.0,,16.0,PTT,,50,60,True,,Roll,
+Turpex Envelope,23.0,32.0,,4.0,PTT,,50,61,True,,Envelope,
+Turpex Cardboard Box No.1,10.0,15.0,20.0,0.0,PTT,,50,62,False,3000.0,Box,5.0
+Turpex Cardboard Box No.2,12.0,21.0,26.0,0.0,PTT,,50,63,False,6552.0,Box,5.0
+Turpex Cardboard Box No.3,10.0,33.0,34.0,0.0,PTT,,50,64,False,11220.0,Box,10.0
+Turpex Cardboard Box No.4,18.0,32.0,34.0,0.0,PTT,,50,65,False,19584.0,Box,10.0
+Turpex Cardboard Box No.5,34.0,32.0,34.0,0.0,PTT,,50,66,False,36992.0,Box,20.0
+International Small Package Envelope No.2,,,,0.8,PTT,,50,67,True,,Envelope,
+International Small Package Envelope No.3,,,,1.0,PTT,,50,68,True,,Envelope,
+Security Bag No.1,19.0,26.0,,8.0,PTT,,50,69,True,,Bag,
+Security Bag No.2,24.0,33.0,,8.5,PTT,,50,70,True,,Bag,
+Security Bag No.3,29.0,35.0,,10.0,PTT,,50,71,True,,Bag,
+Security Bag No.4,32.0,45.0,,13.0,PTT,,50,72,True,,Bag,
+Plastic Shipping Envelope No.1,16.0,23.0,,0.0,PTT,,50,73,True,,Envelope,
+Plastic Shipping Envelope No.2,23.0,32.0,,0.0,PTT,,50,74,True,,Envelope,
+Plastic Shipping Envelope No.3,27.0,37.0,,0.0,PTT,,50,75,True,,Envelope,
+Plastic Shipping Envelope No.4,32.0,45.0,,0.0,PTT,,50,76,True,,Envelope,
+Plastic Shipping Envelope No.5,45.0,64.0,,11.5,PTT,,50,77,True,,Envelope,
+Plastic Shipping Envelope No.6,100.0,130.0,,78.5,PTT,,50,78,True,,Envelope,
+Tyvek Envelope Small,16.0,23.0,,17.5,PTT,,50,79,True,,Envelope,
+Tyvek Envelope Medium,23.0,32.0,,27.5,PTT,,50,80,True,,Envelope,
+Tyvek Envelope Large,33.0,45.0,,39.0,PTT,,50,81,True,,Envelope,
+Air Tyvek Envelope Small,16.0,23.0,,40.0,PTT,,50,82,True,,Envelope,
+Air Tyvek Envelope Medium,23.0,32.0,,58.5,PTT,,50,83,True,,Envelope,
+Air Tyvek Envelope Large,33.0,45.0,,117.5,PTT,,50,84,True,,Envelope,
+Gusseted Air Tyvek Envelope Small,16.0,23.0,,49.5,PTT,,50,85,True,,Envelope,
+Gusseted Air Tyvek Envelope Medium,23.0,32.0,,58.5,PTT,,50,86,True,,Envelope,
+Gusseted Air Tyvek Envelope Large,33.0,45.0,,117.5,PTT,,50,87,True,,Envelope,
+Paper APS/Courier Envelope C5,16.0,23.0,,3.0,PTT,,50,88,True,,Envelope,
+Paper APS/Courier Envelope C4,23.0,32.0,,3.5,PTT,,50,89,True,,Envelope,
+Air Cushion Small,10.0,16.0,,30.0,PTT,,50,90,True,,AirPack/Protective,
+Air Cushion Medium,16.0,32.0,,49.0,PTT,,50,91,True,,AirPack/Protective,
+Air Cushion Large,30.0,36.0,,88.5,PTT,,50,92,True,,AirPack/Protective,
+Packaging & Labeling Nylon/Paper,20.0,26.0,,3.0,PTT,,50,93,True,,Other,
+Packaging & Labeling Nylon/Paper,24.0,33.0,,3.0,PTT,,50,94,True,,Other,
+Packaging & Labeling Nylon/Paper,29.0,35.0,,3.0,PTT,,50,95,True,,Other,
+Packaging & Labeling Nylon/Paper,32.0,45.0,,3.0,PTT,,50,96,True,,Other,
+Packaging & Labeling Nylon,32.0,45.0,4.0,6.0,PTT,,50,97,False,5760.0,Other,5.0
+Packaging & Labeling Nylon,32.0,45.0,8.0,6.0,PTT,,50,98,False,11520.0,Other,10.0
+NanoBox,26.0,20.0,10.0,24.22,Aras,,50,99,False,5200.0,Box,5.0
+MiniBox,30.0,28.0,18.0,48.44,Aras,,50,100,False,15120.0,Box,10.0
+MidiBox,40.0,30.0,15.0,60.56,Aras,,50,101,False,18000.0,Box,10.0
+MaxiBox,45.0,32.0,25.0,92.02,Aras,,50,102,False,36000.0,Box,20.0
+MegaBox,40.0,40.0,38.0,127.15,Aras,,50,103,False,60800.0,Box,20.0
+MiniPop,21.0,29.0,,64.35,Aras,,50,104,True,,Other,
+MidiPop,29.0,37.0,,78.72,Aras,,50,105,True,,Other,
+MaxiPop,32.0,44.0,,98.08,Aras,,50,106,True,,Box,
