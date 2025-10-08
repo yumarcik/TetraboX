@@ -34,8 +34,14 @@ def load_products_csv(path: str) -> List[Product]:
 	height_mm = h_raw.map(lambda v: to_mm(v) if h_unit == "cm" else float(v))
 	weight_g  = wg_raw.map(lambda v: to_g(v) if wg_unit == "kg" else float(v))
 	fragile = (df["fragile"].astype(bool) if "fragile" in df.columns else pd.Series([False]*len(df)))
-	packaging_type = (df["packaging_type"] if "packaging_type" in df.columns else pd.Series([None]*len(df)))
-	hazmat = (df["hazmat_class"] if "hazmat_class" in df.columns else pd.Series([None]*len(df)))
+	# Support both packaging_type and package_type column names
+	packaging_type = (df["packaging_type"] if "packaging_type" in df.columns 
+	                 else df["package_type"] if "package_type" in df.columns 
+	                 else pd.Series([None]*len(df)))
+	# Support both hazmat_class and hazard_class column names
+	hazmat = (df["hazmat_class"] if "hazmat_class" in df.columns 
+	         else df["hazard_class"] if "hazard_class" in df.columns 
+	         else pd.Series([None]*len(df)))
 	skus = (df["sku"].astype(str) if "sku" in df.columns else pd.Series([f"SKU-{i+1:06d}" for i in range(len(df))]))
 	products: List[Product] = []
 	for i in range(len(df)):

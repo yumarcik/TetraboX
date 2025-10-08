@@ -264,12 +264,13 @@ body::before {
 }
 
 .sku-item {
-  padding: 16px 20px;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.4);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   background: white;
+  overflow: hidden;
 }
 
 .sku-item::before {
@@ -278,20 +279,40 @@ body::before {
   left: 0;
   top: 0;
   height: 100%;
-  width: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 5px;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
   transform: scaleY(0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 8px rgba(102, 126, 234, 0.3);
+}
+
+.sku-item::after {
+  content: '';
+  position: absolute;
+  right: -100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.03) 100%);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sku-item:hover {
-  background: linear-gradient(90deg, rgba(102, 126, 234, 0.06) 0%, rgba(255,255,255,0) 100%);
-  transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  background: white;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15), 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .sku-item:hover::before {
   transform: scaleY(1);
+}
+
+.sku-item:hover::after {
+  right: 0;
+}
+
+.sku-item:active {
+  transform: translateX(4px) scale(0.99);
 }
 
 .sku-item:last-child {
@@ -345,7 +366,41 @@ button:hover {
 }
 
 button:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
+}
+
+/* Premium Search Input Styling */
+#orderSearch {
+  transition: all 0.3s ease;
+}
+
+#orderSearch:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(102, 126, 234, 0.15);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Load Orders Button Animation */
+@keyframes pulse-subtle {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  50% { box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3); }
+}
+
+/* Smooth fade-in animation for stats */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#orderStats {
+  animation: fadeInUp 0.4s ease-out;
 }
 
 .search-box {
@@ -644,53 +699,133 @@ h3, h4 {
 
 <div class="sidebar">
   <div class="sidebar-header">
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-      <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-          <path d="M3 21v-2a4 4 0 0 1 4-4"></path>
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+      <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px); box-shadow: 0 8px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+          <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+          <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
         </svg>
       </div>
-      <div>
-        <h3>Order Browser</h3>
-        <div class="sidebar-subtitle">Browse and select orders</div>
+      <div style="flex: 1;">
+        <h3 style="margin-bottom: 4px; font-size: 22px;">Order Browser</h3>
+        <div class="sidebar-subtitle" style="font-size: 13px; opacity: 0.95;">Browse and select orders</div>
       </div>
     </div>
+    
+    <!-- Load Orders Button -->
+    <button onclick="loadAllOrders()" style="width: 100%; padding: 14px 20px; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%); color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 14px; cursor: pointer; font-weight: 700; font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 10px; backdrop-filter: blur(10px); margin-bottom: 16px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+      <span>Load Orders</span>
+    </button>
   </div>
   
   <div class="sidebar-content">
-    <div class="sku-panel">
-      <div class="sku-list" id="orderList">
-        <div style="padding: 50px 20px; text-align: center; color: #64748b;">
-          <div style="width: 56px; height: 56px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-          </div>
-          <div style="font-weight: 700; margin-bottom: 8px; font-size: 15px; color: #2d3748;">Loading Orders...</div>
-          <div style="font-size: 12px; font-weight: 500;">Please wait a moment</div>
+    <!-- Order Statistics -->
+    <div id="orderStats" style="display: none; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 18px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+        <div>
+          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalOrders">0</div>
+          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Total</div>
+        </div>
+        <div style="border-left: 1px solid rgba(255,255,255,0.2); border-right: 1px solid rgba(255,255,255,0.2);">
+          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="pendingOrders">0</div>
+          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Pending</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalValue">0₺</div>
+          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Value</div>
         </div>
       </div>
     </div>
     
-    <h4>📋 Selected Order Details</h4>
-    <div class="order-list" style="background: white; border: 2px solid rgba(102, 126, 234, 0.1); border-radius: 14px; padding: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08); overflow: hidden;">
-      <div id="selectedOrderInfo" style="font-size: 13px; padding: 20px;">
-        <div style="text-align: center; padding: 30px 20px; color: #94a3b8;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px; opacity: 0.4;">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="9" y1="9" x2="15" y2="9"></line>
-            <line x1="9" y1="15" x2="15" y2="15"></line>
-          </svg>
-          <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px; color: #64748b;">No Order Selected</div>
-          <div style="font-size: 11px; font-weight: 500; color: #94a3b8;">Select an order from the list above</div>
+    <!-- Search and Filter -->
+    <div style="margin-bottom: 16px;">
+      <div style="position: relative;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" id="orderSearch" oninput="filterOrders()" placeholder="Search by ID, customer, or status..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      </div>
+    </div>
+    
+    <div class="sku-panel">
+      <div class="sku-list" id="orderList">
+        <div style="padding: 60px 20px; text-align: center; color: #64748b;">
+          <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;">No Orders Loaded</div>
+          <div style="font-size: 13px; font-weight: 500; color: #94a3b8; line-height: 1.6;">Click "Load Orders" above to view<br>available orders</div>
         </div>
       </div>
     </div>
-    <button onclick="clearSelection()" style="width: 100%; margin-top: 12px; padding: 12px 20px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Order Details Section Spacer -->
+    <div style="margin-top: 20px; margin-bottom: 14px;"></div>
+    <!-- Premium Responsive Order Details Card -->
+    <div id="selectedOrderCard" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 3px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 0; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15), 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); min-height: 200px; position: relative;">
+      <!-- Dynamic Card Header (populated by JavaScript) -->
+      <div id="selectedOrderCardHeader" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 16px 20px; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+        <div style="display: flex; align-items: center; gap: 12px; position: relative; z-index: 2;">
+          <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">📋 Selected Order Details</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Click an order to view full details</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card Content Area -->
+      <div id="selectedOrderInfo" style="font-size: 13px; padding: 0; min-height: 160px; position: relative;">
+        <div style="text-align: center; padding: 40px 20px; color: #94a3b8; background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); border-radius: 16px;">
+          <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="9" x2="15" y2="9"></line>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+          </div>
+          <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px; color: #2d3748;">No Order Selected</div>
+          <div style="font-size: 13px; color: #64748b; line-height: 1.5;">Select an order to view details</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Add enhanced animations -->
+    <style>
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.1); opacity: 0.4; }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(1deg); }
+      }
+      #selectedOrderCard:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2), 0 6px 20px rgba(0,0,0,0.15);
+        border-color: rgba(102, 126, 234, 0.3);
+      }
+    </style>
+    <button onclick="clearSelection()" style="width: 100%; margin-top: 14px; padding: 13px 20px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 13px; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="3 6 5 6 21 6"></polyline>
         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
       </svg>
@@ -829,58 +964,93 @@ function renderOrderList(orders){
   const el = document.getElementById('orderList');
   if(!orders || orders.length === 0) {
     el.innerHTML = `
-      <div style="padding: 50px 20px; text-align: center; color: #94a3b8;">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 16px; opacity: 0.3;">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <div style="font-weight: 600; font-size: 14px; margin-bottom: 6px; color: #64748b;">No Orders Found</div>
-        <div style="font-size: 12px; font-weight: 500;">No orders are available at this time</div>
+      <div style="padding: 60px 20px; text-align: center; color: #64748b;">
+        <div style="width: 64px; height: 64px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ef4444;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;">No Orders Found</div>
+        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;">Try adjusting your search</div>
       </div>
     `;
+    document.getElementById('orderStats').style.display = 'none';
     return;
   }
   
+  // Update statistics
+  const totalValue = orders.reduce((sum, o) => sum + (parseFloat(o.total_price_try) || 0), 0);
+  const pendingCount = orders.filter(o => o.status === 'pending').length;
+  
+  document.getElementById('orderStats').style.display = 'block';
+  document.getElementById('totalOrders').textContent = orders.length;
+  document.getElementById('pendingOrders').textContent = pendingCount;
+  document.getElementById('totalValue').textContent = Math.round(totalValue) + '₺';
+  
   const header = `
-    <div style="padding: 16px 20px; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-bottom: 2px solid #a7f3d0; display: flex; align-items: center; gap: 12px;">
-      <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
+    <div style="padding: 16px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
         </svg>
+        <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.5px;">ORDER LIST</span>
       </div>
-      <div style="flex: 1;">
-        <div style="font-weight: 700; color: #065f46; font-size: 14px; letter-spacing: -0.2px;">${orders.length} Orders Ready</div>
-        <div style="font-size: 11px; color: #047857; font-weight: 500; margin-top: 2px;">Select an order to view details and pack</div>
-      </div>
+      <span style="background: rgba(255,255,255,0.25); padding: 5px 12px; border-radius: 14px; font-size: 13px; font-weight: 800; backdrop-filter: blur(10px); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">${orders.length}</span>
     </div>
   `;
   
   const orderItems = orders.slice(0, 50).map(order => {
     const statusColor = getStatusColor(order.status);
-    const orderDate = new Date(order.order_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const orderDate = new Date(order.order_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     return `
       <div class="sku-item" onclick="selectOrder('${order.order_id}')" style="cursor: pointer;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <div class="sku-code" style="font-size: 13px;">${order.order_id}</div>
-          <span style="background: ${statusColor}; color: white; padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; box-shadow: 0 2px 6px ${statusColor}40;">${order.status.toUpperCase()}</span>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+          <div>
+            <div class="sku-code" style="font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.6;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              ${order.order_id}
+            </div>
+          </div>
+          <span style="background: ${statusColor}; color: white; padding: 5px 10px; border-radius: 8px; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px ${statusColor}40; text-transform: uppercase;">${order.status}</span>
         </div>
-        <div class="sku-name" style="font-size: 13px; font-weight: 600; color: #2d3748; margin-bottom: 4px;">${order.customer_name}</div>
-        <div style="font-size: 11px; color: #94a3b8; font-weight: 500; display: flex; gap: 8px; align-items: center;">
-          <span>📦 ${order.total_items} items</span>
-          <span>•</span>
-          <span>💰 ${order.total_price_try}₺</span>
-          <span>•</span>
-          <span>📅 ${orderDate}</span>
+        <div class="sku-name" style="font-size: 13px; font-weight: 600; color: #2d3748; margin-bottom: 8px;">👤 ${order.customer_name}</div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 11px; color: #64748b; font-weight: 600;">
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+            <span>${order.total_items} items</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; justify-self: end;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <span style="color: #10b981; font-weight: 700;">${order.total_price_try}₺</span>
+          </div>
+        </div>
+        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(226, 232, 240, 0.5); font-size: 10px; color: #94a3b8; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>${orderDate}</span>
         </div>
       </div>
     `;
   }).join('');
   
   const footer = orders.length > 50 ? `
-    <div style="padding: 14px 20px; text-align: center; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-top: 2px solid #e2e8f0;">
-      <div style="font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 4px;">Showing first 50 orders</div>
-      <div style="font-size: 10px; font-weight: 500; color: #94a3b8;">Total available: ${orders.length} orders</div>
+    <div style="padding: 16px 20px; text-align: center; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-top: 2px solid #e2e8f0;">
+      <div style="font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 4px;">Showing first 50 orders</div>
+      <div style="font-size: 11px; font-weight: 500; color: #94a3b8;">Total available: ${orders.length} orders</div>
     </div>
   ` : '';
   
@@ -918,59 +1088,122 @@ function selectOrder(orderId) {
 
 function updateSelectedOrderInfo() {
   const el = document.getElementById('selectedOrderInfo');
+  const cardEl = document.getElementById('selectedOrderCard');
+  
   if(!selectedOrder) {
+    // Show clean empty state
     el.innerHTML = `
-      <div style="text-align: center; padding: 30px 20px; color: #94a3b8;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px; opacity: 0.4;">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="9" y1="9" x2="15" y2="9"></line>
-          <line x1="9" y1="15" x2="15" y2="15"></line>
-        </svg>
-        <div style="font-weight: 600; font-size: 13px; margin-bottom: 4px; color: #64748b;">No Order Selected</div>
-        <div style="font-size: 11px; font-weight: 500; color: #94a3b8;">Select an order from the list above</div>
+      <div style="text-align: center; padding: 40px 20px; color: #94a3b8; background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); border-radius: 16px;">
+        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="9" x2="15" y2="9"></line>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px; color: #2d3748;">No Order Selected</div>
+        <div style="font-size: 13px; color: #64748b; line-height: 1.5;">Select an order to view details</div>
       </div>
     `;
+    
+    // Update card header to show empty state
+    const headerEl = document.getElementById('selectedOrderCardHeader');
+    if(headerEl) {
+      headerEl.innerHTML = `
+        <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+        <div style="display: flex; align-items: center; gap: 12px; position: relative; z-index: 2;">
+          <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">📋 Selected Order Details</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Click an order to view full details</div>
+          </div>
+        </div>
+      `;
+    }
     return;
+  }
+  
+  // Update card header to show selected order
+  const headerEl = document.getElementById('selectedOrderCardHeader');
+  if(headerEl) {
+    const statusColor = getStatusColor(selectedOrder.status);
+    headerEl.innerHTML = `
+      <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+      <div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">📋 ${selectedOrder.order_id}</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">${selectedOrder.customer_name}</div>
+          </div>
+        </div>
+        <span style="background: ${statusColor}; color: white; padding: 6px 12px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); text-transform: uppercase;">${selectedOrder.status}</span>
+      </div>
+    `;
   }
   
   const statusColor = getStatusColor(selectedOrder.status);
   const orderDate = new Date(selectedOrder.order_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
   
   el.innerHTML = `
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; position: relative; overflow: hidden;">
-      <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
-      <div style="position: relative; z-index: 1;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <div style="font-weight: 700; font-size: 16px; color: white; letter-spacing: -0.3px;">${selectedOrder.order_id}</div>
-          <span style="background: ${statusColor}; color: white; padding: 5px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">${selectedOrder.status.toUpperCase()}</span>
+    <!-- Essential Stats Bar -->
+    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 16px 20px; border-bottom: 2px solid #e2e8f0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="text-align: center;">
+          <div style="color: #1e293b; font-size: 20px; font-weight: 800;">${selectedOrder.total_items}</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Items</div>
         </div>
-        <div style="color: rgba(255,255,255,0.95); font-size: 13px; font-weight: 600; margin-bottom: 4px;">${selectedOrder.customer_name}</div>
-        <div style="color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500;">${selectedOrder.customer_email}</div>
-        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; gap: 16px;">
-          <div style="flex: 1;">
-            <div style="color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Items</div>
-            <div style="color: white; font-size: 18px; font-weight: 700;">${selectedOrder.total_items}</div>
-          </div>
-          <div style="flex: 1;">
-            <div style="color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Total</div>
-            <div style="color: white; font-size: 18px; font-weight: 700;">${selectedOrder.total_price_try}₺</div>
-          </div>
-          <div style="flex: 1;">
-            <div style="color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Date</div>
-            <div style="color: white; font-size: 11px; font-weight: 600;">${orderDate}</div>
-          </div>
+        <div style="width: 1px; height: 30px; background: #e2e8f0;"></div>
+        <div style="text-align: center;">
+          <div style="color: #059669; font-size: 20px; font-weight: 800;">${selectedOrder.total_price_try}₺</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Total</div>
+        </div>
+        <div style="width: 1px; height: 30px; background: #e2e8f0;"></div>
+        <div style="text-align: center;">
+          <div style="color: #1e293b; font-size: 14px; font-weight: 700;">${orderDate}</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Date</div>
         </div>
       </div>
     </div>
-    <div style="padding: 16px 20px; background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);">
-      <div style="font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Order Items</div>
-      <div style="max-height: 120px; overflow-y: auto;">
-        ${selectedOrder.items.map(item => `
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1f5f9;">
-            <span style="font-size: 12px; font-weight: 600; color: #475569;">${item.sku}</span>
-            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700;">×${item.quantity}</span>
-          </div>
-        `).join('')}
+    
+    <!-- Simple Product List -->
+    <div style="background: white; padding: 16px; border-radius: 0 0 16px 16px;">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+        <div style="width: 24px; height: 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: #1e293b;">Products (${selectedOrder.items.length})</div>
+      </div>
+      
+      <!-- Clean Product List -->
+      <div style="max-height: 200px; overflow-y: auto; padding: 4px;">
+        ${selectedOrder.items.map((item, index) => {
+          const colors = ['#667eea', '#764ba2', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+          const colorIndex = item.sku.charCodeAt(0) % colors.length;
+          const productColor = colors[colorIndex];
+          
+          return `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; margin: 4px 0; background: #f8fafc; border-radius: 8px; border-left: 3px solid ${productColor}; transition: all 0.2s ease;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 8px; height: 8px; background: ${productColor}; border-radius: 50%;"></div>
+                <span style="font-size: 13px; font-weight: 600; color: #1e293b;">${item.sku}</span>
+              </div>
+              <span style="background: ${productColor}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; min-width: 30px; text-align: center;">${item.quantity}</span>
+            </div>
+          `;
+        }).join('')}
       </div>
     </div>
   `;
@@ -2689,7 +2922,10 @@ def pack_order_endpoint(req: OrderPackRequest) -> OrderPackResponse:
 		
 		# If ML strategy fails or confidence is low, fallback to optimal multi-packing
 		if not packing_result or confidence < 0.5:
-			print(f"🔄 ML strategy failed or low confidence ({confidence:.2f} < 0.5), falling back to optimal multi-packing")
+			if not packing_result:
+				print(f"🔄 ML strategy '{predicted_strategy}' failed to pack items, falling back to optimal multi-packing")
+			else:
+				print(f"🔄 ML strategy has low confidence ({confidence:.2f} < 0.5), falling back to optimal multi-packing")
 			packing_result = find_optimal_multi_packing(products, containers)
 			
 	except Exception as e:
