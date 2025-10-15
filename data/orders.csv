@@ -1,61 +1,61 @@
-order_id,customer_name,customer_email,order_date,status,total_items,total_price_try,shipping_company,container_count,utilization_avg,notes
-ORD-001,John Doe,john.doe@email.com,2024-01-15 10:30:00,completed,5,125.50,Yurtici,2,0.82,Standard delivery
-ORD-002,Jane Smith,jane.smith@email.com,2024-01-15 14:20:00,packed,3,89.75,Aras,1,0.75,Express delivery requested
-ORD-003,Ali Veli,ali.veli@email.com,2024-01-16 09:15:00,pending,8,245.30,PTT,3,0.78,Fragile items included
-ORD-004,Sarah Johnson,sarah.j@email.com,2024-01-16 16:45:00,completed,2,67.25,Yurtici,1,0.65,Gift wrapping requested
-ORD-005,Mehmet Özkan,mehmet.ozkan@email.com,2024-01-17 11:30:00,processing,12,456.80,Aras,4,0.85,Bulk order - priority shipping
-ORD-006,Emma Wilson,emma.wilson@email.com,2024-01-17 14:20:00,pending,25,1250.75,Yurtici,6,0.88,Large bulk order - electronics
-ORD-007,Carlos Rodriguez,carlos.r@email.com,2024-01-18 09:45:00,processing,18,890.40,PTT,4,0.79,Mixed product categories
-ORD-008,Lisa Chen,lisa.chen@email.com,2024-01-18 11:15:00,packed,35,1875.90,Aras,8,0.91,Mega order - office supplies
-ORD-009,Ahmed Hassan,ahmed.hassan@email.com,2024-01-18 15:30:00,pending,42,2340.60,Yurtici,10,0.87,Warehouse restocking order
-ORD-010,Maria Garcia,maria.garcia@email.com,2024-01-19 08:20:00,processing,15,678.25,PTT,3,0.73,Home office setup
-ORD-011,David Kim,david.kim@email.com,2024-01-19 10:45:00,pending,28,1456.80,Aras,6,0.84,Electronics bundle
-ORD-012,Sophie Martin,sophie.martin@email.com,2024-01-19 13:10:00,completed,8,345.50,Yurtici,2,0.76,Gift package
-ORD-013,Raj Patel,raj.patel@email.com,2024-01-20 09:30:00,processing,55,3125.40,PTT,12,0.89,Corporate bulk purchase
-ORD-014,Anna Kowalski,anna.kowalski@email.com,2024-01-20 11:55:00,pending,22,1123.75,Aras,5,0.81,Seasonal items
-ORD-015,Tom Anderson,tom.anderson@email.com,2024-01-20 14:40:00,packed,67,4567.90,Yurtici,15,0.93,Massive retail order
-ORD-016,Zeynep Yılmaz,zeynep.yilmaz@email.com,2024-01-21 08:15:00,pending,4,178.50,Aras,1,0.68,Small personal order
-ORD-017,Michael Brown,michael.brown@email.com,2024-01-21 10:30:00,processing,31,1789.30,PTT,7,0.82,Office renovation supplies
-ORD-018,Fatma Demir,fatma.demir@email.com,2024-01-21 13:45:00,completed,9,456.75,Yurtici,2,0.79,Standard shipping
-ORD-019,James Wilson,james.wilson@email.com,2024-01-22 09:00:00,pending,16,892.40,Aras,4,0.77,Priority delivery requested
-ORD-020,Ayşe Kaya,ayse.kaya@email.com,2024-01-22 11:20:00,processing,48,2678.90,PTT,11,0.86,Large corporate order
-ORD-021,Robert Taylor,robert.taylor@email.com,2024-01-22 14:15:00,packed,21,1234.60,Yurtici,5,0.83,Electronics and accessories
-ORD-022,Elena Popescu,elena.popescu@email.com,2024-01-23 08:30:00,pending,7,389.25,Aras,2,0.71,Gift order
-ORD-023,Can Yıldız,can.yildiz@email.com,2024-01-23 10:45:00,processing,38,2156.80,PTT,9,0.85,Bulk technology purchase
-ORD-024,Linda Martinez,linda.martinez@email.com,2024-01-23 13:00:00,completed,11,567.30,Yurtici,3,0.74,Home electronics
-ORD-025,Burak Öztürk,burak.ozturk@email.com,2024-01-24 09:15:00,pending,59,3456.70,Aras,13,0.88,Warehouse stock replenishment
-ORD-026,Patricia Lee,patricia.lee@email.com,2024-01-24 11:30:00,processing,14,789.50,PTT,3,0.76,Office supplies order
-ORD-027,Kemal Arslan,kemal.arslan@email.com,2024-01-24 14:45:00,packed,26,1567.80,Yurtici,6,0.81,Mixed product order
-ORD-028,Jennifer Davis,jennifer.davis@email.com,2024-01-25 08:00:00,pending,3,145.75,Aras,1,0.62,Small electronics order
-ORD-029,Murat Şahin,murat.sahin@email.com,2024-01-25 10:15:00,processing,72,4234.90,PTT,16,0.92,Massive bulk order
-ORD-030,Susan Garcia,susan.garcia@email.com,2024-01-25 12:30:00,completed,19,1045.60,Yurtici,4,0.78,Standard delivery
-ORD-031,Emre Çelik,emre.celik@email.com,2024-01-26 08:45:00,pending,33,1876.40,Aras,7,0.84,Corporate purchase
-ORD-032,Mary Johnson,mary.johnson@email.com,2024-01-26 11:00:00,processing,8,423.80,PTT,2,0.72,Personal order
-ORD-033,Hakan Erdoğan,hakan.erdogan@email.com,2024-01-26 13:15:00,packed,45,2567.30,Yurtici,10,0.87,Large electronics order
-ORD-034,Barbara White,barbara.white@email.com,2024-01-27 09:30:00,pending,12,678.90,Aras,3,0.75,Home office setup
-ORD-035,Serkan Aydın,serkan.aydin@email.com,2024-01-27 11:45:00,processing,61,3678.50,PTT,14,0.90,Retail restocking
-ORD-036,Nancy Harris,nancy.harris@email.com,2024-01-27 14:00:00,completed,17,934.70,Yurtici,4,0.79,Mixed categories
-ORD-037,Deniz Koç,deniz.koc@email.com,2024-01-28 08:15:00,pending,5,267.50,Aras,1,0.69,Small order
-ORD-038,Paul Clark,paul.clark@email.com,2024-01-28 10:30:00,processing,29,1678.90,PTT,6,0.83,Office electronics
-ORD-039,Selin Yurt,selin.yurt@email.com,2024-01-28 12:45:00,packed,40,2345.60,Yurtici,9,0.86,Large corporate order
-ORD-040,Daniel Moore,daniel.moore@email.com,2024-01-29 09:00:00,pending,13,745.30,Aras,3,0.77,Technology bundle
-ORD-041,Canan Tekin,canan.tekin@email.com,2024-01-29 11:15:00,processing,52,3012.80,PTT,12,0.89,Bulk purchase
-ORD-042,Karen Thomas,karen.thomas@email.com,2024-01-29 13:30:00,completed,9,489.60,Yurtici,2,0.73,Standard order
-ORD-043,Tolga Güven,tolga.guven@email.com,2024-01-30 08:45:00,pending,36,2087.40,Aras,8,0.85,Corporate supplies
-ORD-044,Lisa Anderson,lisa.anderson@email.com,2024-01-30 11:00:00,processing,24,1389.70,PTT,5,0.82,Office equipment
-ORD-045,Volkan Kara,volkan.kara@email.com,2024-01-30 13:15:00,packed,68,3989.20,Yurtici,15,0.91,Massive order
-ORD-046,Sarah Miller,sarah.miller@email.com,2024-01-31 09:30:00,pending,6,334.80,Aras,2,0.70,Personal electronics
-ORD-047,Oğuz Şen,oguz.sen@email.com,2024-01-31 11:45:00,processing,44,2534.90,PTT,10,0.87,Bulk technology order
-ORD-048,Betty Wilson,betty.wilson@email.com,2024-01-31 14:00:00,completed,15,867.50,Yurtici,3,0.78,Home office order
-ORD-049,İbrahim Acar,ibrahim.acar@email.com,2024-02-01 08:15:00,pending,57,3345.60,Aras,13,0.89,Warehouse restock
-ORD-050,Dorothy Moore,dorothy.moore@email.com,2024-02-01 10:30:00,processing,20,1156.80,PTT,5,0.80,Mixed product order
-ORD-051,Cem Yavuz,cem.yavuz@email.com,2024-02-01 12:45:00,packed,32,1876.40,Yurtici,7,0.84,Corporate purchase
-ORD-052,Margaret Taylor,margaret.taylor@email.com,2024-02-02 09:00:00,pending,10,567.90,Aras,2,0.74,Small business order
-ORD-053,Barış Özer,baris.ozer@email.com,2024-02-02 11:15:00,processing,75,4456.70,PTT,17,0.93,Massive retail order
-ORD-054,Helen Anderson,helen.anderson@email.com,2024-02-02 13:30:00,completed,18,1023.50,Yurtici,4,0.79,Standard delivery
-ORD-055,Umut Polat,umut.polat@email.com,2024-02-03 08:45:00,pending,41,2398.90,Aras,9,0.86,Large electronics order
-ORD-056,Ruth Thomas,ruth.thomas@email.com,2024-02-03 11:00:00,processing,27,1567.30,PTT,6,0.82,Office supplies
-ORD-057,Gökhan Bulut,gokhan.bulut@email.com,2024-02-03 13:15:00,packed,63,3678.40,Yurtici,14,0.90,Bulk corporate order
-ORD-058,Sandra Jackson,sandra.jackson@email.com,2024-02-04 09:30:00,pending,8,445.70,Aras,2,0.72,Personal order
-ORD-059,Onur Yılmaz,onur.yilmaz@email.com,2024-02-04 11:45:00,processing,49,2856.80,PTT,11,0.88,Large technology order
-ORD-060,Carol White,carol.white@email.com,2024-02-04 14:00:00,completed,14,789.40,Yurtici,3,0.76,Home electronics
+order_id,customer_name,customer_email,order_date,total_items,total_price_try,shipping_company,container_count,utilization_avg,notes
+ORD-001,John Doe,john.doe@email.com,2024-01-15 10:30:00,5,125.50,Yurtici,2,0.82,Standard delivery
+ORD-002,Jane Smith,jane.smith@email.com,2024-01-15 14:20:00,3,89.75,Aras,1,0.75,Express delivery requested
+ORD-003,Ali Veli,ali.veli@email.com,2024-01-16 09:15:00,8,245.30,PTT,3,0.78,Fragile items included
+ORD-004,Sarah Johnson,sarah.j@email.com,2024-01-16 16:45:00,2,67.25,Yurtici,1,0.65,Gift wrapping requested
+ORD-005,Mehmet Özkan,mehmet.ozkan@email.com,2024-01-17 11:30:00,12,456.80,Aras,4,0.85,Bulk order - priority shipping
+ORD-006,Emma Wilson,emma.wilson@email.com,2024-01-17 14:20:00,25,1250.75,Yurtici,6,0.88,Large bulk order - electronics
+ORD-007,Carlos Rodriguez,carlos.r@email.com,2024-01-18 09:45:00,18,890.40,PTT,4,0.79,Mixed product categories
+ORD-008,Lisa Chen,lisa.chen@email.com,2024-01-18 11:15:00,35,1875.90,Aras,8,0.91,Mega order - office supplies
+ORD-009,Ahmed Hassan,ahmed.hassan@email.com,2024-01-18 15:30:00,42,2340.60,Yurtici,10,0.87,Warehouse restocking order
+ORD-010,Maria Garcia,maria.garcia@email.com,2024-01-19 08:20:00,15,678.25,PTT,3,0.73,Home office setup
+ORD-011,David Kim,david.kim@email.com,2024-01-19 10:45:00,28,1456.80,Aras,6,0.84,Electronics bundle
+ORD-012,Sophie Martin,sophie.martin@email.com,2024-01-19 13:10:00,8,345.50,Yurtici,2,0.76,Gift package
+ORD-013,Raj Patel,raj.patel@email.com,2024-01-20 09:30:00,55,3125.40,PTT,12,0.89,Corporate bulk purchase
+ORD-014,Anna Kowalski,anna.kowalski@email.com,2024-01-20 11:55:00,22,1123.75,Aras,5,0.81,Seasonal items
+ORD-015,Tom Anderson,tom.anderson@email.com,2024-01-20 14:40:00,67,4567.90,Yurtici,15,0.93,Massive retail order
+ORD-016,Zeynep Yılmaz,zeynep.yilmaz@email.com,2024-01-21 08:15:00,4,178.50,Aras,1,0.68,Small personal order
+ORD-017,Michael Brown,michael.brown@email.com,2024-01-21 10:30:00,31,1789.30,PTT,7,0.82,Office renovation supplies
+ORD-018,Fatma Demir,fatma.demir@email.com,2024-01-21 13:45:00,9,456.75,Yurtici,2,0.79,Standard shipping
+ORD-019,James Wilson,james.wilson@email.com,2024-01-22 09:00:00,16,892.40,Aras,4,0.77,Priority delivery requested
+ORD-020,Ayşe Kaya,ayse.kaya@email.com,2024-01-22 11:20:00,48,2678.90,PTT,11,0.86,Large corporate order
+ORD-021,Robert Taylor,robert.taylor@email.com,2024-01-22 14:15:00,21,1234.60,Yurtici,5,0.83,Electronics and accessories
+ORD-022,Elena Popescu,elena.popescu@email.com,2024-01-23 08:30:00,7,389.25,Aras,2,0.71,Gift order
+ORD-023,Can Yıldız,can.yildiz@email.com,2024-01-23 10:45:00,38,2156.80,PTT,9,0.85,Bulk technology purchase
+ORD-024,Linda Martinez,linda.martinez@email.com,2024-01-23 13:00:00,11,567.30,Yurtici,3,0.74,Home electronics
+ORD-025,Burak Öztürk,burak.ozturk@email.com,2024-01-24 09:15:00,59,3456.70,Aras,13,0.88,Warehouse stock replenishment
+ORD-026,Patricia Lee,patricia.lee@email.com,2024-01-24 11:30:00,14,789.50,PTT,3,0.76,Office supplies order
+ORD-027,Kemal Arslan,kemal.arslan@email.com,2024-01-24 14:45:00,26,1567.80,Yurtici,6,0.81,Mixed product order
+ORD-028,Jennifer Davis,jennifer.davis@email.com,2024-01-25 08:00:00,3,145.75,Aras,1,0.62,Small electronics order
+ORD-029,Murat Şahin,murat.sahin@email.com,2024-01-25 10:15:00,72,4234.90,PTT,16,0.92,Massive bulk order
+ORD-030,Susan Garcia,susan.garcia@email.com,2024-01-25 12:30:00,19,1045.60,Yurtici,4,0.78,Standard delivery
+ORD-031,Emre Çelik,emre.celik@email.com,2024-01-26 08:45:00,33,1876.40,Aras,7,0.84,Corporate purchase
+ORD-032,Mary Johnson,mary.johnson@email.com,2024-01-26 11:00:00,8,423.80,PTT,2,0.72,Personal order
+ORD-033,Hakan Erdoğan,hakan.erdogan@email.com,2024-01-26 13:15:00,45,2567.30,Yurtici,10,0.87,Large electronics order
+ORD-034,Barbara White,barbara.white@email.com,2024-01-27 09:30:00,12,678.90,Aras,3,0.75,Home office setup
+ORD-035,Serkan Aydın,serkan.aydin@email.com,2024-01-27 11:45:00,61,3678.50,PTT,14,0.90,Retail restocking
+ORD-036,Nancy Harris,nancy.harris@email.com,2024-01-27 14:00:00,17,934.70,Yurtici,4,0.79,Mixed categories
+ORD-037,Deniz Koç,deniz.koc@email.com,2024-01-28 08:15:00,5,267.50,Aras,1,0.69,Small order
+ORD-038,Paul Clark,paul.clark@email.com,2024-01-28 10:30:00,29,1678.90,PTT,6,0.83,Office electronics
+ORD-039,Selin Yurt,selin.yurt@email.com,2024-01-28 12:45:00,40,2345.60,Yurtici,9,0.86,Large corporate order
+ORD-040,Daniel Moore,daniel.moore@email.com,2024-01-29 09:00:00,13,745.30,Aras,3,0.77,Technology bundle
+ORD-041,Canan Tekin,canan.tekin@email.com,2024-01-29 11:15:00,52,3012.80,PTT,12,0.89,Bulk purchase
+ORD-042,Karen Thomas,karen.thomas@email.com,2024-01-29 13:30:00,9,489.60,Yurtici,2,0.73,Standard order
+ORD-043,Tolga Güven,tolga.guven@email.com,2024-01-30 08:45:00,36,2087.40,Aras,8,0.85,Corporate supplies
+ORD-044,Lisa Anderson,lisa.anderson@email.com,2024-01-30 11:00:00,24,1389.70,PTT,5,0.82,Office equipment
+ORD-045,Volkan Kara,volkan.kara@email.com,2024-01-30 13:15:00,68,3989.20,Yurtici,15,0.91,Massive order
+ORD-046,Sarah Miller,sarah.miller@email.com,2024-01-31 09:30:00,6,334.80,Aras,2,0.70,Personal electronics
+ORD-047,Oğuz Şen,oguz.sen@email.com,2024-01-31 11:45:00,44,2534.90,PTT,10,0.87,Bulk technology order
+ORD-048,Betty Wilson,betty.wilson@email.com,2024-01-31 14:00:00,15,867.50,Yurtici,3,0.78,Home office order
+ORD-049,İbrahim Acar,ibrahim.acar@email.com,2024-02-01 08:15:00,57,3345.60,Aras,13,0.89,Warehouse restock
+ORD-050,Dorothy Moore,dorothy.moore@email.com,2024-02-01 10:30:00,20,1156.80,PTT,5,0.80,Mixed product order
+ORD-051,Cem Yavuz,cem.yavuz@email.com,2024-02-01 12:45:00,32,1876.40,Yurtici,7,0.84,Corporate purchase
+ORD-052,Margaret Taylor,margaret.taylor@email.com,2024-02-02 09:00:00,10,567.90,Aras,2,0.74,Small business order
+ORD-053,Barış Özer,baris.ozer@email.com,2024-02-02 11:15:00,75,4456.70,PTT,17,0.93,Massive retail order
+ORD-054,Helen Anderson,helen.anderson@email.com,2024-02-02 13:30:00,18,1023.50,Yurtici,4,0.79,Standard delivery
+ORD-055,Umut Polat,umut.polat@email.com,2024-02-03 08:45:00,41,2398.90,Aras,9,0.86,Large electronics order
+ORD-056,Ruth Thomas,ruth.thomas@email.com,2024-02-03 11:00:00,27,1567.30,PTT,6,0.82,Office supplies
+ORD-057,Gökhan Bulut,gokhan.bulut@email.com,2024-02-03 13:15:00,63,3678.40,Yurtici,14,0.90,Bulk corporate order
+ORD-058,Sandra Jackson,sandra.jackson@email.com,2024-02-04 09:30:00,8,445.70,Aras,2,0.72,Personal order
+ORD-059,Onur Yılmaz,onur.yilmaz@email.com,2024-02-04 11:45:00,49,2856.80,PTT,11,0.88,Large technology order
+ORD-060,Carol White,carol.white@email.com,2024-02-04 14:00:00,14,789.40,Yurtici,3,0.76,Home electronics

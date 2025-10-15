@@ -73,7 +73,6 @@ class Order:
 	customer_name: str
 	customer_email: str
 	order_date: datetime
-	status: str  # pending, processing, packed, shipped, completed, cancelled
 	items: List[OrderItem]
 	total_items: int = 0
 	total_price_try: float = 0.0

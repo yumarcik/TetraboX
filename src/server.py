@@ -112,6 +112,15 @@ def try_aggressive_partial_packing(products: List[Product], containers: List[Con
 	return None
 
 
+@app.get("/static/localization.js")
+def get_localization():
+	"""Serve the localization JavaScript file"""
+	import os
+	localization_path = os.path.join(os.path.dirname(__file__), "localization.js")
+	with open(localization_path, 'r', encoding='utf-8') as f:
+		content = f.read()
+	return HTMLResponse(content=content, media_type="application/javascript")
+
 @app.get("/", response_class=HTMLResponse)
 def index():
 	return """
@@ -166,6 +175,11 @@ body::before {
   left: 0;
   top: 0;
   z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%);
 }
 
 .sidebar-header {
@@ -218,6 +232,12 @@ body::before {
   width: calc(100% - 400px);
   overflow-y: auto;
   z-index: 1;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+  margin-left: 0;
+  width: 100%;
 }
 .sku-panel {
   background: white;
@@ -697,7 +717,16 @@ h3, h4 {
 </head>
 <body>
 
-<div class="sidebar">
+<!-- Sidebar Toggle Button -->
+<div id="sidebarToggle" onclick="toggleSidebar()" style="position: fixed; top: 20px; left: 20px; z-index: 1001; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 12px; padding: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease;">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</div>
+
+<div class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
       <div style="width: 56px; height: 56px; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px); box-shadow: 0 8px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);">
@@ -711,37 +740,20 @@ h3, h4 {
         </svg>
       </div>
       <div style="flex: 1;">
-        <h3 style="margin-bottom: 4px; font-size: 22px;">Order Browser</h3>
-        <div class="sidebar-subtitle" style="font-size: 13px; opacity: 0.95;">Browse and select orders</div>
+        <h3 style="margin-bottom: 4px; font-size: 22px;" data-tr="Sipariş Tarayıcısı" data-en="Order Browser">Sipariş Tarayıcısı</h3>
+        <div class="sidebar-subtitle" style="font-size: 13px; opacity: 0.95;" data-tr="Siparişleri görüntüleyin ve seçin" data-en="Browse and select orders">Siparişleri görüntüleyin ve seçin</div>
       </div>
     </div>
     
-    <!-- Load Orders Button -->
-    <button onclick="loadAllOrders()" style="width: 100%; padding: 14px 20px; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%); color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 14px; cursor: pointer; font-weight: 700; font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 10px; backdrop-filter: blur(10px); margin-bottom: 16px;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="23 4 23 10 17 10"></polyline>
-        <polyline points="1 20 1 14 7 14"></polyline>
-        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-      </svg>
-      <span>Load Orders</span>
-    </button>
   </div>
   
   <div class="sidebar-content">
     <!-- Order Statistics -->
     <div id="orderStats" style="display: none; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 18px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 12px; text-align: center;">
         <div>
           <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalOrders">0</div>
-          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Total</div>
-        </div>
-        <div style="border-left: 1px solid rgba(255,255,255,0.2); border-right: 1px solid rgba(255,255,255,0.2);">
-          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="pendingOrders">0</div>
-          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Pending</div>
-        </div>
-        <div>
-          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalValue">0₺</div>
-          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;">Value</div>
+          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Toplam Sipariş" data-en="Total Orders">Toplam Sipariş</div>
         </div>
       </div>
     </div>
@@ -753,7 +765,7 @@ h3, h4 {
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.35-4.35"></path>
         </svg>
-        <input type="text" id="orderSearch" oninput="filterOrders()" placeholder="Search by ID, customer, or status..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <input type="text" id="orderSearch" oninput="filterOrders()" placeholder="ID veya müşteri adı ile ara..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" data-tr-placeholder="ID veya müşteri adı ile ara..." data-en-placeholder="Search by ID or customer...">
       </div>
     </div>
     
@@ -786,8 +798,8 @@ h3, h4 {
             </svg>
           </div>
           <div>
-            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">📋 Selected Order Details</div>
-            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Click an order to view full details</div>
+            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">Seçilen Sipariş Detayları</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Detayları görüntülemek için siparişe tıklayın</div>
           </div>
         </div>
       </div>
@@ -836,28 +848,50 @@ h3, h4 {
 
 <div class="main-content">
 <div style="margin-bottom: 30px;">
-  <h1 style="font-size: 48px; margin-bottom: 8px; display: flex; align-items: center; gap: 15px; font-weight: 800; letter-spacing: -1px;">
-    TetraboX
-    <span class="header-badge">PRO</span>
-  </h1>
-  <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0; font-weight: 400; letter-spacing: 0.5px;">
-    AI-Powered 3D Container Optimization Platform
-  </p>
+  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <div>
+      <h1 style="font-size: 48px; margin-bottom: 8px; display: flex; align-items: center; gap: 15px; font-weight: 800; letter-spacing: -1px;">
+        TetraboX
+        <span class="header-badge">PRO</span>
+      </h1>
+      <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0; font-weight: 400; letter-spacing: 0.5px;" data-tr="AI Destekli 3D Konteyner Optimizasyon Platformu" data-en="AI-Powered 3D Container Optimization Platform">
+        AI Destekli 3D Konteyner Optimizasyon Platformu
+      </p>
+    </div>
+    
+    <!-- Language Switcher -->
+    <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(255,255,255,0.8);">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span style="color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 500;" data-tr="Dil" data-en="Language">Dil</span>
+      <div style="display: flex; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 2px;">
+        <button id="lang-tr" onclick="switchToTurkish()" style="padding: 6px 12px; border: none; background: #667eea; color: white; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+          TR
+        </button>
+        <button id="lang-en" onclick="switchToEnglish()" style="padding: 6px 12px; border: none; background: transparent; color: rgba(255,255,255,0.7); border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+          EN
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="premium-card" id="orderPackingControls" style="display: none; border: 2px solid #10b981;">
 	<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
 		<div>
-			<div style="font-size: 12px; color: #64748b; font-weight: 500; margin-bottom: 4px;">SELECTED ORDER</div>
+			<div style="font-size: 12px; color: #64748b; font-weight: 500; margin-bottom: 4px;" data-tr="SEÇİLEN SİPARİŞ" data-en="SELECTED ORDER">SEÇİLEN SİPARİŞ</div>
 			<div id="currentOrderId" style="color: #5a67d8; font-weight: 700; font-size: 20px;">-</div>
 		</div>
-		<button onclick="packSelectedOrder()" style="padding: 14px 28px; font-size: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
-			Pack Order
+		<button onclick="packSelectedOrder()" style="padding: 14px 28px; font-size: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);" data-tr="Siparişi Paketle" data-en="Pack Order">
+			Siparişi Paketle
 		</button>
 	</div>
 </div>
 
-<div class="premium-card" style="background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%); border: 2px solid rgba(255,255,255,0.5);">
+<div class="premium-card" id="quickStartGuide" style="background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%); border: 2px solid rgba(255,255,255,0.5);">
 	<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
 		<div style="width: 52px; height: 52px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);">
 			<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -869,16 +903,16 @@ h3, h4 {
 			</svg>
 		</div>
 		<div>
-			<h3 style="margin: 0; font-size: 20px; color: #2d3748; font-weight: 700; letter-spacing: -0.5px;">Quick Start Guide</h3>
-			<p style="margin: 0; font-size: 14px; color: #64748b; font-weight: 400;">Follow these steps to optimize your packing</p>
+			<h3 style="margin: 0; font-size: 20px; color: #2d3748; font-weight: 700; letter-spacing: -0.5px;" data-tr="Hızlı Başlangıç Rehberi" data-en="Quick Start Guide">Hızlı Başlangıç Rehberi</h3>
+			<p style="margin: 0; font-size: 14px; color: #64748b; font-weight: 400;" data-tr="Paketleme optimizasyonunuz için bu adımları takip edin" data-en="Follow these steps to optimize your packing">Paketleme optimizasyonunuz için bu adımları takip edin</p>
 		</div>
 	</div>
 	<ol style="margin: 0; padding-left: 24px; color: #4a5568; line-height: 2; font-size: 14px;">
-		<li>Click <strong style="color: #2d3748;">"Load Orders"</strong> in the sidebar to view available orders</li>
-		<li>Browse or search for your order by ID, customer name, or status</li>
-		<li>Click on any order to select it and view details</li>
-		<li>Click <strong style="color: #2d3748;">"Pack Order"</strong> to run the optimization algorithm</li>
-		<li>View packing results in 3D, 2D, or raw JSON format</li>
+		<li data-tr="Uygulama açıldığında siparişler otomatik olarak yüklenir" data-en="Orders are automatically loaded when you open the application">Uygulama açıldığında siparişler otomatik olarak yüklenir</li>
+		<li data-tr="ID veya müşteri adı ile siparişinizi arayın" data-en="Search for your order by ID or customer name">ID veya müşteri adı ile siparişinizi arayın</li>
+		<li data-tr="Detayları görüntülemek için herhangi bir siparişe tıklayın" data-en="Click on any order to select it and view details">Detayları görüntülemek için herhangi bir siparişe tıklayın</li>
+		<li data-tr="Optimizasyon algoritmasını çalıştırmak için <strong style='color: #2d3748;'>'Siparişi Paketle'</strong> tıklayın" data-en="Click <strong style='color: #2d3748;'>'Pack Order'</strong> to run the optimization algorithm">Optimizasyon algoritmasını çalıştırmak için <strong style="color: #2d3748;">"Siparişi Paketle"</strong> tıklayın</li>
+		<li data-tr="Sonuçları 3D, 2D veya ham JSON formatında görüntüleyin" data-en="View packing results in 3D, 2D, or raw JSON format">Sonuçları 3D, 2D veya ham JSON formatında görüntüleyin</li>
 	</ol>
 </div>
 
@@ -891,9 +925,9 @@ h3, h4 {
     <div id="summary"></div>
     
     <div class="modal-tabs">
-      <button class="tab-button active" onclick="showTab('3d')">3D View</button>
-      <button class="tab-button" onclick="showTab('2d')">2D Views</button>
-      <button class="tab-button" onclick="showTab('json')">Raw Data</button>
+      <button class="tab-button active" onclick="showTab('3d')" data-tr="3D Görünüm" data-en="3D View">3D Görünüm</button>
+      <button class="tab-button" onclick="showTab('2d')" data-tr="2D Görünümler" data-en="2D Views">2D Görünümler</button>
+      <button class="tab-button" onclick="showTab('json')" data-tr="Ham Veri" data-en="Raw Data">Ham Veri</button>
     </div>
     
     <div id="tab-3d" class="tab-content active">
@@ -901,18 +935,53 @@ h3, h4 {
     </div>
     
     <div id="tab-2d" class="tab-content">
-      <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; padding: 20px 0;">
-        <div class="premium-card" style="margin: 0;">
-          <h4 style="color: #2d3748; margin-bottom: 12px;">Top View (XY)</h4>
-          <canvas id="vizTop" width="300" height="300" style="border: 2px solid #e2e8f0; border-radius: 8px;"></canvas>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; padding: 30px 0;">
+        <div class="premium-card" style="margin: 0; border: 2px solid #10b981; background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M9 9h6v6H9z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 style="color: #059669; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;" data-tr="Kuş Bakışı Görünüm" data-en="Bird's Eye View">Kuş Bakışı Görünüm</h4>
+              <p style="color: #6b7280; margin: 0; font-size: 12px; font-weight: 500;" data-tr="Yukarıdan bakış" data-en="Looking down from above">Yukarıdan bakış</p>
+            </div>
+          </div>
+          <canvas id="vizTop" width="320" height="320" style="border: 2px solid #10b981; border-radius: 12px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);"></canvas>
         </div>
-        <div class="premium-card" style="margin: 0;">
-          <h4 style="color: #2d3748; margin-bottom: 12px;">Front View (XZ)</h4>
-          <canvas id="vizFront" width="300" height="300" style="border: 2px solid #e2e8f0; border-radius: 8px;"></canvas>
+        <div class="premium-card" style="margin: 0; border: 2px solid #3b82f6; background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M8 3v18"></path>
+                <path d="M16 3v18"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 style="color: #1d4ed8; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;" data-tr="Ön Görünüm" data-en="Front View">Ön Görünüm</h4>
+              <p style="color: #6b7280; margin: 0; font-size: 12px; font-weight: 500;" data-tr="Konteyner yüzüne bakış" data-en="Looking at the container face">Konteyner yüzüne bakış</p>
+            </div>
+          </div>
+          <canvas id="vizFront" width="320" height="320" style="border: 2px solid #3b82f6; border-radius: 12px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);"></canvas>
         </div>
-        <div class="premium-card" style="margin: 0;">
-          <h4 style="color: #2d3748; margin-bottom: 12px;">Side View (YZ)</h4>
-          <canvas id="vizSide" width="300" height="300" style="border: 2px solid #e2e8f0; border-radius: 8px;"></canvas>
+        <div class="premium-card" style="margin: 0; border: 2px solid #8b5cf6; background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M3 8h18"></path>
+                <path d="M3 16h18"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 style="color: #7c3aed; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.3px;" data-tr="Yan Görünüm" data-en="Side View">Yan Görünüm</h4>
+              <p style="color: #6b7280; margin: 0; font-size: 12px; font-weight: 500;" data-tr="Yandan bakış" data-en="Looking from the side">Yandan bakış</p>
+            </div>
+          </div>
+          <canvas id="vizSide" width="320" height="320" style="border: 2px solid #8b5cf6; border-radius: 12px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);"></canvas>
         </div>
       </div>
     </div>
@@ -922,9 +991,140 @@ h3, h4 {
     </div>
   </div>
 </div>
+<script src="/static/localization.js"></script>
 <script>
 let allOrders = [];
 let selectedOrder = null;
+let sidebarCollapsed = false;
+
+// Make allOrders globally accessible for localization
+window.allOrders = allOrders;
+
+// Toggle sidebar function
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const mainContent = document.querySelector('.main-content');
+  const toggleButton = document.getElementById('sidebarToggle');
+  
+  sidebarCollapsed = !sidebarCollapsed;
+  
+  if (sidebarCollapsed) {
+    sidebar.classList.add('collapsed');
+    mainContent.classList.add('expanded');
+    // Change icon to show sidebar is hidden
+    toggleButton.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    `;
+  } else {
+    sidebar.classList.remove('collapsed');
+    mainContent.classList.remove('expanded');
+    // Change icon to show sidebar is visible
+    toggleButton.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    `;
+  }
+}
+
+// Initialize localization when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, checking localization...');
+  console.log('localization object:', typeof localization);
+  if (typeof localization !== 'undefined') {
+    console.log('localization methods:', Object.keys(localization));
+  }
+  initializeLocalization();
+});
+
+// Initialize localization with retry logic
+function initializeLocalization() {
+  console.log('initializeLocalization called, localization type:', typeof localization);
+  if (typeof localization !== 'undefined') {
+    console.log('Localization is available, setting up...');
+    console.log('Available methods:', Object.keys(localization));
+    
+    // Set up the override for switchLanguage
+    const originalSwitchLanguage = localization.switchLanguage;
+    console.log('originalSwitchLanguage type:', typeof originalSwitchLanguage);
+    
+    if (typeof originalSwitchLanguage === 'function') {
+      localization.switchLanguage = function(lang) {
+        console.log('Override switchLanguage called with:', lang);
+        originalSwitchLanguage.call(localization, lang);
+        updateLanguageButtons();
+      };
+    } else {
+      console.error('switchLanguage is not a function:', originalSwitchLanguage);
+    }
+    
+    // Initialize and update UI
+    localization.initializeLanguage();
+    updateLanguageButtons();
+    console.log('Localization initialized successfully');
+  } else {
+    console.log('Localization not available, retrying in 100ms...');
+    // Retry after a short delay if localization is not yet loaded
+    setTimeout(initializeLocalization, 100);
+  }
+}
+
+// Update language button states
+function updateLanguageButtons() {
+  const currentLang = window.currentLanguage || 'tr'; // Use global variable
+  
+  const trBtn = document.getElementById('lang-tr');
+  const enBtn = document.getElementById('lang-en');
+  
+  if (trBtn && enBtn) {
+    if (currentLang === 'tr') {
+      trBtn.style.background = '#667eea';
+      trBtn.style.color = 'white';
+      enBtn.style.background = 'transparent';
+      enBtn.style.color = 'rgba(255,255,255,0.7)';
+    } else {
+      trBtn.style.background = 'transparent';
+      trBtn.style.color = 'rgba(255,255,255,0.7)';
+      enBtn.style.background = '#667eea';
+      enBtn.style.color = 'white';
+    }
+  }
+}
+
+
+// Safe wrapper functions for language switching
+function switchToTurkish() {
+  if (typeof localization !== 'undefined' && typeof localization.switchLanguage === 'function') {
+    localization.switchLanguage('tr');
+    updateLanguageButtons();
+  } else {
+    // Fallback: try to call the function directly if it exists globally
+    if (typeof switchLanguage === 'function') {
+      switchLanguage('tr');
+      updateLanguageButtons();
+    }
+  }
+}
+
+function switchToEnglish() {
+  if (typeof localization !== 'undefined' && typeof localization.switchLanguage === 'function') {
+    localization.switchLanguage('en');
+    updateLanguageButtons();
+  } else {
+    // Fallback: try to call the function directly if it exists globally
+    if (typeof switchLanguage === 'function') {
+      switchLanguage('en');
+      updateLanguageButtons();
+    }
+  }
+}
+
+// Load orders from API
 // Order management functions
 async function loadAllOrders(){
   const orderListEl = document.getElementById('orderList');
@@ -945,6 +1145,7 @@ async function loadAllOrders(){
     
     const data = await res.json();
     allOrders = data.orders || [];
+    window.allOrders = allOrders; // Update global reference
     console.log('Loaded orders:', allOrders.length);
     
     if(!allOrders || allOrders.length === 0) {
@@ -972,8 +1173,8 @@ function renderOrderList(orders){
             <line x1="9" y1="9" x2="15" y2="15"></line>
           </svg>
         </div>
-        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;">No Orders Found</div>
-        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;">Try adjusting your search</div>
+        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Sipariş Bulunamadı" data-en="No Orders Found">${window.currentLanguage === 'en' ? 'No Orders Found' : 'Sipariş Bulunamadı'}</div>
+        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;" data-tr="Aramanızı ayarlamayı deneyin" data-en="Try adjusting your search">${window.currentLanguage === 'en' ? 'Try adjusting your search' : 'Aramanızı ayarlamayı deneyin'}</div>
       </div>
     `;
     document.getElementById('orderStats').style.display = 'none';
@@ -981,13 +1182,8 @@ function renderOrderList(orders){
   }
   
   // Update statistics
-  const totalValue = orders.reduce((sum, o) => sum + (parseFloat(o.total_price_try) || 0), 0);
-  const pendingCount = orders.filter(o => o.status === 'pending').length;
-  
   document.getElementById('orderStats').style.display = 'block';
   document.getElementById('totalOrders').textContent = orders.length;
-  document.getElementById('pendingOrders').textContent = pendingCount;
-  document.getElementById('totalValue').textContent = Math.round(totalValue) + '₺';
   
   const header = `
     <div style="padding: 16px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);">
@@ -995,14 +1191,13 @@ function renderOrderList(orders){
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
         </svg>
-        <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.5px;">ORDER LIST</span>
+        <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.5px;" data-tr="SİPARİŞ LİSTESİ" data-en="ORDER LIST">${window.currentLanguage === 'en' ? 'ORDER LIST' : 'SİPARİŞ LİSTESİ'}</span>
       </div>
       <span style="background: rgba(255,255,255,0.25); padding: 5px 12px; border-radius: 14px; font-size: 13px; font-weight: 800; backdrop-filter: blur(10px); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">${orders.length}</span>
     </div>
   `;
   
   const orderItems = orders.slice(0, 50).map(order => {
-    const statusColor = getStatusColor(order.status);
     const orderDate = new Date(order.order_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     return `
       <div class="sku-item" onclick="selectOrder('${order.order_id}')" style="cursor: pointer;">
@@ -1016,7 +1211,6 @@ function renderOrderList(orders){
               ${order.order_id}
             </div>
           </div>
-          <span style="background: ${statusColor}; color: white; padding: 5px 10px; border-radius: 8px; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px ${statusColor}40; text-transform: uppercase;">${order.status}</span>
         </div>
         <div class="sku-name" style="font-size: 13px; font-weight: 600; color: #2d3748; margin-bottom: 8px;">👤 ${order.customer_name}</div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 11px; color: #64748b; font-weight: 600;">
@@ -1024,13 +1218,9 @@ function renderOrderList(orders){
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
             </svg>
-            <span>${order.total_items} items</span>
+            <span data-tr="${order.total_items} ürün" data-en="${order.total_items} items">${window.currentLanguage === 'en' ? order.total_items + ' items' : order.total_items + ' ürün'}</span>
           </div>
           <div style="display: flex; align-items: center; gap: 4px; justify-self: end;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;">
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
             <span style="color: #10b981; font-weight: 700;">${order.total_price_try}₺</span>
           </div>
         </div>
@@ -1057,17 +1247,6 @@ function renderOrderList(orders){
   el.innerHTML = header + orderItems + footer;
 }
 
-function getStatusColor(status) {
-  const colors = {
-    'pending': '#ffc107',
-    'processing': '#17a2b8',
-    'packed': '#28a745',
-    'shipped': '#6f42c1',
-    'completed': '#28a745',
-    'cancelled': '#dc3545'
-  };
-  return colors[status.toLowerCase()] || '#6c757d';
-}
 
 function selectOrder(orderId) {
   selectedOrder = allOrders.find(order => order.order_id === orderId);
@@ -1119,8 +1298,8 @@ function updateSelectedOrderInfo() {
             </svg>
           </div>
           <div>
-            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">📋 Selected Order Details</div>
-            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Click an order to view full details</div>
+            <div style="color: white; font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 2px;">Seçilen Sipariş Detayları</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">Detayları görüntülemek için siparişe tıklayın</div>
           </div>
         </div>
       `;
@@ -1131,7 +1310,6 @@ function updateSelectedOrderInfo() {
   // Update card header to show selected order
   const headerEl = document.getElementById('selectedOrderCardHeader');
   if(headerEl) {
-    const statusColor = getStatusColor(selectedOrder.status);
     headerEl.innerHTML = `
       <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
       <div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2;">
@@ -1147,12 +1325,10 @@ function updateSelectedOrderInfo() {
             <div style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;">${selectedOrder.customer_name}</div>
           </div>
         </div>
-        <span style="background: ${statusColor}; color: white; padding: 6px 12px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); text-transform: uppercase;">${selectedOrder.status}</span>
       </div>
     `;
   }
   
-  const statusColor = getStatusColor(selectedOrder.status);
   const orderDate = new Date(selectedOrder.order_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
   
   el.innerHTML = `
@@ -1161,17 +1337,17 @@ function updateSelectedOrderInfo() {
       <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
         <div style="text-align: center;">
           <div style="color: #1e293b; font-size: 20px; font-weight: 800;">${selectedOrder.total_items}</div>
-          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Items</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;" data-tr="ÜRÜNLER" data-en="Items">ÜRÜNLER</div>
         </div>
         <div style="width: 1px; height: 30px; background: #e2e8f0;"></div>
         <div style="text-align: center;">
           <div style="color: #059669; font-size: 20px; font-weight: 800;">${selectedOrder.total_price_try}₺</div>
-          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Total</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;" data-tr="TOPLAM" data-en="Total">TOPLAM</div>
         </div>
         <div style="width: 1px; height: 30px; background: #e2e8f0;"></div>
         <div style="text-align: center;">
           <div style="color: #1e293b; font-size: 14px; font-weight: 700;">${orderDate}</div>
-          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;">Date</div>
+          <div style="color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase;" data-tr="TARİH" data-en="Date">TARİH</div>
         </div>
       </div>
     </div>
@@ -1184,7 +1360,7 @@ function updateSelectedOrderInfo() {
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           </svg>
         </div>
-        <div style="font-size: 14px; font-weight: 700; color: #1e293b;">Products (${selectedOrder.items.length})</div>
+        <div style="font-size: 14px; font-weight: 700; color: #1e293b;" data-tr="Ürünler (${selectedOrder.items.length})" data-en="Products (${selectedOrder.items.length})">Ürünler (${selectedOrder.items.length})</div>
       </div>
       
       <!-- Clean Product List -->
@@ -1219,8 +1395,7 @@ function filterOrders(){
   const filtered = allOrders.filter(order => {
     return order.order_id.toLowerCase().includes(query) || 
            order.customer_name.toLowerCase().includes(query) ||
-           order.customer_email.toLowerCase().includes(query) ||
-           order.status.toLowerCase().includes(query);
+           order.customer_email.toLowerCase().includes(query);
   });
   
   renderOrderList(filtered);
@@ -1421,6 +1596,10 @@ function clearOrder(){
 // Auto-load orders on page load
 window.addEventListener('DOMContentLoaded', () => {
   console.log('Page loaded, initializing order system...');
+  
+  // Initialize language first
+  initializeLanguage();
+  
   updateSelectedOrderInfo(); // Initialize empty order display
   
   // Auto-load orders immediately
@@ -1505,13 +1684,13 @@ function showCompactResult(j) {
         </div>
         <div style="flex: 1;">
           <div style="font-size: 24px; font-weight: 800; color: #059669; margin-bottom: 8px; letter-spacing: -0.5px;">
-            Packing Complete
+            <span data-tr="Paketleme Tamamlandı" data-en="Packing Complete">${window.currentLanguage === 'en' ? 'Packing Complete' : 'Paketleme Tamamlandı'}</span>
             ${isMultiContainer ? '<span style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 5px 14px; border-radius: 14px; font-size: 12px; margin-left: 12px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3); font-weight: 700; letter-spacing: 0.5px;">MULTI-BOX</span>' : ''}
           </div>
           <div style="color: #64748b; font-size: 15px; line-height: 1.6; font-weight: 500;">
             <strong style="color: #2d3748;">${containerText}</strong> • 
-            <strong style="color: #2d3748;">${j.total_items || j.placements?.length || 0}</strong> items • 
-            <strong style="color: #5a67d8;">${(j.utilization*100).toFixed(1)}%</strong> utilization • 
+            <strong style="color: #2d3748;">${j.total_items || j.placements?.length || 0}</strong> <span data-tr="ürün" data-en="items">${window.currentLanguage === 'en' ? 'items' : 'ürün'}</span> • 
+            <strong style="color: #5a67d8;">${(j.utilization*100).toFixed(1)}%</strong> <span data-tr="kullanım" data-en="utilization">${window.currentLanguage === 'en' ? 'utilization' : 'kullanım'}</span> • 
             <strong style="color: #059669;">${(j.total_price || j.price_try || 0).toFixed(2)}₺</strong>
           </div>
         </div>
@@ -1672,37 +1851,40 @@ function renderSummary(j){
           
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">CONTAINER</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="KONTEYNER" data-en="CONTAINER">${window.currentLanguage === 'en' ? 'CONTAINER' : 'KONTEYNER'}</div>
               <div style="color: white; font-size: 18px; font-weight: 700;">${j.container_name || 'Unknown'}</div>
               <div style="color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 2px;">${j.shipping_company || 'Unknown'}</div>
             </div>
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">ITEMS</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="ÜRÜNLER" data-en="ITEMS">${window.currentLanguage === 'en' ? 'ITEMS' : 'ÜRÜNLER'}</div>
               <div style="color: white; font-size: 32px; font-weight: 700;">${j.placements ? j.placements.length : 0}</div>
             </div>
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">UTILIZATION</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="KULLANIM" data-en="UTILIZATION">${window.currentLanguage === 'en' ? 'UTILIZATION' : 'KULLANIM'}</div>
               <div style="color: white; font-size: 32px; font-weight: 700;">${utilization.toFixed(1)}%</div>
             </div>
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">PRICE</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="FİYAT" data-en="PRICE">${window.currentLanguage === 'en' ? 'PRICE' : 'FİYAT'}</div>
               <div style="color: white; font-size: 32px; font-weight: 700;">${(j.price_try || 0).toFixed(2)}₺</div>
             </div>
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">VOLUME</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="HACİM" data-en="VOLUME">${window.currentLanguage === 'en' ? 'VOLUME' : 'HACİM'}</div>
               <div style="color: white; font-size: 20px; font-weight: 700;">${(j.container_volume_cm3/1000).toFixed(1)}L / ${(j.remaining_volume_cm3/1000).toFixed(1)}L free</div>
             </div>
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;">DIMENSIONS</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; margin-bottom: 4px;" data-tr="BOYUTLAR" data-en="DIMENSIONS">${window.currentLanguage === 'en' ? 'DIMENSIONS' : 'BOYUTLAR'}</div>
               <div style="color: white; font-size: 16px; font-weight: 700;">${maxW}×${maxL}×${maxH}mm</div>
             </div>
           </div>
         </div>
         
         <div style="padding: 20px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 12px; border-left: 5px solid #10b981; font-size: 14px; line-height: 1.7;">
-          <strong style="color: #065f46; font-size: 16px; display: block; margin-bottom: 8px;">Perfect Single-Container Solution</strong>
-          <div style="color: #047857;">
-            All <strong>${j.placements ? j.placements.length : 0} items</strong> fit perfectly in a single <strong>${j.container_name || 'Unknown'}</strong> container from <strong>${j.shipping_company || 'Unknown'}</strong>. This is the most cost-effective solution with <strong>${utilization.toFixed(1)}% utilization</strong>.
+          <strong style="color: #065f46; font-size: 16px; display: block; margin-bottom: 8px;" data-tr="Mükemmel Tek Konteyner Çözümü" data-en="Perfect Single-Container Solution">${window.currentLanguage === 'en' ? 'Perfect Single-Container Solution' : 'Mükemmel Tek Konteyner Çözümü'}</strong>
+          <div style="color: #047857;" id="solution-description-${j.container_name || 'default'}">
+            ${window.currentLanguage === 'en' 
+              ? `All <strong>${j.placements ? j.placements.length : 0} items</strong> fit perfectly in a single <strong>${j.container_name || 'Unknown'}</strong> container from <strong>${j.shipping_company || 'Unknown'}</strong>. This is the most cost-effective solution with <strong>${utilization.toFixed(1)}% utilization</strong>.`
+              : `Tüm <strong>${j.placements ? j.placements.length : 0} ürün</strong> <strong>${j.container_name || 'Unknown'}</strong> konteynerinde <strong>${j.shipping_company || 'Unknown'}</strong> şirketinden mükemmel şekilde sığıyor. Bu <strong>${utilization.toFixed(1)}% kullanım</strong> ile en uygun maliyetli çözümdür.`
+            }
           </div>
         </div>
       </div>
@@ -2397,8 +2579,8 @@ function renderSingleContainer3D(j, el) {
           </svg>
         </div>
         <div>
-          <div style="font-weight: 700; color: #1e293b; font-size: 15px; letter-spacing: -0.2px;">Controls</div>
-          <div style="font-size: 11px; color: #64748b; font-weight: 500; margin-top: 2px;">3D Interaction</div>
+          <div style="font-weight: 700; color: #1e293b; font-size: 15px; letter-spacing: -0.2px;" data-tr="Kontroller" data-en="Controls">Kontroller</div>
+          <div style="font-size: 11px; color: #64748b; font-weight: 500; margin-top: 2px;" data-tr="3D Etkileşim" data-en="3D Interaction">3D Etkileşim</div>
         </div>
       </div>
       
@@ -2408,30 +2590,30 @@ function renderSingleContainer3D(j, el) {
             <polyline points="23 4 23 10 17 10"></polyline>
             <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
           </svg>
-          <span>Reset View</span>
+          <span data-tr="Görünümü Sıfırla" data-en="Reset View">Görünümü Sıfırla</span>
         </button>
         <button id="${autoRotateBtnId}" style="width: 100%; padding: 12px 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; align-items: center; justify-content: center; gap: 8px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
           </svg>
-          <span>Auto Rotate</span>
+          <span data-tr="Otomatik Döndür" data-en="Auto Rotate">Otomatik Döndür</span>
         </button>
       </div>
       
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
-        <div style="font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Shortcuts</div>
+        <div style="font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Kısayollar" data-en="Shortcuts">Kısayollar</div>
         <div style="color: #475569; font-size: 12px; line-height: 1.8; font-weight: 500;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <div style="min-width: 60px; padding: 4px 8px; background: white; border-radius: 6px; font-weight: 600; font-size: 11px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Drag</div>
-            <div style="color: #64748b;">Rotate view</div>
+            <div style="color: #64748b;" data-tr="Görünümü döndür" data-en="Rotate view">Görünümü döndür</div>
           </div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <div style="min-width: 60px; padding: 4px 8px; background: white; border-radius: 6px; font-weight: 600; font-size: 11px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Scroll</div>
-            <div style="color: #64748b;">Zoom in/out</div>
+            <div style="color: #64748b;" data-tr="Yakınlaştır/Uzaklaştır" data-en="Zoom in/out">Yakınlaştır/Uzaklaştır</div>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
             <div style="min-width: 60px; padding: 4px 8px; background: white; border-radius: 6px; font-weight: 600; font-size: 11px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Click</div>
-            <div style="color: #64748b;">Item details</div>
+            <div style="color: #64748b;" data-tr="Ürün detayları" data-en="Item details">Ürün detayları</div>
           </div>
         </div>
       </div>
@@ -2464,7 +2646,7 @@ function renderSingleContainer3D(j, el) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
           </svg>
-          <span>Auto Rotate</span>
+          <span data-tr="Otomatik Döndür" data-en="Auto Rotate">Otomatik Döndür</span>
         `;
       }
     });
@@ -2539,7 +2721,7 @@ function renderSingleContainer3D(j, el) {
       ctx.fillStyle = titleGradient;
       ctx.font = '700 18px Inter, Arial';
       ctx.letterSpacing = '0.5px';
-      ctx.fillText('3D CONTAINER VIEW', 20, 32);
+      ctx.fillText(localization && localization.t ? localization.t('3D_CONTAINER_VIEW') : '3D CONTAINER VIEW', 20, 32);
       
       // Subtitle with container info
       ctx.shadowBlur = 4;
@@ -3131,14 +3313,11 @@ def list_skus(q: str | None = None, limit: int = 20):
 
 # Order Management Endpoints
 @app.get("/orders", response_model=OrderListResponse)
-def list_orders(status: Optional[str] = None, limit: int = 50, offset: int = 0):
+def list_orders(limit: int = 50, offset: int = 0):
     """List all orders with optional filtering"""
     try:
         orders = load_orders_csv("data/orders.csv", "data/order_items.csv")
         
-        # Filter by status if provided
-        if status:
-            orders = [order for order in orders if order.status.lower() == status.lower()]
         
         # Apply pagination
         total_count = len(orders)
@@ -3159,7 +3338,6 @@ def list_orders(status: Optional[str] = None, limit: int = 50, offset: int = 0):
                 customer_name=order.customer_name,
                 customer_email=order.customer_email,
                 order_date=order.order_date,
-                status=order.status,
                 items=api_items,
                 total_items=order.total_items,
                 total_price_try=order.total_price_try,
@@ -3199,7 +3377,6 @@ def get_order(order_id: str):
             customer_name=order.customer_name,
             customer_email=order.customer_email,
             order_date=order.order_date,
-            status=order.status,
             items=api_items,
             total_items=order.total_items,
             total_price_try=order.total_price_try,
@@ -3257,7 +3434,6 @@ def create_order(request: CreateOrderRequest):
             customer_name=order.customer_name,
             customer_email=order.customer_email,
             order_date=order.order_date,
-            status=order.status,
             items=api_items,
             total_items=order.total_items,
             total_price_try=order.total_price_try,
@@ -3287,8 +3463,6 @@ def update_order(order_id: str, request: UpdateOrderRequest):
             order.customer_name = request.customer_name
         if request.customer_email is not None:
             order.customer_email = request.customer_email
-        if request.status is not None:
-            order.status = request.status
         if request.notes is not None:
             order.notes = request.notes
         if request.items is not None:
@@ -3318,7 +3492,6 @@ def update_order(order_id: str, request: UpdateOrderRequest):
             customer_name=order.customer_name,
             customer_email=order.customer_email,
             order_date=order.order_date,
-            status=order.status,
             items=api_items,
             total_items=order.total_items,
             total_price_try=order.total_price_try,
@@ -3362,7 +3535,6 @@ def delete_order(order_id: str):
 				'customer_name': order.customer_name,
 				'customer_email': order.customer_email,
 				'order_date': order.order_date.strftime('%Y-%m-%d %H:%M:%S'),
-				'status': order.status,
 				'total_items': order.total_items,
 				'total_price_try': order.total_price_try,
 				'shipping_company': order.shipping_company,

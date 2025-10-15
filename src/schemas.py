@@ -115,7 +115,6 @@ class CreateOrderRequest(BaseModel):
 class UpdateOrderRequest(BaseModel):
 	customer_name: Optional[str] = None
 	customer_email: Optional[str] = None
-	status: Optional[str] = None
 	items: Optional[List[APIOrderItem]] = None
 	notes: Optional[str] = None
 
@@ -125,7 +124,6 @@ class OrderResponse(BaseModel):
 	customer_name: str
 	customer_email: str
 	order_date: datetime
-	status: str
 	items: List[APIOrderItem]
 	total_items: int
 	total_price_try: float
