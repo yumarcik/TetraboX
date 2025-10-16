@@ -2,18 +2,35 @@
 """
 Order Packing Analysis Tool
 
-This script shows detailed packing analysis for orders, including:
-- Product categories and compatibility
-- Container assignments
-- Why products were separated
-- Visual representation of packing decisions
+This script analyzes order packing using ML-enhanced algorithms with compatibility constraints.
+It demonstrates how the ML system selects optimal packing strategies and groups products by compatibility.
+
+Usage:
+    python scripts/analyze_order_packing.py --order ORD-12345
+    python scripts/analyze_order_packing.py --list
+    python scripts/analyze_order_packing.py --top 10
+
+Features:
+- ML-based strategy prediction (XGBoost + LightGBM + RandomForest ensemble)
+- Product compatibility analysis with safety constraints
+- Enhanced packing algorithms (greedy, best-fit, large-first, adaptive)
+- Optimized utilization packing with fallback strategies
+- Detailed container utilization reports and cost analysis
+- Real-time ML confidence scoring and strategy selection
 """
 
 import sys
 sys.path.insert(0, '.')
 
 from src.io import load_products_csv, load_containers_csv, load_orders_csv
-from src.safe_packer import pack_order_safely, get_packing_report
+from src.server import try_aggressive_partial_packing
+from src.models import Product, Container, OrderItem
+from src.io import load_products_csv, load_containers_csv
+from src.ml_strategy_selector import strategy_predictor
+from src.packer import (
+    pack_greedy_max_utilization, pack_best_fit, pack_largest_first_optimized,
+    adaptive_strategy_selection, optimized_utilization_packing
+)
 from src.compatibility import CompatibilityChecker
 from typing import Dict, List
 import argparse
@@ -85,7 +102,7 @@ def analyze_order(order_id: str, orders, products_db, containers):
     print(f"Customer: {order.customer_name}")
     print(f"Email: {order.customer_email}")
     print(f"Date: {order.order_date}")
-    print(f"Status: {order.status.upper()}")
+    print(f"Status: PACKED")  # Default status since Order model doesn't have status field
     print(f"Total Items: {order.total_items}")
     print(f"Total Price: {order.total_price_try}₺")
     print()
@@ -179,91 +196,117 @@ def analyze_order(order_id: str, orders, products_db, containers):
     print("\nAttempting to pack order with safety constraints...\n")
     
     try:
-        result = pack_order_safely(order_products, containers)
+        # Try ML-based packing first
+        print("🤖 Using ML-enhanced packing algorithms...")
         
-        if result and result.success:
-            print(f"✅ PACKING SUCCESSFUL!")
+        # Use ML to predict best strategy
+        try:
+            predicted_strategy, confidence, features = strategy_predictor.predict_strategy(order_products, containers)
+            print(f"   ML predicted: {predicted_strategy} (confidence: {confidence:.2f})")
+            
+            if predicted_strategy == 'greedy':
+                result = pack_greedy_max_utilization(order_products, containers)
+                strategy_used = 'enhanced_greedy'
+            elif predicted_strategy == 'best_fit':
+                result = pack_best_fit(order_products, containers)
+                strategy_used = 'enhanced_best_fit'
+            elif predicted_strategy == 'large_first':
+                result = pack_largest_first_optimized(order_products, containers)
+                strategy_used = 'enhanced_large_first'
+            else:
+                result = adaptive_strategy_selection(order_products, containers)
+                strategy_used = 'adaptive'
+                
+        except Exception as e:
+            print(f"   ⚠️  ML prediction failed: {e}, using adaptive strategy")
+            result = adaptive_strategy_selection(order_products, containers)
+            strategy_used = 'adaptive'
+        
+        # Try optimized utilization as fallback
+        if not result:
+            print("   🔄 Trying optimized utilization packing...")
+            result = optimized_utilization_packing(order_products, containers)
+            strategy_used = 'optimized_utilization'
+        
+        if result:
+            print(f"✅ PACKING SUCCESSFUL using {strategy_used} strategy!")
             print(f"\n📊 PACKING SUMMARY:")
-            print(f"   • Containers used: {len(result.packed_containers)}")
-            print(f"   • Compatibility groups: {len(result.compatibility_groups)}")
             
-            if result.warnings:
-                print(f"\n⚠️  WARNINGS ({len(result.warnings)}):")
-                for warning in result.warnings:
-                    print(f"   • {warning}")
-            
-            # Show detailed container breakdown
-            print()
-            print_separator('-')
-            print("📦 CONTAINER BREAKDOWN")
-            print_separator('-')
-            
-            total_cost = 0
-            total_utilization = 0
-            
-            for idx, (container, packed) in enumerate(result.packed_containers, 1):
-                print(f"\n🎁 Container {idx}: {container.box_name or container.box_id}")
-                print(f"   Shipping: {container.shipping_company or 'Unknown'}")
-                print(f"   Dimensions: {container.inner_w_mm}×{container.inner_l_mm}×{container.inner_h_mm}mm")
-                print(f"   Max Weight: {container.max_weight_g}g")
-                print(f"   Price: {container.price_try}₺")
+            # Handle both single container and multi-container results
+            if isinstance(result, list) and len(result) > 0:
+                # Multi-container result
+                print(f"   • Containers used: {len(result)}")
+                print(f"   • Strategy: {strategy_used}")
                 
-                # Calculate utilization
-                container_volume = container.inner_w_mm * container.inner_l_mm * container.inner_h_mm
-                used_volume = sum(p.size_mm[0] * p.size_mm[1] * p.size_mm[2] 
-                                for p in packed.placements)
-                utilization = (used_volume / container_volume * 100) if container_volume > 0 else 0
+                # Show detailed container breakdown
+                print()
+                print_separator('-')
+                print("📦 CONTAINER BREAKDOWN")
+                print_separator('-')
                 
-                print(f"   Utilization: {utilization:.1f}%")
-                print(f"   Items packed: {len(packed.placements)}")
+                total_cost = 0
+                total_utilization = 0
                 
-                # Show items in this container with categories
-                print(f"\n   📦 Items in this container:")
-                container_products = []
-                for placement in packed.placements:
-                    p = products_db.get(placement.sku)
-                    if p:
-                        container_products.append(p)
-                        cat = CompatibilityChecker.get_product_category(p)
-                        cat_icon = {'electronics': '🔋', 'liquids': '💧', 'flammable': '🔥', 
-                                   'corrosive': '⚠️', 'fragile': '🔹', 'general': '📌'}.get(cat.value, '•')
-                        print(f"      {cat_icon} {placement.sku} ({cat.value})")
+                for idx, (container, packed_container) in enumerate(result, 1):
+                    print(f"\n🎁 Container {idx}: {container.box_name or container.box_id}")
+                    print(f"   Shipping: {container.shipping_company or 'Unknown'}")
+                    print(f"   Dimensions: {container.inner_w_mm}×{container.inner_l_mm}×{container.inner_h_mm}mm")
+                    print(f"   Max Weight: {container.max_weight_g}g")
+                    print(f"   Price: {container.price_try}₺")
+                    # Calculate utilization
+                    container_volume = container.inner_w_mm * container.inner_l_mm * container.inner_h_mm
+                    used_volume = sum(p.size_mm[0] * p.size_mm[1] * p.size_mm[2] for p in packed_container.placements)
+                    utilization = (used_volume / container_volume * 100) if container_volume > 0 else 0
+                    print(f"   Utilization: {utilization:.1f}%")
+                    print(f"   Items packed: {len(packed_container.placements)}")
+                    
+                    # Show items in this container with categories
+                    print(f"\n   📦 Items in this container:")
+                    container_products = []
+                    for placement in packed_container.placements:
+                        p = products_db.get(placement.sku)
+                        if p:
+                            container_products.append(p)
+                            cat = CompatibilityChecker.get_product_category(p)
+                            cat_icon = {'electronics': '🔋', 'liquids': '💧', 'flammable': '🔥', 
+                                       'corrosive': '⚠️', 'fragile': '🔹', 'general': '📌'}.get(cat.value, '•')
+                            print(f"      {cat_icon} {placement.sku} ({cat.value})")
+                    
+                    # Show unique categories in container
+                    container_categories = set(CompatibilityChecker.get_product_category(p).value 
+                                              for p in container_products)
+                    print(f"\n   🏷️  Categories in container: {', '.join(sorted(container_categories))}")
+                    
+                    # Verify compatibility
+                    if CompatibilityChecker.can_pack_together(container_products):
+                        print(f"   ✅ All items in this container are compatible")
+                    else:
+                        print(f"   ⚠️  WARNING: Incompatible items detected!")
+                    
+                    total_cost += container.price_try or 0
+                    total_utilization += utilization
                 
-                # Show unique categories in container
-                container_categories = set(CompatibilityChecker.get_product_category(p).value 
-                                          for p in container_products)
-                print(f"\n   🏷️  Categories in container: {', '.join(sorted(container_categories))}")
+                # Final summary
+                print()
+                print_separator('-')
+                print("💰 COST SUMMARY")
+                print_separator('-')
+                print(f"\nTotal shipping cost: {total_cost:.2f}₺")
+                print(f"Average utilization: {total_utilization / len(result):.1f}%")
+                print(f"Containers needed: {len(result)}")
+                print(f"Strategy used: {strategy_used}")
                 
-                # Verify compatibility
-                if CompatibilityChecker.can_pack_together(container_products):
-                    print(f"   ✅ All items in this container are compatible")
-                else:
-                    print(f"   ⚠️  WARNING: Incompatible items detected!")
-                
-                total_cost += container.price_try
-                total_utilization += utilization
-            
-            # Final summary
-            print()
-            print_separator('-')
-            print("💰 COST SUMMARY")
-            print_separator('-')
-            print(f"\nTotal shipping cost: {total_cost:.2f}₺")
-            print(f"Average utilization: {total_utilization / len(result.packed_containers):.1f}%")
-            print(f"Containers needed: {len(result.packed_containers)}")
-            
-            if len(groups) > 1:
-                print(f"\n💡 OPTIMIZATION NOTE:")
-                print(f"   This order required {len(result.packed_containers)} container(s) due to:")
-                if len(incompatible_pairs) > 0:
-                    print(f"   • Product safety constraints ({len(incompatible_pairs)} incompatible pair(s))")
-                print(f"   • {len(groups)} compatibility group(s) identified")
-            
+                if len(groups) > 1:
+                    print(f"\n💡 OPTIMIZATION NOTE:")
+                    print(f"   This order required {len(result)} container(s) due to:")
+                    if len(incompatible_pairs) > 0:
+                        print(f"   • Product safety constraints ({len(incompatible_pairs)} incompatible pair(s))")
+                    print(f"   • {len(groups)} compatibility group(s) identified")
+            else:
+                print("❌ No valid packing result returned")
         else:
-            print("❌ PACKING FAILED")
-            if result and result.warnings:
-                for warning in result.warnings:
-                    print(f"   • {warning}")
+            print("❌ PACKING FAILED - no suitable containers found")
+            print("   Try using different containers or check product dimensions")
     
     except Exception as e:
         print(f"❌ Error during packing: {e}")
@@ -282,10 +325,10 @@ def show_order_list(orders):
     print()
     
     for order in orders[:20]:  # Show first 20
-        status_icon = {'pending': '⏳', 'processing': '🔄', 'packed': '📦', 
-                      'shipped': '🚚', 'completed': '✅', 'cancelled': '❌'}.get(order.status, '•')
+        # Orders don't have status in current model, use a default icon
+        status_icon = '📦'  # Default to packed status
         print(f"{status_icon} {order.order_id:15} | {order.customer_name:30} | "
-              f"{order.total_items:3} items | {order.total_price_try:8.2f}₺ | {order.status}")
+              f"{order.total_items:3} items | {order.total_price_try:8.2f}₺")
     
     if len(orders) > 20:
         print(f"\n... and {len(orders) - 20} more orders")

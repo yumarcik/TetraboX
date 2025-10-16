@@ -1,19 +1,35 @@
 #!/usr/bin/env python3
 """
-Demonstration: Packing with Incompatible Products
+ML-Enhanced Packing Demonstration Script
 
-This script shows how the system handles orders with incompatible product types:
-- Electronics (batteries)
-- Liquids (cosmetics in glass jars)
-- Flammable items
-- General items
+This script demonstrates how TetraboX uses ML-enhanced algorithms to handle 
+product compatibility constraints and automatically separates incompatible 
+products into different containers.
+
+Features demonstrated:
+- ML-based strategy prediction (XGBoost + LightGBM + RandomForest ensemble)
+- Automatic compatibility checking with safety constraints
+- Enhanced packing algorithms (greedy, best-fit, large-first, adaptive)
+- Product category-based separation (electronics, liquids, flammable, general)
+- Optimized utilization packing with fallback strategies
+- Real-time ML confidence scoring and strategy selection
+
+Usage:
+    python scripts/demo_mixed_packing.py
 """
 
 import sys
 sys.path.insert(0, '.')
 
 from src.io import load_products_csv, load_containers_csv
-from src.safe_packer import pack_order_safely
+from src.server import try_aggressive_partial_packing
+from src.models import Product, Container, OrderItem
+from src.io import load_products_csv, load_containers_csv
+from src.ml_strategy_selector import strategy_predictor
+from src.packer import (
+    pack_greedy_max_utilization, pack_best_fit, pack_largest_first_optimized,
+    adaptive_strategy_selection, optimized_utilization_packing
+)
 from src.compatibility import CompatibilityChecker
 
 
@@ -71,30 +87,60 @@ def demo_scenario_1():
     print()
     
     mixed_order = electronics + liquids
-    result = pack_order_safely(mixed_order, containers)
     
-    if result and result.success:
-        print(f"✅ Successfully packed into {len(result.packed_containers)} container(s)")
-        print(f"\n🗂️  {len(result.compatibility_groups)} compatibility group(s) created:")
+    # Use ML-enhanced packing
+    print("🤖 Using ML-enhanced packing algorithms...")
+    try:
+        predicted_strategy, confidence, features = strategy_predictor.predict_strategy(mixed_order, containers)
+        print(f"   ML predicted: {predicted_strategy} (confidence: {confidence:.2f})")
         
-        for i, group in enumerate(result.compatibility_groups, 1):
-            categories = set(CompatibilityChecker.get_product_category(p).value for p in group)
-            print(f"   Group {i}: {', '.join(categories)} ({len(group)} items)")
-        
-        print(f"\n💰 Total cost: {sum(c.price_try for c, _ in result.packed_containers):.2f}₺")
-        
-        # Show each container
-        print(f"\n📦 CONTAINER DETAILS:")
-        for idx, (container, packed) in enumerate(result.packed_containers, 1):
-            print(f"\n   Container {idx}: {container.box_name or container.box_id} ({container.price_try}₺)")
-            products_in_container = []
-            for placement in packed.placements:
-                p = next((prod for prod in mixed_order if prod.sku == placement.sku), None)
-                if p:
-                    products_in_container.append(p)
-                    cat = CompatibilityChecker.get_product_category(p)
-                    icon = '🔋' if cat.value == 'electronics' else '💧' if cat.value == 'liquids' else '📌'
-                    print(f"      {icon} {p.sku} ({cat.value})")
+        if predicted_strategy == 'greedy':
+            result = pack_greedy_max_utilization(mixed_order, containers)
+        elif predicted_strategy == 'best_fit':
+            result = pack_best_fit(mixed_order, containers)
+        elif predicted_strategy == 'large_first':
+            result = pack_largest_first_optimized(mixed_order, containers)
+        else:
+            result = adaptive_strategy_selection(mixed_order, containers)
+            
+    except Exception as e:
+        print(f"   ⚠️  ML prediction failed: {e}, using adaptive strategy")
+        result = adaptive_strategy_selection(mixed_order, containers)
+    
+    # Try optimized utilization as fallback
+    if not result:
+        print("   🔄 Trying optimized utilization packing...")
+        result = optimized_utilization_packing(mixed_order, containers)
+    
+    if result:
+        # Handle both single container and multi-container results
+        if isinstance(result, list) and len(result) > 0:
+            print(f"✅ Successfully packed into {len(result)} container(s)")
+            print(f"\n🗂️  Strategy: ML-enhanced packing")
+            
+            print(f"\n💰 Total cost: {sum(c.price_try or 0 for c, _ in result):.2f}₺")
+            
+            # Show each container
+            print(f"\n📦 CONTAINER DETAILS:")
+            for idx, (container, packed_container) in enumerate(result, 1):
+                print(f"\n   Container {idx}: {container.box_name or container.box_id} ({container.price_try or 0}₺)")
+                # Calculate utilization
+                container_volume = container.inner_w_mm * container.inner_l_mm * container.inner_h_mm
+                used_volume = sum(p.size_mm[0] * p.size_mm[1] * p.size_mm[2] for p in packed_container.placements)
+                utilization = (used_volume / container_volume * 100) if container_volume > 0 else 0
+                print(f"   Utilization: {utilization:.1f}%")
+                products_in_container = []
+                for placement in packed_container.placements:
+                    p = next((prod for prod in mixed_order if prod.sku == placement.sku), None)
+                    if p:
+                        products_in_container.append(p)
+                        cat = CompatibilityChecker.get_product_category(p)
+                        icon = '🔋' if cat.value == 'electronics' else '💧' if cat.value == 'liquids' else '📌'
+                        print(f"      {icon} {p.sku} ({cat.value})")
+        else:
+            print("❌ No valid packing result returned")
+    else:
+        print("❌ Packing failed - no suitable containers found")
     
     print()
 
@@ -146,11 +192,39 @@ def demo_scenario_2():
     print()
     
     mixed_order = flammable + aerosol + general
-    result = pack_order_safely(mixed_order, containers)
     
-    if result and result.success:
-        print(f"✅ Packed into {len(result.packed_containers)} container(s)")
-        print(f"🗂️  {len(result.compatibility_groups)} compatibility group(s)")
+    # Use ML-enhanced packing
+    print("🤖 Using ML-enhanced packing algorithms...")
+    try:
+        predicted_strategy, confidence, features = strategy_predictor.predict_strategy(mixed_order, containers)
+        print(f"   ML predicted: {predicted_strategy} (confidence: {confidence:.2f})")
+        
+        if predicted_strategy == 'greedy':
+            result = pack_greedy_max_utilization(mixed_order, containers)
+        elif predicted_strategy == 'best_fit':
+            result = pack_best_fit(mixed_order, containers)
+        elif predicted_strategy == 'large_first':
+            result = pack_largest_first_optimized(mixed_order, containers)
+        else:
+            result = adaptive_strategy_selection(mixed_order, containers)
+            
+    except Exception as e:
+        print(f"   ⚠️  ML prediction failed: {e}, using adaptive strategy")
+        result = adaptive_strategy_selection(mixed_order, containers)
+    
+    # Try optimized utilization as fallback
+    if not result:
+        print("   🔄 Trying optimized utilization packing...")
+        result = optimized_utilization_packing(mixed_order, containers)
+    
+    if result:
+        if isinstance(result, list) and len(result) > 0:
+            print(f"✅ Packed into {len(result)} container(s)")
+            print(f"🗂️  Strategy: ML-enhanced packing")
+        else:
+            print("❌ No valid packing result returned")
+    else:
+        print("❌ Packing failed - no suitable containers found")
     
     print()
 
@@ -202,27 +276,52 @@ def demo_scenario_3():
     
     # Pack the order
     print("📦 PACKING...")
-    result = pack_order_safely(mixed_order, containers)
     
-    if result and result.success:
-        print(f"\n✅ SUCCESS!")
-        print(f"   Containers: {len(result.packed_containers)}")
-        print(f"   Total cost: {sum(c.price_try for c, _ in result.packed_containers):.2f}₺")
+    # Use ML-enhanced packing
+    print("🤖 Using ML-enhanced packing algorithms...")
+    try:
+        predicted_strategy, confidence, features = strategy_predictor.predict_strategy(mixed_order, containers)
+        print(f"   ML predicted: {predicted_strategy} (confidence: {confidence:.2f})")
         
-        # Calculate average utilization
-        total_util = 0
-        for container, packed in result.packed_containers:
-            container_vol = container.inner_w_mm * container.inner_l_mm * container.inner_h_mm
-            used_vol = sum(p.size_mm[0] * p.size_mm[1] * p.size_mm[2] for p in packed.placements)
-            total_util += (used_vol / container_vol * 100) if container_vol > 0 else 0
-        
-        avg_util = total_util / len(result.packed_containers)
-        print(f"   Avg utilization: {avg_util:.1f}%")
-        
-        if result.warnings:
-            print(f"\n⚠️  WARNINGS:")
-            for warning in result.warnings:
-                print(f"   • {warning}")
+        if predicted_strategy == 'greedy':
+            result = pack_greedy_max_utilization(mixed_order, containers)
+        elif predicted_strategy == 'best_fit':
+            result = pack_best_fit(mixed_order, containers)
+        elif predicted_strategy == 'large_first':
+            result = pack_largest_first_optimized(mixed_order, containers)
+        else:
+            result = adaptive_strategy_selection(mixed_order, containers)
+            
+    except Exception as e:
+        print(f"   ⚠️  ML prediction failed: {e}, using adaptive strategy")
+        result = adaptive_strategy_selection(mixed_order, containers)
+    
+    # Try optimized utilization as fallback
+    if not result:
+        print("   🔄 Trying optimized utilization packing...")
+        result = optimized_utilization_packing(mixed_order, containers)
+    
+    if result:
+        if isinstance(result, list) and len(result) > 0:
+            print(f"\n✅ SUCCESS!")
+            print(f"   Containers: {len(result)}")
+            print(f"   Strategy: ML-enhanced packing")
+            print(f"   Total cost: {sum(c.price_try or 0 for c, _ in result):.2f}₺")
+            
+            # Calculate average utilization
+            total_util = 0
+            for container, packed_container in result:
+                container_volume = container.inner_w_mm * container.inner_l_mm * container.inner_h_mm
+                used_volume = sum(p.size_mm[0] * p.size_mm[1] * p.size_mm[2] for p in packed_container.placements)
+                utilization = (used_volume / container_volume * 100) if container_volume > 0 else 0
+                total_util += utilization
+            
+            avg_util = total_util / len(result)
+            print(f"   Avg utilization: {avg_util:.1f}%")
+        else:
+            print("❌ No valid packing result returned")
+    else:
+        print("❌ Packing failed - no suitable containers found")
     
     print()
 

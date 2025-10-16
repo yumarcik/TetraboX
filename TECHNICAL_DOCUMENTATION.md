@@ -39,12 +39,12 @@
 ```
 
 ### **Technology Stack**
-- **Backend**: Python 3.9+, FastAPI, Uvicorn
-- **ML/AI**: XGBoost, Scikit-learn, NumPy, Pandas
-- **Frontend**: Vanilla JavaScript, HTML5 Canvas, CSS3
-- **Data**: CSV files, Pandas DataFrames
-- **Algorithms**: Custom 3D bin packing, heuristic optimization
-- **Visualization**: Custom 3D rendering engine, WebGL-like projections
+- **Backend**: Python 3.11+, FastAPI, Uvicorn
+- **ML/AI**: XGBoost, LightGBM, RandomForest, Scikit-learn, NumPy, Pandas
+- **Frontend**: Vanilla JavaScript, HTML5 Canvas, CSS3, Glassmorphism Design
+- **Data**: CSV files, Pandas DataFrames, Smart Caching
+- **Algorithms**: Advanced 3D bin packing, Genetic algorithms, Multi-objective optimization
+- **Visualization**: Custom 3D rendering engine, WebGL-like projections, High-DPI support
 
 ---
 
@@ -115,13 +115,13 @@ def try_aggressive_partial_packing(products, containers)
 ### **Data Flow Architecture**
 
 ```
-Order Request → Product Expansion → ML Strategy Selection → Packing Algorithm → Result Optimization → Response
+Order Request → Product Expansion → ML Strategy Selection → Enhanced Packing → Result Optimization → Response
      │               │                      │                    │                  │              │
      ▼               ▼                      ▼                    ▼                  ▼              ▼
 ┌─────────┐   ┌─────────────┐   ┌─────────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
 │ Order   │   │ Individual  │   │ Feature         │   │ Selected    │   │ Packed      │   │ JSON        │
 │ Items   │   │ Products    │   │ Engineering     │   │ Algorithm   │   │ Containers  │   │ Response    │
-│ + Qty   │   │ (expanded)  │   │ (19 features)   │   │ Execution   │   │ + Stats     │   │ + 3D Data   │
+│ + Qty   │   │ (expanded)  │   │ (34 features)   │   │ Execution   │   │ + Stats     │   │ + 3D Data   │
 └─────────┘   └─────────────┘   └─────────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
 ```
 
@@ -133,7 +133,7 @@ Order Request → Product Expansion → ML Strategy Selection → Packing Algori
 
 #### **Feature Engineering Pipeline**
 ```python
-# 19 Enhanced Features:
+# 34 Enhanced Features (FAST ML Implementation):
 features = {
     # Order Characteristics (7 features)
     'total_items': int,
@@ -144,7 +144,7 @@ features = {
     'volume_std': float,
     'size_diversity': max_volume / min_volume,
     
-    # Container Relationship (4 features) - YOUR ENHANCED FEATURES
+    # Container Relationship (4 features)
     'utilization_potential': total_volume / max_container_volume,
     'weight_ratio': total_weight / max_container_weight,
     'fragility_ratio': fragile_count / total_items,
@@ -160,35 +160,88 @@ features = {
     'stackability_score': flat_base_items / total_items,
     'container_fit_count': number of viable containers,
     'min_containers_needed': ceil(utilization_potential),
-    'weight_to_volume_ratio': weight / volume density
+    'weight_to_volume_ratio': weight / volume density,
+    
+    # NEW: Spatial Intelligence Features (8 features)
+    'container_volume_ratio': spatial intelligence scoring,
+    'packing_efficiency_estimate': ML-based efficiency prediction,
+    'dimensional_harmony_score': shape compatibility analysis,
+    'corner_utilization_potential': corner space optimization,
+    'void_space_minimization': gap filling potential,
+    'aspect_ratio_consistency': dimensional harmony,
+    'size_distribution_entropy': size diversity measure,
+    'stacking_compatibility_index': safe stacking analysis,
+    
+    # NEW: Advanced Optimization Features (7 features)
+    'rotation_optimization_score': orientation efficiency,
+    'load_balancing_index': weight distribution optimization,
+    'container_flexibility_score': container selection options,
+    'price_per_volume_efficiency': cost optimization,
+    'container_utilization_variance': consistency measure,
+    'optimal_container_count': ML-predicted container needs,
+    'multi_container_cost_benefit': multi-container analysis
 }
 ```
 
 #### **Model Architecture**
 ```python
-# XGBoost Classifier Configuration
-model = xgb.XGBClassifier(
-    n_estimators=100,      # 100 decision trees
-    max_depth=6,           # Tree depth for complexity control
-    learning_rate=0.1,     # Conservative learning rate
-    random_state=42,       # Reproducible results
-    eval_metric='mlogloss' # Multi-class log loss
-)
+# Ensemble Model Configuration (FAST ML)
+ensemble_models = {
+    'xgboost': xgb.XGBClassifier(
+        n_estimators=100,      # 100 decision trees
+        max_depth=6,           # Tree depth for complexity control
+        learning_rate=0.1,     # Conservative learning rate
+        random_state=42,       # Reproducible results
+        eval_metric='mlogloss' # Multi-class log loss
+    ),
+    'lightgbm': lgb.LGBMClassifier(
+        n_estimators=100,
+        max_depth=6,
+        learning_rate=0.1,
+        random_state=42,
+        verbose=-1
+    ),
+    'randomforest': RandomForestClassifier(
+        n_estimators=100,
+        max_depth=10,
+        class_weight='balanced',  # Handle class imbalance
+        random_state=42
+    )
+}
 
-# Fallback: RandomForest if XGBoost unavailable
-model = RandomForestClassifier(
-    n_estimators=100,
-    max_depth=10,
-    class_weight='balanced'  # Handle class imbalance
-)
+# Ensemble weights for prediction
+ensemble_weights = {
+    'xgboost': 0.5,      # Primary model (50%)
+    'lightgbm': 0.3,     # Secondary model (30%)
+    'randomforest': 0.2  # Fallback model (20%)
+}
+
+# Smart Caching Configuration
+cache_config = {
+    'feature_cache_size': 1000,    # Cache 1000 feature extractions
+    'prediction_cache_size': 500,  # Cache 500 predictions
+    'cache_ttl': 3600             # 1 hour cache expiration
+}
 ```
 
 #### **Strategy Mapping**
 ```python
 strategies = {
-    'greedy': pack_greedy_max_utilization,      # Max utilization per container
-    'best_fit': pack_best_fit,                  # Minimize waste, handle fragile
-    'large_first': pack_largest_first_optimized, # Complex size distributions  
+    # Core Enhanced Strategies
+    'greedy': pack_greedy_max_utilization,      # Enhanced greedy with volume-density weighting
+    'best_fit': pack_best_fit,                  # Enhanced best-fit with shape compatibility
+    'large_first': pack_largest_first_optimized, # Enhanced large-first optimization
+    
+    # Advanced Strategies (Phase 1-3)
+    'adaptive': adaptive_strategy_selection,    # Context-aware strategy selection
+    'genetic': genetic_algorithm_packing,       # Evolutionary optimization
+    'multi_objective': multi_objective_packing, # Multi-goal optimization
+    'ensemble': ensemble_packing,               # Multiple strategy combination
+    
+    # Utilization Optimization
+    'optimized_utilization': optimized_utilization_packing, # High utilization focus
+    
+    # Fallback Strategy
     'aggressive': try_aggressive_partial_packing # Multi-container fallback
 }
 ```
@@ -898,9 +951,10 @@ Content-Type: application/json
 ```json
 {
   "order_id": "ORD-12345",
-  "predicted_strategy": "greedy",
+  "predicted_strategy": "enhanced_greedy",
   "confidence": 0.847,
   "model_available": true,
+  "ensemble_used": true,
   "total_items": 7,
   "unique_skus": 2,
   "features": {
@@ -909,15 +963,20 @@ Content-Type: application/json
     "weight_ratio": 0.234,
     "fragility_ratio": 0.0,
     "hazmat_flag": 0.0,
-    "size_diversity": 2.34
+    "size_diversity": 2.34,
+    "container_volume_ratio": 0.85,
+    "packing_efficiency_estimate": 0.78,
+    "dimensional_harmony_score": 0.92
   },
   "feature_importance": {
     "utilization_potential": 0.234,
     "weight_ratio": 0.187,
     "total_items": 0.156,
-    "fragility_ratio": 0.123
+    "fragility_ratio": 0.123,
+    "container_volume_ratio": 0.098,
+    "packing_efficiency_estimate": 0.087
   },
-  "recommendation_reason": "Greedy strategy recommended for efficient single-container packing due to: high utilization potential"
+  "recommendation_reason": "Enhanced Greedy strategy recommended for efficient single-container packing due to: high utilization potential and dimensional harmony"
 }
 ```
 
@@ -930,18 +989,25 @@ POST /ml/train?sample_size=200
 ```json
 {
   "success": true,
-  "message": "ML model trained successfully",
+  "message": "ML ensemble model trained successfully",
   "training_samples": 200,
-  "feature_count": 19,
-  "strategies": ["greedy", "best_fit", "large_first", "aggressive"],
+  "feature_count": 34,
+  "strategies": ["enhanced_greedy", "enhanced_best_fit", "large_first", "adaptive", "genetic", "ensemble"],
+  "ensemble_models": ["xgboost", "lightgbm", "randomforest"],
   "feature_importance": {
     "utilization_potential": 0.234,
     "weight_ratio": 0.187,
     "total_items": 0.156,
     "fragility_ratio": 0.123,
-    "size_diversity": 0.098
+    "container_volume_ratio": 0.098,
+    "packing_efficiency_estimate": 0.087,
+    "dimensional_harmony_score": 0.076
   },
-  "model_path": "models/strategy_selector.pkl"
+  "model_path": "models/strategy_selector_ensemble.pkl",
+  "cache_stats": {
+    "cache_hits": 0,
+    "cache_misses": 0
+  }
 }
 ```
 
@@ -954,17 +1020,26 @@ GET /ml/status
 ```json
 {
   "model_available": true,
-  "model_path": "models/strategy_selector.pkl",
-  "model_type": "XGBClassifier",
-  "feature_count": 19,
-  "strategies": ["greedy", "best_fit", "large_first", "aggressive"],
+  "model_path": "models/strategy_selector_ensemble.pkl",
+  "model_type": "Ensemble (XGBoost + LightGBM + RandomForest)",
+  "feature_count": 34,
+  "strategies": ["enhanced_greedy", "enhanced_best_fit", "large_first", "adaptive", "genetic", "ensemble"],
+  "ensemble_models": ["xgboost", "lightgbm", "randomforest"],
   "feature_names": [
     "total_items", "unique_skus", "total_volume_cm3",
-    "utilization_potential", "weight_ratio", "fragility_ratio"
+    "utilization_potential", "weight_ratio", "fragility_ratio",
+    "container_volume_ratio", "packing_efficiency_estimate", "dimensional_harmony_score"
   ],
   "feature_importance": {
     "utilization_potential": 0.234,
-    "weight_ratio": 0.187
+    "weight_ratio": 0.187,
+    "container_volume_ratio": 0.098,
+    "packing_efficiency_estimate": 0.087
+  },
+  "cache_stats": {
+    "cache_hits": 45,
+    "cache_misses": 12,
+    "hit_rate": 0.789
   }
 }
 ```
@@ -1162,7 +1237,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Required dependencies
-pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib
+pip install fastapi uvicorn pandas numpy scikit-learn xgboost lightgbm joblib
 
 # Run development server
 python main.py
@@ -1239,6 +1314,7 @@ pandas==2.1.3
 numpy==1.24.3
 scikit-learn==1.3.2
 xgboost==2.0.2
+lightgbm==4.0.0
 joblib==1.3.2
 pydantic==2.5.0
 python-multipart==0.0.6
@@ -1255,7 +1331,9 @@ def health_check():
         "timestamp": datetime.now().isoformat(),
         "version": "1.0.0",
         "ml_model_available": strategy_predictor.model is not None,
-        "features_count": len(strategy_predictor.feature_names)
+        "ensemble_available": len(strategy_predictor.ensemble_models) > 0,
+        "features_count": len(strategy_predictor.feature_names),
+        "cache_hit_rate": strategy_predictor.get_cache_stats()["hit_rate"]
     }
 ```
 

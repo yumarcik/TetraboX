@@ -1,5 +1,18 @@
+# Core FastAPI dependencies
 fastapi>=0.112
 uvicorn[standard]>=0.30
 pydantic>=2.7
+
+# Data processing
 pandas>=2.2
-numpy>=1.26 
+numpy>=1.26
+
+# 🚀 FAST ML: Enhanced machine learning libraries
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+lightgbm>=4.0.0
+joblib>=1.3.0
+
+# Optional advanced ML (install as needed)
+# catboost>=1.2.0
+# optuna>=3.4.0 

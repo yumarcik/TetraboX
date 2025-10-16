@@ -204,17 +204,23 @@ SHIRT-001,30,20,5,0.2,false,poly_bag,
 
 ## 🎯 ML Strategy Selection
 
-The ML model can still select optimal packing strategies, but now it works **within** compatibility constraints:
+The advanced ML system (XGBoost + LightGBM + RandomForest ensemble) works seamlessly **within** compatibility constraints:
 
 1. Products are first grouped by compatibility
-2. ML predicts best strategy for each group
-3. Each group is packed separately
-4. Results are combined for final solution
+2. ML extracts 34 engineered features for each group
+3. Ensemble model predicts optimal strategy for each group
+4. Each group is packed using the recommended algorithm
+5. Results are combined for final solution
 
-**ML Features Enhanced:**
+**Enhanced ML Features for Compatibility:**
 - `fragility_ratio` - Percentage of fragile items
 - `hazmat_flag` - Presence of hazardous materials
 - `category_diversity` - Number of different product categories
+- `container_volume_ratio` - Spatial intelligence for compatible groups
+- `packing_efficiency_estimate` - Estimated efficiency per compatibility group
+- `dimensional_harmony_score` - Shape compatibility within safe groups
+- `stacking_compatibility_index` - Safe stacking potential
+- `container_flexibility_score` - Container options for each group
 
 ## 🔍 Validation & Safety Checks
 
@@ -296,6 +302,6 @@ HAZMAT_CATEGORY_MAP = {
 
 ---
 
-**Last Updated:** October 2025  
-**Version:** 1.0.0
+**Last Updated:** October 2024  
+**Version:** 2.0.0 (Enhanced with 34-feature ML system)
 

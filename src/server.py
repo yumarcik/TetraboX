@@ -4,7 +4,9 @@ from typing import List, Optional, Tuple, Dict
 from .schemas import PackRequest, PackResponse, Placement, OrderPackRequest, OrderPackResponse, ContainerResult, CreateOrderRequest, UpdateOrderRequest, OrderResponse, OrderListResponse, APIOrderItem
 from .models import Product, Container, Order, OrderItem, PackedContainer
 from .io import load_products_csv, load_containers_csv, load_orders_csv, save_order_to_csv
-from .packer import pack, find_optimal_multi_packing, pack_greedy_max_utilization, pack_best_fit, pack_largest_first_optimized
+from .packer import (pack, find_optimal_multi_packing, pack_greedy_max_utilization, pack_best_fit, 
+                    pack_largest_first_optimized, adaptive_strategy_selection, genetic_algorithm_packing,
+                    multi_objective_packing, ensemble_packing, optimized_utilization_packing)
 from .ml_strategy_selector import strategy_predictor
 from datetime import datetime
 import uuid
@@ -3091,52 +3093,78 @@ def pack_order_endpoint(req: OrderPackRequest) -> OrderPackResponse:
 		predicted_strategy, confidence, features = strategy_predictor.predict_strategy(products, containers)
 		print(f"🤖 ML Prediction: {predicted_strategy} (confidence: {confidence:.2f})")
 		
-		# Try the ML-recommended strategy first
+		# 🚀 ENHANCED: Try the ML-recommended strategy with enhanced implementations
 		packing_result = None
 		if predicted_strategy == 'greedy':
+			print("🎯 Using Enhanced Greedy Strategy")
 			packing_result = pack_greedy_max_utilization(products, containers)
 		elif predicted_strategy == 'best_fit':
+			print("🎯 Using Enhanced Best-Fit Strategy")
 			packing_result = pack_best_fit(products, containers)
 		elif predicted_strategy == 'large_first':
+			print("🎯 Using Enhanced Large-First Strategy")
 			packing_result = pack_largest_first_optimized(products, containers)
 		elif predicted_strategy == 'aggressive':
 			packing_result = try_aggressive_partial_packing(products, containers)
 		
-		# If ML strategy fails or confidence is low, fallback to optimal multi-packing
+		# 🚀 ENHANCED: If ML strategy fails or confidence is low, use adaptive strategy selection
 		if not packing_result or confidence < 0.5:
 			if not packing_result:
-				print(f"🔄 ML strategy '{predicted_strategy}' failed to pack items, falling back to optimal multi-packing")
+				print(f"🔄 ML strategy '{predicted_strategy}' failed to pack items, using adaptive strategy selection")
 			else:
-				print(f"🔄 ML strategy has low confidence ({confidence:.2f} < 0.5), falling back to optimal multi-packing")
-			packing_result = find_optimal_multi_packing(products, containers)
+				print(f"🔄 ML strategy has low confidence ({confidence:.2f} < 0.5), using adaptive strategy selection")
+			
+			# Use our enhanced adaptive strategy selection
+			packing_result = adaptive_strategy_selection(products, containers)
 			
 	except Exception as e:
-		print(f"⚠️ ML prediction failed: {e}, using default strategy")
-		# Fallback to original logic
-		packing_result = find_optimal_multi_packing(products, containers)
+		print(f"⚠️ ML prediction failed: {e}, using adaptive strategy selection")
+		# 🚀 ENHANCED: Use adaptive strategy selection as fallback
+		packing_result = adaptive_strategy_selection(products, containers)
 	
 	if not packing_result:
-		# Calculate order characteristics
-		total_volume = sum(p.width_mm * p.length_mm * p.height_mm for p in products) / 1000.0  # cm³
-		largest_container = max(containers, key=lambda c: c.inner_w_mm * c.inner_l_mm * c.inner_h_mm) if containers else None
-		available_volume = largest_container.inner_w_mm * largest_container.inner_l_mm * largest_container.inner_h_mm / 1000.0 if largest_container else 0
-		utilization_ratio = total_volume / available_volume if available_volume > 0 else float('inf')
+		# 🚀 ENHANCED: Try our enhanced strategies as fallback
+		print("🔄 No packing result, trying enhanced strategies...")
 		
-		# Try aggressive partial packing as last resort for:
-		# 1. Orders larger than single container
-		# 2. Orders with many items (>10)
-		# 3. Orders with high utilization (>70%) that failed regular packing
-		should_try_aggressive = (
-			total_volume > available_volume or 
-			len(products) > 10 or 
-			utilization_ratio > 0.7
-		)
+		# Try optimized utilization packing first
+		print("🎯 Trying optimized utilization packing...")
+		packing_result = optimized_utilization_packing(products, containers)
 		
-		if should_try_aggressive:
-			print(f"🔄 Trying aggressive partial packing (items: {len(products)}, volume: {total_volume:.1f}cm³, util: {utilization_ratio*100:.1f}%)")
-			partial_result = try_aggressive_partial_packing(products, containers)
-			if partial_result:
-				packing_result = partial_result
+		# If no result, try ensemble strategy
+		if not packing_result:
+			print("🔄 Trying ensemble strategy...")
+			packing_result = ensemble_packing(products, containers)
+		
+		# If still no result, try genetic algorithm (temporarily disabled due to issues)
+		if not packing_result:
+			print("🔄 Genetic algorithm temporarily disabled, trying intelligent multi-container...")
+			packing_result = find_optimal_multi_packing(products, containers)
+		
+		# If still no result, try intelligent multi-container packing
+		if not packing_result:
+			print("🔄 Trying intelligent multi-container packing...")
+			packing_result = find_optimal_multi_packing(products, containers)
+		
+		# Last resort: aggressive partial packing
+		if not packing_result:
+			# Calculate order characteristics
+			total_volume = sum(p.width_mm * p.length_mm * p.height_mm for p in products) / 1000.0  # cm³
+			largest_container = max(containers, key=lambda c: c.inner_w_mm * c.inner_l_mm * c.inner_h_mm) if containers else None
+			available_volume = largest_container.inner_w_mm * largest_container.inner_l_mm * largest_container.inner_h_mm / 1000.0 if largest_container else 0
+			utilization_ratio = total_volume / available_volume if available_volume > 0 else float('inf')
+			
+			# Try aggressive partial packing as last resort
+			should_try_aggressive = (
+				total_volume > available_volume or 
+				len(products) > 10 or 
+				utilization_ratio > 0.7
+			)
+			
+			if should_try_aggressive:
+				print(f"🔄 Trying aggressive partial packing (items: {len(products)}, volume: {total_volume:.1f}cm³, util: {utilization_ratio*100:.1f}%)")
+				partial_result = try_aggressive_partial_packing(products, containers)
+				if partial_result:
+					packing_result = partial_result
 			else:
 				# Provide helpful error information
 				largest_item_dims = max(products, key=lambda p: max(p.width_mm, p.length_mm, p.height_mm))
@@ -3710,6 +3738,43 @@ def get_ml_status():
 		print(f"❌ ML status error: {e}")
 		traceback.print_exc()
 		raise HTTPException(status_code=500, detail=f"ML status check failed: {str(e)}")
+
+@app.get("/ml/performance")
+async def get_ml_performance():
+	"""🚀 FAST ML: Get ML performance statistics and cache stats"""
+	try:
+		cache_stats = strategy_predictor.get_cache_stats()
+		feature_importance = strategy_predictor.get_feature_importance()
+		
+		# Convert numpy types to Python native types for JSON serialization
+		def convert_numpy_types(obj):
+			if hasattr(obj, 'item'):  # numpy scalar
+				return obj.item()
+			elif isinstance(obj, dict):
+				return {k: convert_numpy_types(v) for k, v in obj.items()}
+			elif isinstance(obj, list):
+				return [convert_numpy_types(v) for v in obj]
+			else:
+				return obj
+		
+		cache_stats = convert_numpy_types(cache_stats)
+		feature_importance = convert_numpy_types(feature_importance)
+		
+		return {
+			"success": True,
+			"performance_stats": {
+				"cache_performance": cache_stats,
+				"feature_count": len(strategy_predictor.feature_names),
+				"model_available": strategy_predictor.model is not None,
+				"ensemble_models": len(strategy_predictor.ensemble_models) if hasattr(strategy_predictor, 'ensemble_models') else 0,
+				"top_features": dict(list(feature_importance.items())[:5]) if feature_importance else {},
+			},
+			"feature_names": strategy_predictor.feature_names,
+			"strategies": strategy_predictor.strategies,
+		}
+	except Exception as e:
+		print(f"❌ ML performance error: {e}")
+		raise HTTPException(status_code=500, detail=f"ML performance check failed: {str(e)}")
 
 
 def _get_strategy_explanation(strategy: str, features: Dict[str, float]) -> str:
