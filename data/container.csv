@@ -60,21 +60,21 @@ Air Cushion Film Roll Tip-1 (Small Cells),19.0,40.0,,8.0,PTT,,50,58,True,,Roll,
 Air Cushion Film Roll Tip-2 (Medium Cells),15.0,40.0,,16.0,PTT,,50,59,True,,Roll,
 Air Cushion Film Roll Tip-3 (Large Single Cell),13.0,20.0,,16.0,PTT,,50,60,True,,Roll,
 Turpex Envelope,23.0,32.0,,4.0,PTT,,50,61,True,,Envelope,
-Turpex Cardboard Box No.1,10.0,15.0,20.0,0.0,PTT,,50,62,False,3000.0,Box,5.0
-Turpex Cardboard Box No.2,12.0,21.0,26.0,0.0,PTT,,50,63,False,6552.0,Box,5.0
-Turpex Cardboard Box No.3,10.0,33.0,34.0,0.0,PTT,,50,64,False,11220.0,Box,10.0
-Turpex Cardboard Box No.4,18.0,32.0,34.0,0.0,PTT,,50,65,False,19584.0,Box,10.0
-Turpex Cardboard Box No.5,34.0,32.0,34.0,0.0,PTT,,50,66,False,36992.0,Box,20.0
+Turpex Cardboard Box No.1,10.0,15.0,20.0,12.0,PTT,,50,62,False,3000.0,Box,5.0
+Turpex Cardboard Box No.2,12.0,21.0,26.0,18.0,PTT,,50,63,False,6552.0,Box,5.0
+Turpex Cardboard Box No.3,10.0,33.0,34.0,24.0,PTT,,50,64,False,11220.0,Box,10.0
+Turpex Cardboard Box No.4,18.0,32.0,34.0,48.0,PTT,,50,65,False,19584.0,Box,10.0
+Turpex Cardboard Box No.5,34.0,32.0,34.0,68.0,PTT,,50,66,False,36992.0,Box,20.0
 International Small Package Envelope No.2,,,,0.8,PTT,,50,67,True,,Envelope,
 International Small Package Envelope No.3,,,,1.0,PTT,,50,68,True,,Envelope,
 Security Bag No.1,19.0,26.0,,8.0,PTT,,50,69,True,,Bag,
 Security Bag No.2,24.0,33.0,,8.5,PTT,,50,70,True,,Bag,
 Security Bag No.3,29.0,35.0,,10.0,PTT,,50,71,True,,Bag,
 Security Bag No.4,32.0,45.0,,13.0,PTT,,50,72,True,,Bag,
-Plastic Shipping Envelope No.1,16.0,23.0,,0.0,PTT,,50,73,True,,Envelope,
-Plastic Shipping Envelope No.2,23.0,32.0,,0.0,PTT,,50,74,True,,Envelope,
-Plastic Shipping Envelope No.3,27.0,37.0,,0.0,PTT,,50,75,True,,Envelope,
-Plastic Shipping Envelope No.4,32.0,45.0,,0.0,PTT,,50,76,True,,Envelope,
+Plastic Shipping Envelope No.1,16.0,23.0,,2.5,PTT,,50,73,True,,Envelope,
+Plastic Shipping Envelope No.2,23.0,32.0,,3.0,PTT,,50,74,True,,Envelope,
+Plastic Shipping Envelope No.3,27.0,37.0,,4.5,PTT,,50,75,True,,Envelope,
+Plastic Shipping Envelope No.4,32.0,45.0,,6.0,PTT,,50,76,True,,Envelope,
 Plastic Shipping Envelope No.5,45.0,64.0,,11.5,PTT,,50,77,True,,Envelope,
 Plastic Shipping Envelope No.6,100.0,130.0,,78.5,PTT,,50,78,True,,Envelope,
 Tyvek Envelope Small,16.0,23.0,,17.5,PTT,,50,79,True,,Envelope,
@@ -105,3 +105,76 @@ MegaBox,40.0,40.0,38.0,127.15,Aras,,50,103,False,60800.0,Box,20.0
 MiniPop,21.0,29.0,,64.35,Aras,,50,104,True,,Other,
 MidiPop,29.0,37.0,,78.72,Aras,,50,105,True,,Other,
 MaxiPop,32.0,44.0,,98.08,Aras,,50,106,True,,Box,
+# UPS Standard Boxes
+UPS Small Box,25.0,20.0,15.0,18.50,UPS,,100,107,False,7500.0,Box,10.0
+UPS Medium Box,30.0,25.0,20.0,24.75,UPS,,100,108,False,15000.0,Box,15.0
+UPS Large Box,40.0,30.0,25.0,35.20,UPS,,100,109,False,30000.0,Box,20.0
+UPS Extra Large Box,50.0,40.0,30.0,48.90,UPS,,100,110,False,60000.0,Box,25.0
+UPS Tube,10.0,10.0,100.0,22.30,UPS,,100,111,False,10000.0,Tube,5.0
+# FedEx Standard Boxes
+FedEx Small Box,22.0,18.0,12.0,16.80,FedEx,,100,112,False,4752.0,Box,8.0
+FedEx Medium Box,28.0,22.0,18.0,23.40,FedEx,,100,113,False,11088.0,Box,12.0
+FedEx Large Box,35.0,28.0,22.0,32.60,FedEx,,100,114,False,21560.0,Box,18.0
+FedEx Extra Large Box,45.0,35.0,28.0,45.80,FedEx,,100,115,False,44100.0,Box,22.0
+# DHL Express Boxes
+DHL Small Box,20.0,15.0,10.0,14.20,DHL,,100,116,False,3000.0,Box,5.0
+DHL Medium Box,25.0,20.0,15.0,19.80,DHL,,100,117,False,7500.0,Box,8.0
+DHL Large Box,35.0,25.0,20.0,28.40,DHL,,100,118,False,17500.0,Box,15.0
+DHL Extra Large Box,45.0,35.0,25.0,42.60,DHL,,100,119,False,39375.0,Box,20.0
+# Amazon FBA Boxes
+Amazon Small Box,18.0,14.0,8.0,12.50,Amazon,,100,120,False,2016.0,Box,3.0
+Amazon Medium Box,24.0,18.0,12.0,18.90,Amazon,,100,121,False,5184.0,Box,5.0
+Amazon Large Box,30.0,24.0,18.0,26.40,Amazon,,100,122,False,12960.0,Box,8.0
+Amazon Extra Large Box,40.0,30.0,24.0,38.70,Amazon,,100,123,False,28800.0,Box,12.0
+# International Shipping Boxes
+International Small,15.0,12.0,8.0,22.80,International,,50,124,False,1440.0,Box,2.0
+International Medium,25.0,18.0,12.0,35.40,International,,50,125,False,5400.0,Box,5.0
+International Large,35.0,25.0,18.0,52.60,International,,50,126,False,15750.0,Box,8.0
+International Extra Large,45.0,35.0,25.0,78.90,International,,50,127,False,39375.0,Box,12.0
+# Specialty Boxes
+Electronics Box,30.0,25.0,15.0,28.50,Specialty,,50,128,False,11250.0,Box,10.0
+Jewelry Box,12.0,8.0,5.0,8.90,Specialty,,100,129,False,480.0,Box,1.0
+Wine Box,35.0,25.0,30.0,45.20,Specialty,,30,130,False,26250.0,Box,15.0
+Shoe Box,35.0,25.0,12.0,18.60,Specialty,,50,131,False,10500.0,Box,5.0
+# Bubble Mailers and Envelopes
+Bubble Mailer Small,20.0,15.0,,3.50,Envelope,,200,132,True,,Envelope,
+Bubble Mailer Medium,25.0,20.0,,4.80,Envelope,,200,133,True,,Envelope,
+Bubble Mailer Large,30.0,25.0,,6.20,Envelope,,200,134,True,,Envelope,
+Bubble Mailer Extra Large,40.0,30.0,,8.90,Envelope,,200,135,True,,Envelope,
+# Padded Envelopes
+Padded Envelope Small,15.0,12.0,,2.20,Envelope,,300,136,True,,Envelope,
+Padded Envelope Medium,20.0,15.0,,3.10,Envelope,,300,137,True,,Envelope,
+Padded Envelope Large,25.0,20.0,,4.50,Envelope,,300,138,True,,Envelope,
+Padded Envelope Extra Large,35.0,25.0,,6.80,Envelope,,300,139,True,,Envelope,
+# Tyvek Envelopes
+Tyvek Small,18.0,13.0,,4.20,Tyvek,,100,140,True,,Envelope,
+Tyvek Medium,23.0,18.0,,5.80,Tyvek,,100,141,True,,Envelope,
+Tyvek Large,28.0,23.0,,7.40,Tyvek,,100,142,True,,Envelope,
+Tyvek Extra Large,38.0,28.0,,10.60,Tyvek,,100,143,True,,Envelope,
+# Corrugated Boxes (Standard Sizes)
+Corrugated Box 1,15.0,12.0,8.0,8.50,Corrugated,,100,144,False,1440.0,Box,3.0
+Corrugated Box 2,20.0,15.0,10.0,12.80,Corrugated,,100,145,False,3000.0,Box,5.0
+Corrugated Box 3,25.0,20.0,15.0,18.40,Corrugated,,100,146,False,7500.0,Box,8.0
+Corrugated Box 4,30.0,25.0,20.0,25.60,Corrugated,,100,147,False,15000.0,Box,12.0
+Corrugated Box 5,40.0,30.0,25.0,38.90,Corrugated,,100,148,False,30000.0,Box,18.0
+Corrugated Box 6,50.0,40.0,30.0,58.20,Corrugated,,100,149,False,60000.0,Box,25.0
+# Heavy Duty Boxes
+Heavy Duty Small,20.0,15.0,10.0,15.60,Heavy Duty,,50,150,False,3000.0,Box,10.0
+Heavy Duty Medium,30.0,25.0,15.0,28.40,Heavy Duty,,50,151,False,11250.0,Box,20.0
+Heavy Duty Large,40.0,30.0,25.0,45.80,Heavy Duty,,50,152,False,30000.0,Box,30.0
+Heavy Duty Extra Large,50.0,40.0,35.0,68.90,Heavy Duty,,50,153,False,70000.0,Box,40.0
+# Flat Rate Boxes
+Flat Rate Small,20.0,15.0,8.0,12.00,Flat Rate,,100,154,False,2400.0,Box,5.0
+Flat Rate Medium,25.0,20.0,12.0,18.00,Flat Rate,,100,155,False,6000.0,Box,8.0
+Flat Rate Large,30.0,25.0,18.0,28.00,Flat Rate,,100,156,False,13500.0,Box,12.0
+Flat Rate Extra Large,40.0,30.0,25.0,42.00,Flat Rate,,100,157,False,30000.0,Box,18.0
+# Express Boxes
+Express Small,18.0,14.0,8.0,16.80,Express,,100,158,False,2016.0,Box,3.0
+Express Medium,24.0,18.0,12.0,24.60,Express,,100,159,False,5184.0,Box,5.0
+Express Large,30.0,24.0,18.0,36.40,Express,,100,160,False,12960.0,Box,8.0
+Express Extra Large,40.0,30.0,24.0,52.80,Express,,100,161,False,28800.0,Box,12.0
+# Economy Boxes
+Economy Small,22.0,18.0,10.0,9.20,Economy,,100,162,False,3960.0,Box,5.0
+Economy Medium,28.0,22.0,15.0,14.80,Economy,,100,163,False,9240.0,Box,8.0
+Economy Large,35.0,28.0,20.0,22.40,Economy,,100,164,False,19600.0,Box,12.0
+Economy Extra Large,45.0,35.0,28.0,34.60,Economy,,100,165,False,44100.0,Box,18.0

@@ -720,8 +720,8 @@ h3, h4 {
 <body>
 
 <!-- Sidebar Toggle Button -->
-<div id="sidebarToggle" onclick="toggleSidebar()" style="position: fixed; top: 20px; left: 20px; z-index: 1001; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 12px; padding: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease;">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<div id="sidebarToggle" onclick="toggleSidebar()" style="position: fixed; bottom: 20px; left: 20px; z-index: 1001; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); backdrop-filter: blur(20px); border-radius: 16px; padding: 14px; box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4), 0 4px 16px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); color: white; display: flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px;" title="Toggle Order List" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 16px 50px rgba(102, 126, 234, 0.5), 0 8px 24px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 40px rgba(102, 126, 234, 0.4), 0 4px 16px rgba(0,0,0,0.1)'">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <line x1="3" y1="6" x2="21" y2="6"></line>
     <line x1="3" y1="12" x2="21" y2="12"></line>
     <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -1013,25 +1013,31 @@ function toggleSidebar() {
   if (sidebarCollapsed) {
     sidebar.classList.add('collapsed');
     mainContent.classList.add('expanded');
-    // Change icon to show sidebar is hidden
+    // Change icon to show sidebar is hidden (hamburger menu)
     toggleButton.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
     `;
+    toggleButton.title = 'Show Order List';
   } else {
     sidebar.classList.remove('collapsed');
     mainContent.classList.remove('expanded');
-    // Change icon to show sidebar is visible
+    // Change icon to show sidebar is visible (X icon)
     toggleButton.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     `;
+    toggleButton.title = 'Hide Order List';
   }
+  
+  // Ensure button stays visible
+  toggleButton.style.display = 'flex';
+  toggleButton.style.visibility = 'visible';
 }
 
 // Initialize localization when DOM is loaded
@@ -1175,8 +1181,8 @@ function renderOrderList(orders){
             <line x1="9" y1="9" x2="15" y2="15"></line>
           </svg>
         </div>
-        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Sipariş Bulunamadı" data-en="No Orders Found">${window.currentLanguage === 'en' ? 'No Orders Found' : 'Sipariş Bulunamadı'}</div>
-        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;" data-tr="Aramanızı ayarlamayı deneyin" data-en="Try adjusting your search">${window.currentLanguage === 'en' ? 'Try adjusting your search' : 'Aramanızı ayarlamayı deneyin'}</div>
+        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Sipariş Bulunamadı" data-en="No Orders Found">Sipariş Bulunamadı</div>
+        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;" data-tr="Aramanızı ayarlamayı deneyin" data-en="Try adjusting your search">Aramanızı ayarlamayı deneyin</div>
       </div>
     `;
     document.getElementById('orderStats').style.display = 'none';
@@ -1193,7 +1199,7 @@ function renderOrderList(orders){
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
         </svg>
-        <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.5px;" data-tr="SİPARİŞ LİSTESİ" data-en="ORDER LIST">${window.currentLanguage === 'en' ? 'ORDER LIST' : 'SİPARİŞ LİSTESİ'}</span>
+        <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.5px;" data-tr="SİPARİŞ LİSTESİ" data-en="ORDER LIST">SİPARİŞ LİSTESİ</span>
       </div>
       <span style="background: rgba(255,255,255,0.25); padding: 5px 12px; border-radius: 14px; font-size: 13px; font-weight: 800; backdrop-filter: blur(10px); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">${orders.length}</span>
     </div>
@@ -1422,10 +1428,92 @@ async function packSelectedOrder() {
   
   console.log('Packing order:', selectedOrder.order_id);
   
-  // Show loading state
+  // Ensure toggle button stays visible during packing
+  const toggleButton = document.getElementById('sidebarToggle');
+  if (toggleButton) {
+    toggleButton.style.display = 'flex';
+    toggleButton.style.visibility = 'visible';
+    toggleButton.style.zIndex = '1001';
+  }
+  
+  // Hide previous results and show loading state
   const compactEl = document.getElementById('compactResult');
+  const summaryEl = document.getElementById('summary');
+  const logEl = document.getElementById('log');
+  
+  // Hide all previous results completely
+  if (summaryEl) {
+    summaryEl.innerHTML = '';
+    summaryEl.style.display = 'none';
+  }
+  if (logEl) {
+    logEl.textContent = '';
+    logEl.style.display = 'none';
+  }
+  
+  // Clear and show compact result with loading spinner
+  compactEl.innerHTML = '';
   compactEl.style.display = 'block';
-  compactEl.innerHTML = '<div style="text-align: center; color: #666;">🔄 Packing order ' + selectedOrder.order_id + '...</div>';
+  compactEl.innerHTML = `
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4); position: relative; overflow: hidden; min-width: 400px; max-width: 500px; margin: 20px auto;">
+      <!-- Subtle animated background -->
+      <div style="position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px; animation: slowFloat 8s ease-in-out infinite;"></div>
+      
+      <!-- Premium loading spinner -->
+      <div style="position: relative; z-index: 2;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 24px; position: relative;">
+          <!-- Outer rotating ring -->
+          <div style="position: absolute; top: 0; left: 0; width: 80px; height: 80px; border: 4px solid rgba(255,255,255,0.2); border-radius: 50%; border-top: 4px solid #ffffff; animation: spin 1.2s linear infinite;"></div>
+          <!-- Inner pulsing ring -->
+          <div style="position: absolute; top: 12px; left: 12px; width: 56px; height: 56px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-right: 3px solid #ffffff; animation: spin 0.8s linear infinite reverse;"></div>
+          <!-- Center pulsing dot -->
+          <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background: #ffffff; border-radius: 50%; transform: translate(-50%, -50%); animation: pulse 1.5s ease-in-out infinite;"></div>
+        </div>
+        
+        <!-- Loading text with gradient -->
+        <div style="color: white; font-size: 24px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Packing Order
+        </div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+          ${selectedOrder.order_id}
+        </div>
+        
+        <!-- Progress dots -->
+        <div style="display: flex; justify-content: center; gap: 8px; margin-top: 20px;">
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.2s;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.4s;"></div>
+        </div>
+        
+        <!-- Status text -->
+        <div style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; margin-top: 16px; opacity: 0.9;">
+          Optimizing container selection...
+        </div>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+      }
+      
+      @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+        40% { transform: scale(1.2); opacity: 1; }
+      }
+      
+      @keyframes slowFloat {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        50% { transform: translate(-5px, -5px) rotate(90deg); }
+      }
+    </style>
+  `;
   
   try {
     // Convert order to pack request format
@@ -1619,10 +1707,84 @@ async function submitOrder(){
   const orderId = document.getElementById('orderId').value.trim() || 'ORD-1';
   const body = { order_id: orderId, items: items };
   
-  // Show loading state
+  // Hide previous results and show loading state
   const compactEl = document.getElementById('compactResult');
+  const summaryEl = document.getElementById('summary');
+  const logEl = document.getElementById('log');
+  
+  // Hide all previous results completely
+  if (summaryEl) {
+    summaryEl.innerHTML = '';
+    summaryEl.style.display = 'none';
+  }
+  if (logEl) {
+    logEl.textContent = '';
+    logEl.style.display = 'none';
+  }
+  
+  // Clear and show compact result with loading spinner
+  compactEl.innerHTML = '';
   compactEl.style.display = 'block';
-  compactEl.innerHTML = '<div style="text-align: center; color: #666;">🔄 Processing order...</div>';
+  compactEl.innerHTML = `
+    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4); position: relative; overflow: hidden; min-width: 400px; max-width: 500px; margin: 20px auto;">
+      <!-- Subtle animated background -->
+      <div style="position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px; animation: slowFloat 8s ease-in-out infinite;"></div>
+      
+      <!-- Premium loading spinner -->
+      <div style="position: relative; z-index: 2;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 24px; position: relative;">
+          <!-- Outer rotating ring -->
+          <div style="position: absolute; top: 0; left: 0; width: 80px; height: 80px; border: 4px solid rgba(255,255,255,0.2); border-radius: 50%; border-top: 4px solid #ffffff; animation: spin 1.2s linear infinite;"></div>
+          <!-- Inner pulsing ring -->
+          <div style="position: absolute; top: 12px; left: 12px; width: 56px; height: 56px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-right: 3px solid #ffffff; animation: spin 0.8s linear infinite reverse;"></div>
+          <!-- Center pulsing dot -->
+          <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background: #ffffff; border-radius: 50%; transform: translate(-50%, -50%); animation: pulse 1.5s ease-in-out infinite;"></div>
+        </div>
+        
+        <!-- Loading text with gradient -->
+        <div style="color: white; font-size: 24px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #ffffff 0%, #e0fdf4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Processing Order
+        </div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+          ${orderId}
+        </div>
+        
+        <!-- Progress dots -->
+        <div style="display: flex; justify-content: center; gap: 8px; margin-top: 20px;">
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.2s;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.4s;"></div>
+        </div>
+        
+        <!-- Status text -->
+        <div style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; margin-top: 16px; opacity: 0.9;">
+          Analyzing items and containers...
+        </div>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+      }
+      
+      @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+        40% { transform: scale(1.2); opacity: 1; }
+      }
+      
+      @keyframes slowFloat {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        50% { transform: translate(-5px, -5px) rotate(90deg); }
+      }
+    </style>
+  `;
   
   try {
     const res = await fetch('/pack/order', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
@@ -1653,6 +1815,18 @@ async function submitOrder(){
 function showCompactResult(j) {
   const el = document.getElementById('compactResult');
   el.style.display = 'block';
+  
+  // Show summary and log elements if they were hidden
+  const summaryEl = document.getElementById('summary');
+  const logEl = document.getElementById('log');
+  if (summaryEl) summaryEl.style.display = 'block';
+  if (logEl) logEl.style.display = 'block';
+  
+  // Remove any existing overlay
+  const existingOverlay = document.querySelector('[style*="position: fixed"][style*="backdrop-filter: blur"]');
+  if (existingOverlay) {
+    existingOverlay.remove();
+  }
   
   if(!j || !j.success) {
     el.innerHTML = `
@@ -1779,7 +1953,7 @@ function renderSummary(j){
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
             ${j.containers.map((container, idx) => {
               const utilization = container.utilization * 100;
-              const utilizationColor = utilization >= 80 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
+              const utilizationColor = utilization >= 70 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
               return `
                 <div style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); border: 2px solid #e2e8f0; border-radius: 12px; padding: 18px; transition: all 0.3s ease; position: relative; overflow: hidden;">
                   <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, ${utilizationColor} ${utilization}%, #e5e7eb ${utilization}%);"></div>
@@ -1841,7 +2015,7 @@ function renderSummary(j){
     }
     
     const utilization = j.utilization * 100;
-    const utilizationColor = utilization >= 80 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
+    const utilizationColor = utilization >= 70 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
     
     el.innerHTML = `
       <div style="margin-bottom: 30px;">
@@ -1948,68 +2122,110 @@ function renderMultiContainer2D(j) {
   // Add header
   const header = document.createElement('div');
   header.style.padding = '20px';
-  header.style.textAlign = 'center';
-  header.style.color = '#2d3748';
-  header.style.fontWeight = 'bold';
-  header.style.fontSize = '18px';
-  header.innerHTML = `📐 2D Views - ${j.containers.length} Containers`;
+  header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+  header.style.color = 'white';
+  header.style.borderRadius = '12px 12px 0 0';
+  header.style.marginBottom = '0';
+  header.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <h3 style="margin: 0; font-size: 24px; font-weight: 700;">Multi-Container 2D Views</h3>
+        <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px;">${j.containers.length} containers • ${j.total_items} items • ${(j.utilization*100).toFixed(1)}% utilization</p>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 32px; font-weight: 800;">${j.containers.length}</div>
+        <div style="font-size: 12px; opacity: 0.8;">Containers</div>
+      </div>
+    </div>
+  `;
   tab2d.appendChild(header);
   
-  // Create grid for all containers
+  // Create container for all 2D views
   const containersDiv = document.createElement('div');
   containersDiv.style.display = 'flex';
   containersDiv.style.flexDirection = 'column';
-  containersDiv.style.gap = '30px';
+  containersDiv.style.gap = '20px';
   containersDiv.style.padding = '20px';
+  containersDiv.style.background = '#f8fafc';
+  containersDiv.style.borderRadius = '0 0 12px 12px';
   tab2d.appendChild(containersDiv);
   
   // Render 2D views for each container
   j.containers.forEach((container, index) => {
-    const containerCard = document.createElement('div');
-    containerCard.className = 'premium-card';
-    containerCard.style.border = '2px solid #667eea';
+    const containerDiv = document.createElement('div');
+    containerDiv.style.background = 'white';
+    containerDiv.style.borderRadius = '12px';
+    containerDiv.style.padding = '20px';
+    containerDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
     
+    // Container header
     const containerHeader = document.createElement('div');
-    containerHeader.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-    containerHeader.style.color = 'white';
-    containerHeader.style.padding = '12px 16px';
-    containerHeader.style.borderRadius = '12px';
+    containerHeader.style.display = 'flex';
+    containerHeader.style.justifyContent = 'space-between';
+    containerHeader.style.alignItems = 'center';
     containerHeader.style.marginBottom = '20px';
-    containerHeader.style.fontWeight = '700';
-    containerHeader.innerHTML = `Container ${index + 1}: ${container.container_name || 'Unknown'} - ${container.placements.length} items`;
-    containerCard.appendChild(containerHeader);
+    containerHeader.style.paddingBottom = '15px';
+    containerHeader.style.borderBottom = '2px solid #e2e8f0';
     
-    // Create 2D canvas container
-    const canvasContainer = document.createElement('div');
-    canvasContainer.style.display = 'flex';
-    canvasContainer.style.gap = '15px';
-    canvasContainer.style.flexWrap = 'wrap';
-    canvasContainer.style.justifyContent = 'center';
+    const utilization = container.utilization * 100;
+    const utilizationColor = utilization >= 70 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
     
-    // Create three canvases for this container
-    ['Top', 'Front', 'Side'].forEach(viewName => {
-      const canvasDiv = document.createElement('div');
-      canvasDiv.style.textAlign = 'center';
+    containerHeader.innerHTML = `
+      <div>
+        <h4 style="margin: 0; font-size: 18px; font-weight: 600; color: #2d3748;">Container ${index + 1}: ${container.container_name || 'Unknown'}</h4>
+        <p style="margin: 4px 0 0; color: #64748b; font-size: 14px;">${container.shipping_company || 'Unknown'} • ${container.placements.length} items</p>
+      </div>
+      <div style="text-align: right;">
+        <div style="background: ${utilizationColor}; color: white; padding: 8px 16px; border-radius: 20px; font-size: 16px; font-weight: 700;">
+          ${utilization.toFixed(1)}%
+        </div>
+        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${(container.price_try || 0).toFixed(2)}₺</div>
+      </div>
+    `;
+    containerDiv.appendChild(containerHeader);
+    
+    // 2D views grid
+    const viewsGrid = document.createElement('div');
+    viewsGrid.style.display = 'grid';
+    viewsGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+    viewsGrid.style.gap = '20px';
+    
+    // Create 2D view cards
+    const viewTypes = [
+      { name: 'Top', title: 'Kuş Bakışı Görünüm', color: '#10b981' },
+      { name: 'Front', title: 'Ön Görünüm', color: '#3b82f6' },
+      { name: 'Side', title: 'Yan Görünüm', color: '#8b5cf6' }
+    ];
+    
+    viewTypes.forEach(viewType => {
+      const viewCard = document.createElement('div');
+      viewCard.style.background = 'white';
+      viewCard.style.border = `2px solid ${viewType.color}`;
+      viewCard.style.borderRadius = '8px';
+      viewCard.style.padding = '15px';
+      viewCard.style.textAlign = 'center';
       
-      const label = document.createElement('h4');
-      label.style.color = '#2d3748';
-      label.style.marginBottom = '10px';
-      label.textContent = `${viewName} View`;
-      canvasDiv.appendChild(label);
+      const title = document.createElement('h5');
+      title.style.margin = '0 0 10px 0';
+      title.style.color = viewType.color;
+      title.style.fontSize = '14px';
+      title.style.fontWeight = '600';
+      title.textContent = viewType.title;
       
       const canvas = document.createElement('canvas');
-      canvas.width = 280;
-      canvas.height = 280;
-      canvas.style.border = '2px solid #e2e8f0';
-      canvas.style.borderRadius = '8px';
-      canvas.id = `viz${viewName}_${index}`;
-      canvasDiv.appendChild(canvas);
+      canvas.width = 300;
+      canvas.height = 300;
+      canvas.style.border = `1px solid ${viewType.color}`;
+      canvas.style.borderRadius = '4px';
+      canvas.id = `viz${viewType.name}_${index}`;
       
-      canvasContainer.appendChild(canvasDiv);
+      viewCard.appendChild(title);
+      viewCard.appendChild(canvas);
+      viewsGrid.appendChild(viewCard);
     });
     
-    containerCard.appendChild(canvasContainer);
-    containersDiv.appendChild(containerCard);
+    containerDiv.appendChild(viewsGrid);
+    containersDiv.appendChild(containerDiv);
     
     // Render the views
     const containerData = {
@@ -2335,7 +2551,7 @@ function renderMultiContainer3D(j, el) {
     // Container header with premium design
     const containerHeader = document.createElement('div');
     const utilization = container.utilization * 100;
-    const utilizationColor = utilization >= 80 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
+    const utilizationColor = utilization >= 70 ? '#10b981' : utilization >= 60 ? '#f59e0b' : '#ef4444';
     
     containerHeader.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     containerHeader.style.color = 'white';
@@ -2343,32 +2559,31 @@ function renderMultiContainer3D(j, el) {
     containerHeader.style.position = 'relative';
     containerHeader.style.overflow = 'hidden';
     
-    containerHeader.innerHTML = `
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, ${utilizationColor} ${utilization}%, rgba(255,255,255,0.2) ${utilization}%);"></div>
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            ${index + 1}
-          </div>
-          <div>
-            <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px;">
-              ${container.container_name || 'Unknown'}
-            </div>
-            <div style="font-size: 13px; opacity: 0.9; font-weight: 500;">
-              ${container.shipping_company || 'Unknown'} • ${container.placements.length} items
-            </div>
-          </div>
-        </div>
-        <div style="text-align: right;">
-          <div style="background: ${utilizationColor}; padding: 8px 16px; border-radius: 20px; font-size: 18px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.15); margin-bottom: 4px;">
-            ${utilization.toFixed(1)}%
-          </div>
-          <div style="font-size: 13px; opacity: 0.9; font-weight: 600;">
-            ${(container.price_try || 0).toFixed(2)}₺
-          </div>
-        </div>
-      </div>
-    `;
+    containerHeader.innerHTML = 
+      '<div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, ' + utilizationColor + ' ' + utilization + '%, rgba(255,255,255,0.2) ' + utilization + '%);"></div>' +
+      '<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">' +
+        '<div style="display: flex; align-items: center; gap: 16px;">' +
+          '<div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">' +
+            (index + 1) +
+          '</div>' +
+          '<div>' +
+            '<div style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px;">' +
+              (container.container_name || 'Unknown') +
+            '</div>' +
+            '<div style="font-size: 13px; opacity: 0.9; font-weight: 500;">' +
+              (container.shipping_company || 'Unknown') + ' • ' + container.placements.length + ' items' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="text-align: right;">' +
+          '<div style="background: ' + utilizationColor + '; padding: 8px 16px; border-radius: 20px; font-size: 18px; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.15); margin-bottom: 4px;">' +
+            utilization.toFixed(1) + '%' +
+          '</div>' +
+          '<div style="font-size: 13px; opacity: 0.9; font-weight: 600;">' +
+            (container.price_try || 0).toFixed(2) + '₺' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     containerDiv.appendChild(containerHeader);
     
     // 3D view for this container - better quality size
