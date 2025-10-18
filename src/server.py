@@ -699,6 +699,15 @@ h3, h4 {
   transition: all 0.3s ease;
 }
 
+/* Hide selected order section in create tab */
+.hidden-in-create-tab {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
 .premium-card:hover {
   box-shadow: 0 8px 30px rgba(0,0,0,0.12);
   transform: translateY(-2px);
@@ -750,37 +759,155 @@ h3, h4 {
   </div>
   
   <div class="sidebar-content">
-    <!-- Order Statistics -->
-    <div id="orderStats" style="display: none; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 18px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
-      <div style="display: grid; grid-template-columns: 1fr; gap: 12px; text-align: center;">
-        <div>
-          <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalOrders">0</div>
-          <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Toplam Sipariş" data-en="Total Orders">Toplam Sipariş</div>
+    <!-- Tab Navigation -->
+    <div style="margin-bottom: 20px; background: white; border-radius: 16px; padding: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid rgba(102, 126, 234, 0.1);">
+      <div style="display: flex; gap: 4px;">
+        <button id="createOrderTab" onclick="switchTab('create')" style="flex: 1; padding: 14px 20px; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span data-tr="Sipariş Oluştur" data-en="Create Order">Sipariş Oluştur</span>
+          </div>
+        </button>
+        <button id="existingOrdersTab" onclick="switchTab('existing')" style="flex: 1; padding: 14px 20px; border: none; background: transparent; color: #64748b; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.3s ease;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+            <span data-tr="Mevcut Siparişler" data-en="Existing Orders">Mevcut Siparişler</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Custom Order Creation Tab -->
+    <div id="createOrderContent" class="tab-content active">
+      <div style="margin-bottom: 20px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 16px; padding: 18px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div style="color: white; font-size: 18px; font-weight: 700; letter-spacing: -0.3px;" data-tr="Özel Sipariş Oluştur" data-en="Create Custom Order">Özel Sipariş Oluştur</div>
+            <div style="color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 500;" data-tr="Ürünleri seçin ve test edin" data-en="Select products and test">Ürünleri seçin ve test edin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order ID Input -->
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Sipariş ID" data-en="Order ID">Sipariş ID</label>
+        <input type="text" id="customOrderId" placeholder="ORD-TEST-001" style="width: calc(100% - 8px); padding: 14px 16px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 14px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" data-tr-placeholder="ORD-TEST-001" data-en-placeholder="ORD-TEST-001">
+      </div>
+
+      <!-- Product Search -->
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Ürün Ara" data-en="Search Products">Ürün Ara</label>
+        <div style="position: relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="skuSearch" oninput="filterSkus()" placeholder="SKU, marka, model, kategori ile ara..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" data-tr-placeholder="SKU, marka, model, kategori ile ara..." data-en-placeholder="Search by SKU, brand, model, category...">
+        </div>
+      </div>
+
+      <!-- Product List -->
+      <div class="sku-panel">
+        <div class="sku-list" id="skuList">
+          <div style="padding: 60px 20px; text-align: center; color: #64748b;">
+            <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Ürünler Yükleniyor" data-en="Loading Products">Ürünler Yükleniyor</div>
+            <div style="font-size: 13px; font-weight: 500; color: #94a3b8; line-height: 1.6;" data-tr="Ürün listesi hazırlanıyor..." data-en="Preparing product list...">Ürün listesi hazırlanıyor...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Items -->
+      <div id="selectedItemsPanel" style="display: none; margin-top: 20px; background: white; border-radius: 16px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid #10b981;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size: 16px; font-weight: 700; color: #2d3748;" data-tr="Seçilen Ürünler" data-en="Selected Items">Seçilen Ürünler</div>
+              <div style="font-size: 12px; color: #64748b;" id="selectedItemsCount">0 ürün</div>
+            </div>
+          </div>
+          <button onclick="clearCustomOrder()" style="padding: 8px 16px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.3s ease;">
+            <span data-tr="Temizle" data-en="Clear">Temizle</span>
+          </button>
+        </div>
+        <div id="selectedItemsList" style="max-height: 200px; overflow-y: auto;">
+          <!-- Selected items will be populated here -->
+        </div>
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0;">
+          <button onclick="packCustomOrder()" style="width: 100%; padding: 14px 20px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+            <span data-tr="Siparişi Paketle" data-en="Pack Order">Siparişi Paketle</span>
+          </button>
         </div>
       </div>
     </div>
-    
-    <!-- Search and Filter -->
-    <div style="margin-bottom: 16px;">
-      <div style="position: relative;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none;">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
-        <input type="text" id="orderSearch" oninput="filterOrders()" placeholder="ID veya müşteri adı ile ara..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" data-tr-placeholder="ID veya müşteri adı ile ara..." data-en-placeholder="Search by ID or customer...">
+
+    <!-- Existing Orders Tab -->
+    <div id="existingOrdersContent" class="tab-content">
+      <div style="margin-bottom: 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border-radius: 12px; padding: 16px; border: 1px solid rgba(102, 126, 234, 0.1);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+          <div style="font-size: 14px; font-weight: 600; color: #667eea;" data-tr="Mevcut Siparişler" data-en="Existing Orders">Mevcut Siparişler</div>
+        </div>
+        <div style="font-size: 12px; color: #64748b; line-height: 1.5;" data-tr="Aşağıdaki siparişler arasından seçim yapabilir veya yukarıdaki sekmede kendi siparişinizi oluşturabilirsiniz." data-en="You can choose from the orders below or create your own order in the tab above.">Aşağıdaki siparişler arasından seçim yapabilir veya yukarıdaki sekmede kendi siparişinizi oluşturabilirsiniz.</div>
       </div>
-    </div>
-    
-    <div class="sku-panel">
-      <div class="sku-list" id="orderList">
-        <div style="padding: 60px 20px; text-align: center; color: #64748b;">
-          <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            </svg>
+
+      <!-- Order Statistics -->
+      <div id="orderStats" style="display: none; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 18px; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; text-align: center;">
+          <div>
+            <div style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 2px;" id="totalOrders">0</div>
+            <div style="font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.5px;" data-tr="Toplam Sipariş" data-en="Total Orders">Toplam Sipariş</div>
           </div>
-          <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;">No Orders Loaded</div>
-          <div style="font-size: 13px; font-weight: 500; color: #94a3b8; line-height: 1.6;">Click "Load Orders" above to view<br>available orders</div>
+        </div>
+      </div>
+      
+      <!-- Search and Filter -->
+      <div style="margin-bottom: 16px;">
+        <div style="position: relative;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="orderSearch" oninput="filterOrders()" placeholder="ID veya müşteri adı ile ara..." style="width: calc(100% - 8px); padding: 14px 16px 14px 44px; margin: 0; border: 2px solid rgba(102, 126, 234, 0.15); border-radius: 12px; background: white; font-size: 13px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05);" data-tr-placeholder="ID veya müşteri adı ile ara..." data-en-placeholder="Search by ID or customer...">
+        </div>
+      </div>
+      
+      <div class="sku-panel">
+        <div class="sku-list" id="orderList">
+          <div style="padding: 60px 20px; text-align: center; color: #64748b;">
+            <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #667eea;">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;">No Orders Loaded</div>
+            <div style="font-size: 13px; font-weight: 500; color: #94a3b8; line-height: 1.6;">Click "Load Orders" above to view<br>available orders</div>
+          </div>
         </div>
       </div>
     </div>
@@ -788,7 +915,7 @@ h3, h4 {
     <!-- Order Details Section Spacer -->
     <div style="margin-top: 20px; margin-bottom: 14px;"></div>
     <!-- Premium Responsive Order Details Card -->
-    <div id="selectedOrderCard" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 3px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 0; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15), 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); min-height: 200px; position: relative;">
+    <div id="selectedOrderCard" style="display: none; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border: 3px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 0; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15), 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); min-height: 200px; position: relative;">
       <!-- Dynamic Card Header (populated by JavaScript) -->
       <div id="selectedOrderCardHeader" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 16px 20px; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
         <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
@@ -998,6 +1125,10 @@ h3, h4 {
 let allOrders = [];
 let selectedOrder = null;
 let sidebarCollapsed = false;
+let allSkus = [];
+let selectedItems = [];
+let nameCache = {};
+let currentTab = 'create';
 
 // Make allOrders globally accessible for localization
 window.allOrders = allOrders;
@@ -1047,6 +1178,15 @@ document.addEventListener('DOMContentLoaded', function() {
   if (typeof localization !== 'undefined') {
     console.log('localization methods:', Object.keys(localization));
   }
+  
+  // Immediately hide selected order card when DOM loads
+  const selectedOrderCard = document.getElementById('selectedOrderCard');
+  if (selectedOrderCard) {
+    console.log('Immediately hiding selectedOrderCard on DOM load');
+    selectedOrderCard.style.display = 'none';
+    selectedOrderCard.classList.add('hidden-in-create-tab');
+  }
+  
   initializeLocalization();
 });
 
@@ -1267,7 +1407,19 @@ function selectOrder(orderId) {
   
   // Update UI
   document.getElementById('currentOrderId').textContent = selectedOrder.order_id;
-  document.getElementById('orderPackingControls').style.display = 'block';
+  
+  // Only show selected order section if we're on the existing orders tab
+  if (currentTab === 'existing') {
+    document.getElementById('orderPackingControls').style.display = 'block';
+    document.getElementById('orderPackingControls').classList.remove('hidden-in-create-tab');
+    
+    // Also show the selected order card
+    const selectedOrderCard = document.getElementById('selectedOrderCard');
+    if (selectedOrderCard) {
+      selectedOrderCard.style.display = 'block';
+      selectedOrderCard.classList.remove('hidden-in-create-tab');
+    }
+  }
   
   // Update selected order info
   updateSelectedOrderInfo();
@@ -1436,6 +1588,12 @@ async function packSelectedOrder() {
     toggleButton.style.zIndex = '1001';
   }
   
+  // Show the results section immediately to ensure loading spinner is visible
+  const resultsSection = document.getElementById('resultsSection');
+  if (resultsSection) {
+    resultsSection.style.display = 'block';
+  }
+  
   // Hide previous results and show loading state
   const compactEl = document.getElementById('compactResult');
   const summaryEl = document.getElementById('summary');
@@ -1565,15 +1723,19 @@ async function packSelectedOrder() {
   }
 }
 
+// Pagination variables
+let currentPage = 1;
+let productsPerPage = 30; // 3 columns x 10 rows for compact layout
+
 async function loadAllSkus(){
   const skuListEl = document.getElementById('skuList');
   
   // Show loading state
-  skuListEl.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;"><div style="display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #007bff; border-radius: 50%; animation: spin 1s linear infinite;"></div><br><br>Loading SKUs...</div><style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>';
+  skuListEl.innerHTML = '<div style="padding: 60px 20px; text-align: center; color: #64748b;"><div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);"><div style="display: inline-block; width: 32px; height: 32px; border: 3px solid #f3f3f3; border-top: 3px solid #10b981; border-radius: 50%; animation: spin 1s linear infinite;"></div></div><div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Ürünler Yükleniyor" data-en="Loading Products">Ürünler Yükleniyor</div><div style="font-size: 13px; font-weight: 500; color: #94a3b8; line-height: 1.6;" data-tr="Tüm ürünler hazırlanıyor..." data-en="Preparing all products...">Tüm ürünler hazırlanıyor...</div></div><style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>';
   
   try {
-    console.log('Fetching SKUs from /skus?limit=1000');
-    const res = await fetch('/skus?limit=1000');
+    console.log('Fetching all SKUs from /skus?limit=2000');
+    const res = await fetch('/skus?limit=2000');
     console.log('Response status:', res.status);
     
     if(!res.ok) {
@@ -1584,6 +1746,7 @@ async function loadAllSkus(){
     
     allSkus = await res.json();
     console.log('Loaded SKUs:', allSkus.length);
+    console.log('First few SKUs:', allSkus.slice(0, 3));
     
     if(!allSkus || allSkus.length === 0) {
       skuListEl.innerHTML = '<div style="padding: 20px; text-align: center; color: #f39c12;">⚠️ No SKUs found in database</div>';
@@ -1595,7 +1758,8 @@ async function loadAllSkus(){
       nameCache[sku.sku] = (sku.brand||'') + ' ' + (sku.model||'') + (sku.variant?(' ' + sku.variant):'');
     });
     
-    renderSkuList(allSkus);
+    currentPage = 1; // Reset to first page
+    renderSkuGrid(allSkus);
     console.log('SKUs loaded successfully');
   } catch(e) {
     console.error('Error loading SKUs:', e);
@@ -1603,43 +1767,177 @@ async function loadAllSkus(){
   }
 }
 
-function renderSkuList(skus){
+function renderSkuGrid(skus){
   const el = document.getElementById('skuList');
   if(!skus || skus.length === 0) {
-    el.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">No SKUs found</div>';
+    el.innerHTML = `
+      <div style="padding: 60px 20px; text-align: center; color: #64748b;">
+        <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ef4444;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+        </div>
+        <div style="font-weight: 700; margin-bottom: 8px; font-size: 16px; color: #2d3748;" data-tr="Ürün Bulunamadı" data-en="No Products Found">Ürün Bulunamadı</div>
+        <div style="font-size: 13px; font-weight: 500; color: #94a3b8;" data-tr="Aramanızı ayarlamayı deneyin" data-en="Try adjusting your search">Aramanızı ayarlamayı deneyin</div>
+      </div>
+    `;
     return;
   }
   
-  const header = `<div style="padding: 10px; background: #e8f5e8; border-bottom: 1px solid #c3e6cb; text-align: center; color: #155724; font-size: 12px; font-weight: bold;">✅ ${skus.length} SKUs loaded successfully</div>`;
+  const totalPages = Math.ceil(skus.length / productsPerPage);
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  const currentSkus = skus.slice(startIndex, endIndex);
   
-  const skuItems = skus.slice(0, 100).map(sku => {
+  const header = `
+    <div style="padding: 12px 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+        </svg>
+        <span style="font-weight: 700; font-size: 12px; letter-spacing: 0.3px;" data-tr="ÜRÜN LİSTESİ" data-en="PRODUCT LIST">PRODUCT LIST</span>
+      </div>
+      <span style="background: rgba(255,255,255,0.25); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; backdrop-filter: blur(10px);">${skus.length}</span>
+    </div>
+  `;
+  
+  const gridContainer = `
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; padding: 12px; background: #f8fafc; min-height: 400px; max-width: 100%;">
+  `;
+  
+  const skuCards = currentSkus.map(sku => {
     const name = (sku.brand||'') + ' ' + (sku.model||'') + (sku.variant?(' ' + sku.variant):'');
+    const isSelected = selectedItems.some(item => item.sku === sku.sku);
+    
     return `
-      <div class="sku-item" onclick="addItemBySku('${sku.sku}')">
-        <div class="sku-code">${sku.sku}</div>
-        <div class="sku-name">${name}</div>
+      <div class="product-card" onclick="addItemBySku('${sku.sku}')" style="
+        background: white; 
+        border-radius: 6px; 
+        padding: 8px; 
+        cursor: pointer; 
+        transition: all 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid ${isSelected ? '#10b981' : '#e5e7eb'};
+        position: relative;
+        height: 85px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'; this.style.borderColor='#10b981'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'; this.style.borderColor='${isSelected ? '#10b981' : '#e5e7eb'}'">
+        
+        ${isSelected ? '<div style="position: absolute; top: 4px; right: 4px; background: #10b981; color: white; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700;">✓</div>' : ''}
+        
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 10px; font-weight: 600; color: #10b981; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">${sku.sku}</div>
+            <div style="font-size: 11px; font-weight: 600; color: #1f2937; line-height: 1.2; word-break: break-word; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${name}</div>
+            <div style="font-size: 9px; color: #6b7280; font-weight: 500;">${sku.brand || 'Unknown'}</div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+            <div style="font-size: 8px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.3px;">${(sku.category || 'Unknown').substring(0, 8)}</div>
+            <div style="font-size: 9px; color: #10b981; font-weight: 600;" data-tr="Ekle" data-en="Add">+</div>
+          </div>
+        </div>
       </div>
     `;
   }).join('');
   
-  const footer = skus.length > 100 ? '<div style="padding: 10px; text-align: center; color: #666; font-size: 11px; background: #f8f9fa; border-top: 1px solid #dee2e6;">Showing first 100 results. Use search to filter.</div>' : '';
+  const gridEnd = `</div>`;
   
-  el.innerHTML = header + skuItems + footer;
+  const pagination = totalPages > 1 ? `
+    <div style="padding: 12px 16px; background: white; border-top: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between;">
+      <div style="font-size: 11px; color: #6b7280; font-weight: 500;">
+        <span data-tr="Sayfa" data-en="Page">Page</span> ${currentPage}/${totalPages} • ${startIndex + 1}-${Math.min(endIndex, skus.length)} of ${skus.length} products
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} style="
+          padding: 6px 10px; 
+          border: 1px solid #d1d5db; 
+          background: ${currentPage === 1 ? '#f9fafb' : 'white'}; 
+          color: ${currentPage === 1 ? '#9ca3af' : '#374151'}; 
+          border-radius: 6px; 
+          cursor: ${currentPage === 1 ? 'not-allowed' : 'pointer'}; 
+          font-size: 11px; 
+          font-weight: 600;
+          transition: all 0.2s ease;
+        " onmouseover="if(${currentPage !== 1}) this.style.backgroundColor='#f3f4f6'" onmouseout="if(${currentPage !== 1}) this.style.backgroundColor='white'">
+          ←
+        </button>
+        <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} style="
+          padding: 6px 10px; 
+          border: 1px solid #d1d5db; 
+          background: ${currentPage === totalPages ? '#f9fafb' : 'white'}; 
+          color: ${currentPage === totalPages ? '#9ca3af' : '#374151'}; 
+          border-radius: 6px; 
+          cursor: ${currentPage === totalPages ? 'not-allowed' : 'pointer'}; 
+          font-size: 11px; 
+          font-weight: 600;
+          transition: all 0.2s ease;
+        " onmouseover="if(${currentPage !== totalPages}) this.style.backgroundColor='#f3f4f6'" onmouseout="if(${currentPage !== totalPages}) this.style.backgroundColor='white'">
+          →
+        </button>
+      </div>
+    </div>
+  ` : '';
+  
+  el.innerHTML = header + gridContainer + skuCards + gridEnd + pagination;
+}
+
+function getCategoryIcon(category) {
+  const icons = {
+    'Electronics': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
+    'Home & Kitchen': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9,22 9,12 15,12 15,22"></polyline></svg>',
+    'Sports & Fitness': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11v11h-11z"></path><path d="M6.5 6.5L12 12l5.5-5.5"></path><path d="M6.5 17.5L12 12l5.5 5.5"></path></svg>',
+    'Beauty & Personal Care': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path></svg>',
+    'Books & Media': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>',
+    'Garden & Outdoor': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>',
+    'Shoes': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>',
+    'Textile': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>',
+    'Phone': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>',
+    'Laptop': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>'
+  };
+  return icons[category] || icons['Electronics'];
+}
+
+function changePage(page) {
+  if (page < 1) return;
+  
+  // Get current filtered results
+  const query = document.getElementById('skuSearch').value.toLowerCase().trim();
+  let currentSkus = allSkus;
+  
+  if (query) {
+    currentSkus = allSkus.filter(sku => {
+      const name = ((sku.brand||'') + ' ' + (sku.model||'') + ' ' + (sku.variant||'')).toLowerCase();
+      return sku.sku.toLowerCase().includes(query) || name.includes(query) || (sku.category || '').toLowerCase().includes(query);
+    });
+  }
+  
+  const totalPages = Math.ceil(currentSkus.length / productsPerPage);
+  if (page > totalPages) return;
+  
+  currentPage = page;
+  renderSkuGrid(currentSkus);
 }
 
 function filterSkus(){
   const query = document.getElementById('skuSearch').value.toLowerCase().trim();
   if(!query) {
-    renderSkuList(allSkus);
+    currentPage = 1; // Reset to first page when clearing search
+    renderSkuGrid(allSkus);
     return;
   }
   
   const filtered = allSkus.filter(sku => {
     const name = ((sku.brand||'') + ' ' + (sku.model||'') + ' ' + (sku.variant||'')).toLowerCase();
-    return sku.sku.toLowerCase().includes(query) || name.includes(query);
+    return sku.sku.toLowerCase().includes(query) || name.includes(query) || (sku.category || '').toLowerCase().includes(query);
   });
   
-  renderSkuList(filtered);
+  currentPage = 1; // Reset to first page when filtering
+  renderSkuGrid(filtered);
 }
 
 async function addItemBySku(sku, quantity = 1){
@@ -1657,14 +1955,20 @@ async function addItemBySku(sku, quantity = 1){
     }catch(e){ nameCache[sku] = ''; }
   }
   
-  // Check if item already exists
-  const existing = items.find(item => item.sku === sku);
-  if(existing) {
-    existing.quantity += quantity;
+  // Add to custom order if we're in create tab
+  if (currentTab === 'create') {
+    console.log('Adding to custom order:', sku, quantity);
+    addItemToCustomOrder(sku, quantity);
   } else {
-    items.push({sku, quantity});
+    // Legacy behavior for existing orders
+    const existing = items.find(item => item.sku === sku);
+    if(existing) {
+      existing.quantity += quantity;
+    } else {
+      items.push({sku, quantity});
+    }
+    updateItemList();
   }
-  updateItemList();
 }
 
 function changeQuantity(idx, delta){
@@ -1683,6 +1987,306 @@ function clearOrder(){
   items.length = 0;
   updateItemList();
 }
+// Tab switching functionality
+function switchTab(tabName) {
+  currentTab = tabName;
+  
+  // Update tab buttons
+  const createTab = document.getElementById('createOrderTab');
+  const existingTab = document.getElementById('existingOrdersTab');
+  const createContent = document.getElementById('createOrderContent');
+  const existingContent = document.getElementById('existingOrdersContent');
+  
+  if (tabName === 'create') {
+    // Switch to create order tab
+    createTab.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    createTab.style.color = 'white';
+    createTab.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+    
+    existingTab.style.background = 'transparent';
+    existingTab.style.color = '#64748b';
+    existingTab.style.boxShadow = 'none';
+    
+    createContent.style.display = 'block';
+    existingContent.style.display = 'none';
+    
+    // Hide selected order section in create tab
+    const orderPackingControls = document.getElementById('orderPackingControls');
+    if (orderPackingControls) {
+      orderPackingControls.style.display = 'none';
+      orderPackingControls.classList.add('hidden-in-create-tab');
+    }
+    
+    // Hide selected order card in create tab
+    const selectedOrderCard = document.getElementById('selectedOrderCard');
+    if (selectedOrderCard) {
+      console.log('Hiding selectedOrderCard in create tab');
+      selectedOrderCard.style.display = 'none';
+      selectedOrderCard.classList.add('hidden-in-create-tab');
+      console.log('selectedOrderCard classes:', selectedOrderCard.classList.toString());
+    }
+    
+    // Load SKUs if not already loaded
+    if (allSkus.length === 0) {
+      loadAllSkus();
+    }
+  } else {
+    // Switch to existing orders tab
+    existingTab.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    existingTab.style.color = 'white';
+    existingTab.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+    
+    createTab.style.background = 'transparent';
+    createTab.style.color = '#64748b';
+    createTab.style.boxShadow = 'none';
+    
+    createContent.style.display = 'none';
+    existingContent.style.display = 'block';
+    
+    // Show selected order section in existing orders tab
+    const orderPackingControls = document.getElementById('orderPackingControls');
+    if (orderPackingControls) {
+      orderPackingControls.style.display = 'block';
+      orderPackingControls.classList.remove('hidden-in-create-tab');
+    }
+    
+    // Show selected order card in existing orders tab (only if an order is selected)
+    const selectedOrderCard = document.getElementById('selectedOrderCard');
+    if (selectedOrderCard) {
+      if (selectedOrder) {
+        selectedOrderCard.style.display = 'block';
+        selectedOrderCard.classList.remove('hidden-in-create-tab');
+      } else {
+        selectedOrderCard.style.display = 'none';
+        selectedOrderCard.classList.add('hidden-in-create-tab');
+      }
+    }
+    
+    // Load orders if not already loaded
+    if (allOrders.length === 0) {
+      loadAllOrders();
+    }
+  }
+}
+
+// Custom order creation functions
+function addItemToCustomOrder(sku, quantity = 1) {
+  console.log('addItemToCustomOrder called with:', sku, quantity);
+  const existingItem = selectedItems.find(item => item.sku === sku);
+  if (existingItem) {
+    existingItem.quantity += quantity;
+    console.log('Updated existing item, new quantity:', existingItem.quantity);
+  } else {
+    selectedItems.push({ sku, quantity });
+    console.log('Added new item, selectedItems now:', selectedItems);
+  }
+  updateSelectedItemsDisplay();
+  
+  // Re-render the product grid to show updated selection state
+  const query = document.getElementById('skuSearch').value.toLowerCase().trim();
+  let currentSkus = allSkus;
+  
+  if (query) {
+    currentSkus = allSkus.filter(sku => {
+      const name = ((sku.brand||'') + ' ' + (sku.model||'') + ' ' + (sku.variant||'')).toLowerCase();
+      return sku.sku.toLowerCase().includes(query) || name.includes(query) || (sku.category || '').toLowerCase().includes(query);
+    });
+  }
+  
+  renderSkuGrid(currentSkus);
+}
+
+function removeItemFromCustomOrder(sku) {
+  selectedItems = selectedItems.filter(item => item.sku !== sku);
+  updateSelectedItemsDisplay();
+  
+  // Re-render the product grid to show updated selection state
+  const query = document.getElementById('skuSearch').value.toLowerCase().trim();
+  let currentSkus = allSkus;
+  
+  if (query) {
+    currentSkus = allSkus.filter(sku => {
+      const name = ((sku.brand||'') + ' ' + (sku.model||'') + ' ' + (sku.variant||'')).toLowerCase();
+      return sku.sku.toLowerCase().includes(query) || name.includes(query) || (sku.category || '').toLowerCase().includes(query);
+    });
+  }
+  
+  renderSkuGrid(currentSkus);
+}
+
+function updateCustomOrderQuantity(sku, quantity) {
+  const item = selectedItems.find(item => item.sku === sku);
+  if (item) {
+    if (quantity <= 0) {
+      removeItemFromCustomOrder(sku);
+    } else {
+      item.quantity = quantity;
+      updateSelectedItemsDisplay();
+      
+      // Re-render the product grid to show updated selection state
+      const query = document.getElementById('skuSearch').value.toLowerCase().trim();
+      let currentSkus = allSkus;
+      
+      if (query) {
+        currentSkus = allSkus.filter(sku => {
+          const name = ((sku.brand||'') + ' ' + (sku.model||'') + ' ' + (sku.variant||'')).toLowerCase();
+          return sku.sku.toLowerCase().includes(query) || name.includes(query) || (sku.category || '').toLowerCase().includes(query);
+        });
+      }
+      
+      renderSkuGrid(currentSkus);
+    }
+  }
+}
+
+function updateSelectedItemsDisplay() {
+  const panel = document.getElementById('selectedItemsPanel');
+  const countEl = document.getElementById('selectedItemsCount');
+  const listEl = document.getElementById('selectedItemsList');
+  
+  if (selectedItems.length === 0) {
+    panel.style.display = 'none';
+    return;
+  }
+  
+  panel.style.display = 'block';
+  countEl.textContent = `${selectedItems.length} ${window.currentLanguage === 'en' ? 'items' : 'ürün'}`;
+  
+  const itemsHtml = selectedItems.map(item => {
+    const name = nameCache[item.sku] || item.sku;
+    return `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; margin: 4px 0; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <div style="flex: 1;">
+          <div style="font-size: 13px; font-weight: 600; color: #2d3748;">${item.sku}</div>
+          <div style="font-size: 11px; color: #64748b; margin-top: 2px;">${name}</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button onclick="updateCustomOrderQuantity('${item.sku}', ${item.quantity - 1})" style="width: 28px; height: 28px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 14px;">-</button>
+          <span style="min-width: 30px; text-align: center; font-weight: 600; color: #2d3748;">${item.quantity}</span>
+          <button onclick="updateCustomOrderQuantity('${item.sku}', ${item.quantity + 1})" style="width: 28px; height: 28px; background: #10b981; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 14px;">+</button>
+          <button onclick="removeItemFromCustomOrder('${item.sku}')" style="width: 28px; height: 28px; background: #64748b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 12px; margin-left: 4px;">×</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  listEl.innerHTML = itemsHtml;
+}
+
+function clearCustomOrder() {
+  selectedItems = [];
+  updateSelectedItemsDisplay();
+}
+
+async function packCustomOrder() {
+  console.log('packCustomOrder called, selectedItems:', selectedItems);
+  
+  if (selectedItems.length === 0) {
+    alert(window.currentLanguage === 'en' ? 'Please add some items to the order' : 'Lütfen siparişe bazı ürünler ekleyin');
+    return;
+  }
+  
+  const orderId = document.getElementById('customOrderId').value.trim() || 'ORD-TEST-001';
+  
+  // Show the results section immediately to ensure loading spinner is visible
+  const resultsSection = document.getElementById('resultsSection');
+  if (resultsSection) {
+    resultsSection.style.display = 'block';
+  }
+  
+  // Show loading state
+  const compactEl = document.getElementById('compactResult');
+  const summaryEl = document.getElementById('summary');
+  const logEl = document.getElementById('log');
+  
+  if (summaryEl) {
+    summaryEl.innerHTML = '';
+    summaryEl.style.display = 'none';
+  }
+  if (logEl) {
+    logEl.textContent = '';
+    logEl.style.display = 'none';
+  }
+  
+  compactEl.innerHTML = '';
+  compactEl.style.display = 'block';
+  compactEl.innerHTML = `
+    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4); position: relative; overflow: hidden; min-width: 400px; max-width: 500px; margin: 20px auto;">
+      <div style="position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px; animation: slowFloat 8s ease-in-out infinite;"></div>
+      
+      <div style="position: relative; z-index: 2;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 24px; position: relative;">
+          <div style="position: absolute; top: 0; left: 0; width: 80px; height: 80px; border: 4px solid rgba(255,255,255,0.2); border-radius: 50%; border-top: 4px solid #ffffff; animation: spin 1.2s linear infinite;"></div>
+          <div style="position: absolute; top: 12px; left: 12px; width: 56px; height: 56px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-right: 3px solid #ffffff; animation: spin 0.8s linear infinite reverse;"></div>
+          <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background: #ffffff; border-radius: 50%; transform: translate(-50%, -50%); animation: pulse 1.5s ease-in-out infinite;"></div>
+        </div>
+        
+        <div style="color: white; font-size: 24px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #ffffff 0%, #e0fdf4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Processing Custom Order
+        </div>
+        <div style="color: rgba(255,255,255,0.9); font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+          ${orderId}
+        </div>
+        
+        <div style="display: flex; justify-content: center; gap: 8px; margin-top: 20px;">
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.2s;"></div>
+          <div style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both; animation-delay: 0.4s;"></div>
+        </div>
+        
+        <div style="color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; margin-top: 16px; opacity: 0.9;">
+          Analyzing ${selectedItems.length} items...
+        </div>
+      </div>
+    </div>
+  `;
+  
+  try {
+    const packRequest = {
+      order_id: orderId,
+      items: selectedItems
+    };
+    
+    const res = await fetch('/pack/order', { 
+      method: 'POST', 
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify(packRequest)
+    });
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error('Pack order failed:', errorText);
+      throw new Error(`HTTP ${res.status}: ${errorText}`);
+    }
+    
+    const j = await res.json();
+    
+    // Store result globally
+    window.packingResult = j;
+    
+    // Show results section
+    document.getElementById('resultsSection').style.display = 'block';
+    
+    // Show compact result
+    showCompactResult(j);
+    
+    // Render all views inline
+    renderSummary(j);
+    render3D(j);
+    render2DViews(j);
+    document.getElementById('log').textContent = JSON.stringify(j, null, 2);
+    
+    // Scroll to results
+    setTimeout(() => {
+      document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    
+  } catch(error) {
+    document.getElementById('resultsSection').style.display = 'block';
+    compactEl.innerHTML = '<div style="color: #dc3545; padding: 20px; text-align: center;"><strong>❌ Error:</strong> ' + error.message + '</div>';
+  }
+}
+
 // Auto-load orders on page load
 window.addEventListener('DOMContentLoaded', () => {
   console.log('Page loaded, initializing order system...');
@@ -1692,9 +2296,37 @@ window.addEventListener('DOMContentLoaded', () => {
   
   updateSelectedOrderInfo(); // Initialize empty order display
   
-  // Auto-load orders immediately
-  console.log('🔄 Auto-loading orders...');
-  loadAllOrders();
+  // Ensure selected order section is hidden on page load
+  const orderPackingControls = document.getElementById('orderPackingControls');
+  if (orderPackingControls) {
+    orderPackingControls.style.display = 'none';
+    orderPackingControls.classList.add('hidden-in-create-tab');
+  }
+  
+  // Ensure selected order card is hidden on page load
+  const selectedOrderCard = document.getElementById('selectedOrderCard');
+  if (selectedOrderCard) {
+    console.log('Hiding selectedOrderCard on page load');
+    selectedOrderCard.style.display = 'none';
+    selectedOrderCard.classList.add('hidden-in-create-tab');
+    console.log('selectedOrderCard classes after page load:', selectedOrderCard.classList.toString());
+  } else {
+    console.log('selectedOrderCard element not found!');
+  }
+  
+  // Start with create order tab and load SKUs
+  switchTab('create');
+  loadAllSkus();
+  
+  // Force hide selected order card after a short delay to ensure it's hidden
+  setTimeout(() => {
+    const selectedOrderCard = document.getElementById('selectedOrderCard');
+    if (selectedOrderCard) {
+      console.log('Force hiding selectedOrderCard after timeout');
+      selectedOrderCard.style.display = 'none';
+      selectedOrderCard.classList.add('hidden-in-create-tab');
+    }
+  }, 100);
 });
 
 // Keyboard shortcuts
@@ -3548,7 +4180,7 @@ def list_skus(q: str | None = None, limit: int = 20):
                                or qL in r['model'].lower()
                                or qL in r['variant'].lower())]
                 # JSON-safe: her şey string, NaN yok
-                return out[:max(1, min(int(limit), 100))]
+                return out[:max(1, min(int(limit), 2000))]
         except Exception:
             continue
     return []
