@@ -31,6 +31,10 @@ def favicon():
         from fastapi.responses import Response
         return Response(content=b'\x00\x00\x01\x00\x01\x00\x10\x10\x00\x00\x01\x00\x20\x00\x68\x04\x00\x00\x16\x00\x00\x00', media_type="image/x-icon")
 
+@app.get("/health")
+def health_check():
+	"""Health check endpoint for DigitalOcean App Platform"""
+	return {"status": "healthy", "service": "TetraboX"}
 
 def try_aggressive_partial_packing(products: List[Product], containers: List[Container]) -> Optional[List[Tuple[Container, PackedContainer]]]:
 	"""

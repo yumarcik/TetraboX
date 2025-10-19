@@ -1,0 +1,41 @@
+name: tetrabox-packaging-optimizer
+region: nyc
+
+services:
+  - name: web
+    github:
+      repo: yumarcik/TetraboX
+      branch: main
+      deploy_on_push: true
+
+    # Build configuration
+    # Note: Dependencies are auto-installed by buildpack, no custom build command needed
+
+    # Run configuration
+    run_command: uvicorn src.server:app --host 0.0.0.0 --port 8080
+
+    # Environment
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: professional-xs
+
+    # HTTP configuration
+    http_port: 8080
+
+    # Health check
+    health_check:
+      http_path: /health
+      initial_delay_seconds: 30
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+
+    # Environment variables
+    envs:
+      - key: PORT
+        value: "8080"
+      - key: LOG_LEVEL
+        value: "info"
+      - key: PYTHONUNBUFFERED
+        value: "1"
