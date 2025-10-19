@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from typing import List, Optional, Tuple, Dict
 from .schemas import PackRequest, PackResponse, Placement, OrderPackRequest, OrderPackResponse, ContainerResult, CreateOrderRequest, UpdateOrderRequest, OrderResponse, OrderListResponse, APIOrderItem
 from .models import Product, Container, Order, OrderItem, PackedContainer
@@ -13,6 +14,22 @@ import uuid
 
 
 app = FastAPI(title="TetraboX API", version="0.1.0")
+
+# Mount static files directory
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/favicon.ico")
+def favicon():
+    """Serve favicon from static directory"""
+    from fastapi.responses import FileResponse
+    import os
+    favicon_path = os.path.join("static", "favicon.ico")
+    if os.path.exists(favicon_path):
+        return FileResponse(favicon_path, media_type="image/x-icon")
+    else:
+        # Fallback to simple transparent pixel if file doesn't exist
+        from fastapi.responses import Response
+        return Response(content=b'\x00\x00\x01\x00\x01\x00\x10\x10\x00\x00\x01\x00\x20\x00\x68\x04\x00\x00\x16\x00\x00\x00', media_type="image/x-icon")
 
 
 def try_aggressive_partial_packing(products: List[Product], containers: List[Container]) -> Optional[List[Tuple[Container, PackedContainer]]]:
