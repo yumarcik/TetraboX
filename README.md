@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-4. Tarayıcıda açın: http://localhost:8000
+4. Tarayıcıda açın: https://tetrabox.ai
 
 ### 📊 Veri Formatları
 
